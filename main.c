@@ -29,6 +29,28 @@ typedef struct PlayerData
     char dreamCatName[128];
 } PlayerData;
 
+int Check_StatName(char *StatName, int StatAmount)
+{
+    if (strcmp("hunger", StatName) == 0)
+    {
+        return 1;
+    }
+    else if (strcmp("feeling", StatName) == 0)
+    {
+        return 2;
+    }
+    else if (strcmp("health", StatName) == 0)
+    {
+        return 3;
+    }
+    else if (strcmp("friendship", StatName) == 0)
+    {
+        return 4;
+    }
+    else
+        return 0;
+}
+
 int addItem(char *itemName, int itemAmount, ItemList *itemlist)
 {
     for (int i = 0; i < itemlist->itemcount; i++)
@@ -61,8 +83,8 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     FILE *fp = fopen("./savedata/items.txt", "r");
     while (fgets("temp", sizeof(temp), fp) != 0)
     {
-        ptr = strtok(temp, ",");
-        strcpy(itemName, ptr);
+        ptr = strtok(temp, "="); // 데이터 형식은 이름=갯수 형식으로 작성
+        strcpy(itemName, ptr);   // ex) Potato=10
         ptr = strtok(NULL, "");
         itemAmount = 0;
         for (int i = 0; ptr[i] != 0; i++)
@@ -71,6 +93,40 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
             itemAmount += ptr[i] - '0';
         }
         addItem(itemName, itemAmount, items);
+    }
+    fclose(fp);
+
+    FILE *fp = fopen("./savedata/Status_data.txt", "r"); // 상태 불러오기
+    while (!feof(fp))
+    {
+        ptr = strtok(temp, "=");
+        strcpy(itemName, ptr);
+        ptr = strtok(NULL, "");
+        itemAmount = 0;
+        for (int i = 0; ptr[i] != 0; i++)
+        {
+            itemAmount *= 10;
+            itemAmount += ptr[i] - '0';
+        }
+
+        switch (Check_StatName(itemName, itemAmount))
+        {
+        case 1:
+            stats->hunger = itemAmount;
+            break;
+        case 2:
+            stats->feeling = itemAmount;
+            break;
+        case 3:
+            stats->health = itemAmount;
+            break;
+        case 4:
+            stats->friendship = itemAmount;
+            break;
+
+        default:
+            break;
+        }
     }
     fclose(fp);
 }
