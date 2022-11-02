@@ -72,6 +72,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         }
         addItem(itemName, itemAmount, items);
     }
+    fclose(fp);
 }
 
 int initGame()
