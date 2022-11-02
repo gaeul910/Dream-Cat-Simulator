@@ -80,6 +80,8 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     int itemAmount;
     char *ptr;
 
+    items->itemcount = 0;
+
     FILE *fp = fopen("./savedata/items.txt", "r");
     while (fgets("temp", sizeof(temp), fp) != 0)
     {
