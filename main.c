@@ -71,6 +71,7 @@ int addItem(char *itemName, int itemAmount, ItemList *itemlist)
 
 int saveGame()
 {
+    FILE *fp = fopen("./savedata/items.txt", "w");
 }
 
 int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
