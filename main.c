@@ -140,4 +140,10 @@ int initGame()
 
 int main()
 {
+    ItemList *itemlist = (ItemList *)malloc(sizeof(ItemList));
+    Status *status = (Status *)malloc(sizeof(Status));
+    PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
+    int loadGame(itemlist, status, playerdata);
+
+    return 0;
 }
