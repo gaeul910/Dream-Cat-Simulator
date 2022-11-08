@@ -69,10 +69,23 @@ int addItem(char *itemName, int itemAmount, ItemList *itemlist)
     return 0;
 }
 
-int saveGame()
+int saveGame(ItemList *item, Status *status)
 {
     FILE *fp = fopen("./savedata/items.txt", "w");
+    for (int i = 0; i < item->itemcount; i++)
+    {
+        fprintf(fp, "%s=%d\n", item->itemArr[i].name, item->itemArr[i].amount);
+    }
     fclose(fp);
+
+    FILE *fp = fopen("./savedata/Status_data.txt", "w");
+    fprintf(fp, "hunger=%d\n", status->hunger);
+    fprintf(fp, "feeling=%d\n", status->feeling);
+    fprintf(fp, "health=%d\n", status->health);
+    fprintf(fp, "friendship=%d\n", status->friendship);
+    fclose(fp);
+
+    return 0;
 }
 
 int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
@@ -135,14 +148,15 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     fclose(fp);
 }
 
-int initGame() {
+int initGame()
+{
     char temp[128];
     FILE *fp = fopen("./savedata/playerinfo.txt", "w"); //파일을 쓰기로 열기
     scanf("%s", temp);
     fprintf(fp, "PlayerName=%s", temp); //파일로 출력
     scanf("%s", temp);
     fprintf(fp, "DreamCatName=%s", temp); // 파일로 출력
-    
+
     return 0;
 }
 
