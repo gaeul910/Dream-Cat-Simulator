@@ -135,8 +135,15 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     fclose(fp);
 }
 
-int initGame()
-{
+int initGame() {
+    char temp[128];
+    FILE *fp = fopen("./savedata/playerinfo.txt", "w"); //파일을 쓰기로 열기
+    scanf("%s", temp);
+    fprintf(fp, "PlayerName=%s", temp); //파일로 출력
+    scanf("%s", temp);
+    fprintf(fp, "DreamCatName=%s", temp); // 파일로 출력
+    
+    return 0;
 }
 
 int main()
