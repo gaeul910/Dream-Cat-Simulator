@@ -55,7 +55,7 @@ int addItem(char *itemName, int itemAmount, ItemList *itemlist)
 {
     for (int i = 0; i < itemlist->itemcount; i++)
     {
-        if (strcmp(itemlist->itemArr[i].name, itemName))
+        if (strcmp(itemlist->itemArr[i].name, itemName) == 0)
         {
             itemlist->itemArr[i].amount += itemAmount;
             return 0;
@@ -78,7 +78,7 @@ int saveGame(ItemList *item, Status *status)
     }
     fclose(fp);
 
-    FILE *fp = fopen("./savedata/Status_data.txt", "w");
+    fp = fopen("./savedata/Status_data.txt", "w");
     fprintf(fp, "hunger=%d\n", status->hunger);
     fprintf(fp, "feeling=%d\n", status->feeling);
     fprintf(fp, "health=%d\n", status->health);
@@ -98,13 +98,13 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     items->itemcount = 0;
 
     FILE *fp = fopen("./savedata/items.txt", "r");
-    while (fgets("temp", sizeof(temp), fp) != 0)
+    while (fgets(temp, sizeof(temp), fp) != 0)
     {
         ptr = strtok(temp, "="); // 데이터 형식은 이름=갯수 형식으로 작성
         strcpy(itemName, ptr);   // ex) Potato=10
         ptr = strtok(NULL, "");
         itemAmount = 0;
-        for (int i = 0; ptr[i] != 0; i++)
+        for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
         {
             itemAmount *= 10;
             itemAmount += ptr[i] - '0';
@@ -113,14 +113,14 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     }
     fclose(fp);
 
-    FILE *fp = fopen("./savedata/Status_data.txt", "r"); // 상태 불러오기
-    while (!feof(fp))
+    fp = fopen("./savedata/Status_data.txt", "r"); // 상태 불러오기
+    while (fgets(temp, sizeof(temp), fp) != 0)
     {
         ptr = strtok(temp, "=");
         strcpy(itemName, ptr);
         ptr = strtok(NULL, "");
         itemAmount = 0;
-        for (int i = 0; ptr[i] != 0; i++)
+        for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
         {
             itemAmount *= 10;
             itemAmount += ptr[i] - '0';
@@ -165,7 +165,7 @@ int main()
     ItemList *itemlist = (ItemList *)malloc(sizeof(ItemList));
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
-    int loadGame(itemlist, status, playerdata);
+    loadGame(itemlist, status, playerdata);
 
     return 0;
 }
