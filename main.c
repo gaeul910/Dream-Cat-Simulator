@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "interaction_system.c"
 
 typedef struct item
 {
@@ -151,9 +152,9 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
 int initGame()
 {
     char temp[128];
-    FILE *fp = fopen("./savedata/playerinfo.txt", "w"); //파일을 쓰기로 열기
+    FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기
     scanf("%s", temp);
-    fprintf(fp, "PlayerName=%s", temp); //파일로 출력
+    fprintf(fp, "PlayerName=%s", temp); // 파일로 출력
     scanf("%s", temp);
     fprintf(fp, "DreamCatName=%s", temp); // 파일로 출력
 
