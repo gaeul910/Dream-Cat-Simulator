@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include "interaction_system.c"
 
 typedef struct item
@@ -167,6 +168,17 @@ int main()
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
     loadGame(itemlist, status, playerdata);
+    printf("임시 기능\n");
+    printf("먹이[F]");
+    int key = getch();
+    switch (key)
+    {
+    case 70:
+        food();
+        break;
 
+    default:
+        break;
+    }
     return 0;
 }

@@ -35,9 +35,9 @@ int cursor() // 아이템 커서 이동 기능
                 break;
             }
         }
-        else if (key == 'b')
+        else if (key == 13)
         {
-            break;
+            return y;
         }
         if (y < 3)
         {
@@ -61,8 +61,9 @@ void add_line() //(임시) 줄 만들기
     printf("\n");
 }
 
-void interaction_food_select()
+void food()
 {
+    system("cls");
     add_line();
     gotoxy(10, 1);
     printf("소지품\n");
@@ -90,5 +91,4 @@ void interaction_food_select()
     }
 
     system("pause");
-    return 0;
 }
