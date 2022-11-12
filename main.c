@@ -227,7 +227,7 @@ int printCharacter(int *imgnum, char *laststat, Status *stats)
     if ((laststat != NULL) && (strcmp(laststat, currentstat)) != 0) //기분 상태가 변경되었는지 확인
     {
         *imgnum = getRandomCharacterNum(stats);
-    }
+    } // 마지막 출력으로부터 상태가 변경되어 새로운 이미지가 필요한지 판별
 
     int imgnumcp = *imgnum;
     int temp = 1;
@@ -243,7 +243,7 @@ int printCharacter(int *imgnum, char *laststat, Status *stats)
         strimgnum[i] = (imgnumcp / temp) - '0';
         imgnumcp = imgnumcp - (temp * (strimgnum[i] - '0'));
         temp /= 10;
-    }
+    } // 이미지 코드 string으로 변환
 
     char imgname[128];
     char filedir[128] = "./catimg/";
