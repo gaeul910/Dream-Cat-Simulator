@@ -1,4 +1,4 @@
-imgcount=
+imgcount=4
 
 0
 .　｡・｡∧_∧｡・｡
