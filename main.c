@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <time.h>
 #include "interaction_system.c"
+#include "menus.c"
 
 typedef struct item
 {
