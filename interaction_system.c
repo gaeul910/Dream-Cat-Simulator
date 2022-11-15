@@ -1,5 +1,3 @@
-#include <windows.h>
-
 void gotoxy(int x, int y) // cmd 커서 이동 함수
 {
     COORD Pos;
