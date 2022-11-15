@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include "interaction_system.c"
+// #include <stdio.h>
+// #include <conio.h>
+// #include <windows.h>
 
 int interaction(ItemList *list, Status *stats, PlayerData *playerdat)
 {
@@ -66,7 +65,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 // openmap(); //구현 X
                 break;
             case 's':
-                saveGame(list, stats); //저장
+                saveGame(list, stats); // 저장
                 break;
             case 'o':
                 // option();
