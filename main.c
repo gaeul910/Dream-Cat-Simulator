@@ -107,7 +107,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
 
     printf("%d", sizeof(items->itemArr) / sizeof(item));
 
-    FILE *fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/gamedata/iteminfo.txt", "r");
+    FILE *fp = fopen("./gamedata/iteminfo.txt", "r");
     while (fgets(input, sizeof(input), fp) != 0)
     {
         ptr = strtok(input, "="); // 데이터 형식은 이름=갯수 형식으로 작성
@@ -134,7 +134,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         items->itemcount++;
     }
 
-    fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/savedata/items.txt", "r");
+    fp = fopen("./savedata/items.txt", "r");
     while (fgets(input, sizeof(input), fp) != 0)
     {
         ptr = strtok(input, "="); // 데이터 형식은 이름=갯수 형식으로 작성
@@ -156,7 +156,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     }
     fclose(fp);
 
-    fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/savedata/Status_data.txt", "r"); // 상태 불러오기
+    fp = fopen("./savedata/Status_data.txt", "r"); // 상태 불러오기
     while (fgets(input, sizeof(input), fp) != 0)
     {
         ptr = strtok(input, "=");
