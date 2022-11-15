@@ -3,13 +3,14 @@
 #include <string.h>
 #include <conio.h>
 #include <time.h>
-#include "interaction_system.c"
-#include "menus.c"
+// #include "interaction_system.c"
+// #include "menus.c"
 
 typedef struct item
 {
     char name[128];
     int amount;
+    int price;
 } item;
 
 typedef struct ItemList
@@ -61,20 +62,9 @@ int Check_StatName(char *StatName, int StatAmount)
         return 0;
 }
 
-int addItem(char *itemName, int itemAmount, ItemList *itemlist)
+int addItem(int itemcode, int itemAmount, ItemList *itemlist)
 {
-    for (int i = 0; i < itemlist->itemcount; i++)
-    {
-        if (strcmp(itemlist->itemArr[i].name, itemName) == 0)
-        {
-            itemlist->itemArr[i].amount += itemAmount;
-            return 0;
-        }
-    }
-
-    strcpy(itemlist->itemArr[itemlist->itemcount].name, itemName);
-    itemlist->itemArr[itemlist->itemcount].amount = itemAmount;
-    itemlist->itemcount++;
+    itemlist->itemArr[itemcode].amount += itemAmount;
 
     return 0;
 }
@@ -84,7 +74,7 @@ int saveGame(ItemList *item, Status *status)
     FILE *fp = fopen("./savedata/items.txt", "w");
     for (int i = 0; i < item->itemcount; i++)
     {
-        fprintf(fp, "%s=%d\n", item->itemArr[i].name, item->itemArr[i].amount);
+        fprintf(fp, "%d=%d\n", i, item->itemArr[i].amount);
     }
     fclose(fp);
 
@@ -100,55 +90,98 @@ int saveGame(ItemList *item, Status *status)
 
 int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
 {
-    char temp[256];
+    char input[256];
+    int temp = 0;
+    int itemValue = 0;
     char itemName[128];
-    int itemAmount;
     char *ptr;
+    int itemcode = 0;
 
     items->itemcount = 0;
 
-    FILE *fp = fopen("./savedata/items.txt", "r");
-    while (fgets(temp, sizeof(temp), fp) != 0)
+    for (int i = 0; i < sizeof(items->itemArr) / sizeof(item); i++)
     {
-        ptr = strtok(temp, "="); // 데이터 형식은 이름=갯수 형식으로 작성
-        strcpy(itemName, ptr);   // ex) Potato=10
-        ptr = strtok(NULL, "");
-        itemAmount = 0;
+        items->itemArr[i].amount = 0;
+        items->itemArr[i].price = 0;
+    }
+
+    printf("%d", sizeof(items->itemArr) / sizeof(item));
+
+    FILE *fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/gamedata/iteminfo.txt", "r");
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        ptr = strtok(input, "="); // 데이터 형식은 이름=갯수 형식으로 작성
+        itemcode = 0;
+        for (int i = 0; ptr[i] != 0; i++)
+        {
+            itemcode *= 10;
+            itemcode += ptr[i] - '0';
+        }
+
+        ptr = strtok(NULL, "=");
+
+        strcpy(items->itemArr[itemcode].name, ptr);
+
+        ptr = strtok(NULL, "=");
+        itemValue = 0;
         for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
         {
-            itemAmount *= 10;
-            itemAmount += ptr[i] - '0';
+            itemValue *= 10;
+            itemValue += ptr[i] - '0';
         }
-        addItem(itemName, itemAmount, items);
+        items->itemArr[itemcode].price = itemValue;
+
+        items->itemcount++;
+    }
+
+    fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/savedata/items.txt", "r");
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        ptr = strtok(input, "="); // 데이터 형식은 이름=갯수 형식으로 작성
+        itemcode = 0;
+        for (int i = 0; ptr[i] != 0; i++)
+        {
+            itemcode *= 10;
+            itemcode += ptr[i] - '0';
+        }
+
+        ptr = strtok(NULL, "");
+        itemValue = 0;
+        for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+        {
+            itemValue *= 10;
+            itemValue += ptr[i] - '0';
+        }
+        addItem(itemcode, itemValue, items);
     }
     fclose(fp);
 
-    fp = fopen("./savedata/Status_data.txt", "r"); // 상태 불러오기
-    while (fgets(temp, sizeof(temp), fp) != 0)
+    fp = fopen("C:/Users/hyunwook/Documents/git/Dream-Cat-Simulator/savedata/Status_data.txt", "r"); // 상태 불러오기
+    while (fgets(input, sizeof(input), fp) != 0)
     {
-        ptr = strtok(temp, "=");
+        ptr = strtok(input, "=");
         strcpy(itemName, ptr);
         ptr = strtok(NULL, "");
-        itemAmount = 0;
+        itemValue = 0;
         for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
         {
-            itemAmount *= 10;
-            itemAmount += ptr[i] - '0';
+            itemValue *= 10;
+            itemValue += ptr[i] - '0';
         }
 
-        switch (Check_StatName(itemName, itemAmount))
+        switch (Check_StatName(itemName, itemValue))
         {
         case 1:
-            stats->hunger = itemAmount;
+            stats->hunger = itemValue;
             break;
         case 2:
-            stats->feeling = itemAmount;
+            stats->feeling = itemValue;
             break;
         case 3:
-            stats->health = itemAmount;
+            stats->health = itemValue;
             break;
         case 4:
-            stats->friendship = itemAmount;
+            stats->friendship = itemValue;
             break;
 
         default:
@@ -277,23 +310,24 @@ int printCharacter(int *imgnum, char *laststat, Status *stats)
     return 0;
 }
 
+int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
+{
+    loadGame(itemlist, status, playerdat);
+    for (int i = 0; i < itemlist->itemcount; i++)
+    {
+        printf("[+] %s %d %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount, itemlist->itemArr[i].price);
+    }
+    saveGame(itemlist, status);
+
+    return 0;
+}
+
 int main()
 {
     ItemList *itemlist = (ItemList *)malloc(sizeof(ItemList));
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
-    loadGame(itemlist, status, playerdata);
-    printf("임시 기능\n");
-    printf("먹이[F]");
-    int key = getch();
-    switch (key)
-    {
-    case 70:
-        food();
-        break;
+    debug(itemlist, status, playerdata);
 
-    default:
-        break;
-    }
     return 0;
 }
