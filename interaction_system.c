@@ -6,7 +6,7 @@ void gotoxy(int x, int y) // cmd 커서 이동 함수
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
-int cursor() // 아이템 커서 이동 기능
+int cursor(int start, int end) // 아이템 커서 이동 기능
 {
     int x = 0;
     int y = 3;
@@ -37,11 +37,15 @@ int cursor() // 아이템 커서 이동 기능
         {
             return y;
         }
-        if (y < 3)
+        else if (key == 81 || key == 113)
+        {
+            return 0;
+        }
+        if (y < start)
         {
             y++;
         }
-        else if (y > 5)
+        else if (y > end)
         {
             y--;
         }
@@ -70,7 +74,7 @@ void food()
     printf(" 2. item 2\n");
     printf(" 3. item 3\n");
 
-    int num = cursor();
+    int num = cursor(3, 5);
 
     switch (num)
     {
