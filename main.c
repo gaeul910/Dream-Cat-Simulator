@@ -10,6 +10,7 @@
 #include "displaymodules.c"
 #include "interaction_system.c"
 #include "menus.c"
+#include "shop.c"
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
@@ -29,6 +30,8 @@ int main()
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
     debug(itemlist, status, playerdata);
+
+    shop(itemlist);
 
     return 0;
 }
