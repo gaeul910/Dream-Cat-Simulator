@@ -58,7 +58,7 @@ int printCharacter(int *imgnum, Status *stats)
 {
     char currentstat[128];
     getCurrentStat(currentstat, stats);
-    if ((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0) //기분 상태가 변경되었는지 확인
+    if ((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0) // 기분 상태가 변경되었는지 확인
     {
         *imgnum = getRandomCharacterNum(stats);
         strcpy(stats->laststatcode, currentstat);

@@ -21,15 +21,30 @@ void shop_food(ItemList *itemlist)
 
     switch (num)
     {
-    case 3:
-        printf("you select item1\n");
-        break;
     case 4:
-        printf("you select item2\n");
+    {
+        addItem(1, 1, itemlist);
+        itemlist->gold -= itemlist->itemArr[1].price;
+        gotoxy(0, 7);
+        printf("추가 완료");
         break;
+    }
     case 5:
-        printf("you select item3\n");
+    {
+        addItem(2, 1, itemlist);
+        itemlist->gold -= itemlist->itemArr[2].price;
+        gotoxy(0, 7);
+        printf("추가 완료");
         break;
+    }
+    case 6:
+    {
+        addItem(3, 1, itemlist);
+        itemlist->gold -= itemlist->itemArr[3].price;
+        gotoxy(0, 7);
+        printf("추가 완료");
+        break;
+    }
 
     default:
         break;
@@ -59,6 +74,7 @@ void shop(ItemList *itemlist)
         {
         case 0:
         {
+            system("cls");
             return;
         }
         case 3:

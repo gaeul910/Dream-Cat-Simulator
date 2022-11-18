@@ -59,9 +59,10 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 break;
             case 'm':
                 // openmap(); //구현 X
+                shop(list);
                 break;
             case 's':
-                saveGame(list, stats); //저장
+                saveGame(list, stats); // 저장
                 break;
             case 'o':
                 // option();
@@ -70,7 +71,8 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 continue;
             }
         }
-        system("cls");
+        gotoxy(0, 0);
+        Sleep(3000);
     }
     return 0;
 }
