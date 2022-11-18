@@ -2,8 +2,8 @@ int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *wind
 {
     printf("사용자 이름: %s    개냥이 이름: %s\n", playerdat->playerName, playerdat->dreamCatName);
     printf("========================\n");
-    printf("배고픔: %d%    건강: %d%    친밀도: %d%\n", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
-    printf("기분: %d\n", stats->laststatcode);
+    printf("배고픔: %d%%    건강: %d%%    친밀도: %d\n", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
+    printf("기분: %s\n", stats->laststatcode);
 
     printf("========================\n");
 
@@ -99,7 +99,7 @@ int printCharacter(int *imgnum, Status *stats)
     }
     if (flag == 1)
     {
-        while ((fgets(input, sizeof(input), catimg) != 0) && (strcmp(input, "END") != 0))
+        while ((fgets(input, sizeof(input), catimg) != 0) && (strcmp(input, "END\n") != 0))
         {
             printf("%s", input);
         }

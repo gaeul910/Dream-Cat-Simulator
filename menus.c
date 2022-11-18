@@ -31,7 +31,6 @@ int interaction(ItemList *list, Status *stats, PlayerData *playerdat)
 int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     char input;
-    // char laststat[128];
     getCurrentStat(stats->laststatcode, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
     int randomimg = 0;
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
