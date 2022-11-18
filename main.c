@@ -5,6 +5,7 @@
 #include <time.h>
 #include <windows.h>
 #include "gamedatamodules.c"
+#include "calculationmodules.c"
 #include "othermodules.c"
 #include "savemodules.c"
 #include "displaymodules.c"
@@ -15,11 +16,13 @@
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
     loadGame(itemlist, status, playerdat);
-    for (int i = 0; i < itemlist->itemcount; i++)
-    {
-        printf("[+] %s %d %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount, itemlist->itemArr[i].price);
-    }
-    saveGame(itemlist, status);
+    // for (int i = 0; i < itemlist->itemcount; i++)
+    // {
+    //     printf("[+] %s %d %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount, itemlist->itemArr[i].price);
+    // }
+    // saveGame(itemlist, status);
+    // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
+    mainMenu(itemlist, status, playerdat);
 
     return 0;
 }
@@ -31,7 +34,7 @@ int main()
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
     debug(itemlist, status, playerdata);
 
-    shop(itemlist);
+    // shop(itemlist);
 
     return 0;
 }

@@ -2,13 +2,13 @@ int interaction(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     char input;
     char laststat[128];
-    getCurrentStat(laststat, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
+    getCurrentStat(stats->laststatcode, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
     int randomimg = 0;
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
     while (1)
     {
         printStatus(list, stats, playerdat, NULL);
-        printCharacter(&randomimg, laststat, stats);
+        printCharacter(&randomimg, stats);
         // 여기서부터 키 입력 메뉴 출력 & 입력 받기
         // 반드시 while문 마지막에 스크린 모두 지우기 실행
         printf("[F] 먹이주기    ");
@@ -31,14 +31,14 @@ int interaction(ItemList *list, Status *stats, PlayerData *playerdat)
 int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     char input;
-    char laststat[128];
-    getCurrentStat(laststat, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
+    // char laststat[128];
+    getCurrentStat(stats->laststatcode, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
     int randomimg = 0;
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
     while (1)
     {
         printStatus(list, stats, playerdat, NULL);
-        printCharacter(&randomimg, laststat, stats);
+        printCharacter(&randomimg, stats);
         // 여기서부터 키 입력 메뉴 출력 & 입력 받기
         // 반드시 while문 마지막에 스크린 모두 지우기 실행
         printf("[E] 인벤토리");

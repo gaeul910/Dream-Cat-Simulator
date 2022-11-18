@@ -15,9 +15,14 @@ typedef struct ItemList
 typedef struct Status
 {
     int hunger;
-    int feeling;
     int health;
+    int normal; // always 7500
+    int delight;
+    int sadness;
+    int anger;
     int friendship;
+    char laststatcode[128];
+    time_t updatetime;
 } Status;
 
 typedef struct PlayerData

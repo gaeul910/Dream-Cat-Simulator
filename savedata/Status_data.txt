@@ -1,4 +1,7 @@
-hunger=100
-feeling=100
-health=100
-friendship=100
+hunger=10
+normal=2000
+delight=3000
+sadness=4000
+anger=5000
+health=6000
+friendship=7000

@@ -1,20 +1,16 @@
-int getCurrentStat(char *statcode, Status *stats)
-{
-}
-
 int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *windowName)
 {
     printf("사용자 이름: %s    개냥이 이름: %s\n", playerdat->playerName, playerdat->dreamCatName);
-    printf("========================");
-    printf("배고픔: %d%    건강: %d%    친밀도: %d%", stats->hunger, stats->health, stats->friendship);
-    printf("기분: %d", stats->feeling);
+    printf("========================\n");
+    printf("배고픔: %d%    건강: %d%    친밀도: %d%\n", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
+    printf("기분: %d\n", stats->laststatcode);
 
-    printf("========================");
+    printf("========================\n");
 
     if (windowName != NULL)
     {
         printf("%s", windowName);
-        printf("========================");
+        printf("========================\n");
     }
 
     return 0;
@@ -23,21 +19,30 @@ int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *wind
 int getRandomCharacterNum(Status *stats)
 {
     char imgname[128];
+    char filedir[128] = "./catimg/";
+    getCurrentStat(imgname, stats);
+    strcat(filedir, imgname);
+    strcat(filedir, ".txt");
+    FILE *catimg = fopen(filedir, "r");
+
+    // printf("%s", filedir);
     char input[128];
-    FILE *fp = fopen(imgname, "r");
-    fgets(input, sizeof(input), fp);
+    fgets(input, sizeof(input), catimg);
     strtok(input, "=");
     if (strcmp(input, "imgcount") == 0)
     {
+        char *ptr = 0;
+        ptr = strtok(NULL, "");
         int imgcount = 0;
         strtok(NULL, "");
-        for (int i = 0; input[i] != 10; i++)
+        for (int i = 0; ptr[i] != 10; i++)
         {
             imgcount *= 10;
-            imgcount += input[i] - '0';
+            imgcount += ptr[i] - '0';
         }
+        printf("%d", imgcount);
 
-        int randomimg = getRandomValue(imgcount);
+        int randomimg = getRandomValue(imgcount - 1);
         return randomimg;
     }
     else
@@ -49,34 +54,36 @@ int getRandomCharacterNum(Status *stats)
     return -1;
 }
 
-int printCharacter(int *imgnum, char *laststat, Status *stats)
+int printCharacter(int *imgnum, Status *stats)
 {
     char currentstat[128];
     getCurrentStat(currentstat, stats);
-    if ((laststat != NULL) && (strcmp(laststat, currentstat)) != 0) //기분 상태가 변경되었는지 확인
+    if ((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0) //기분 상태가 변경되었는지 확인
     {
         *imgnum = getRandomCharacterNum(stats);
+        strcpy(stats->laststatcode, currentstat);
     } // 마지막 출력으로부터 상태가 변경되어 새로운 이미지가 필요한지 판별
 
-    int imgnumcp = *imgnum;
-    int temp = 1;
+    // int imgnumcp = *imgnum;
+    // int temp = 1;
     char strimgnum[128];
 
-    while (imgnumcp % temp > 10)
-    {
-        temp *= 10;
-    }
+    // while (imgnumcp % temp > 10)
+    // {
+    //     temp *= 10;
+    // }
 
-    for (int i = 0; temp != 1; i++)
-    {
-        strimgnum[i] = (imgnumcp / temp) - '0';
-        imgnumcp = imgnumcp - (temp * (strimgnum[i] - '0'));
-        temp /= 10;
-    } // 이미지 코드 string으로 변환
+    // for (int i = 0; temp != 1; i++)
+    // {
+    //     strimgnum[i] = (imgnumcp / temp) - '0';
+    //     imgnumcp = imgnumcp - (temp * (strimgnum[i] - '0'));
+    //     temp /= 10;
+    // } // 이미지 코드 string으로 변환
 
-    char imgname[128];
+    sprintf(strimgnum, "%d", *imgnum);
+    strcat(strimgnum, "\n");
     char filedir[128] = "./catimg/";
-    strcat(filedir, imgname);
+    strcat(filedir, currentstat);
     strcat(filedir, ".txt");
     FILE *catimg = fopen(filedir, "r");
 

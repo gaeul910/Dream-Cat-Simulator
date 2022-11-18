@@ -16,17 +16,29 @@ int Check_StatName(char *StatName, int StatAmount)
     {
         return 1;
     }
-    else if (strcmp("feeling", StatName) == 0)
+    else if (strcmp("normal", StatName) == 0)
     {
         return 2;
     }
-    else if (strcmp("health", StatName) == 0)
+    else if (strcmp("delight", StatName) == 0)
     {
         return 3;
     }
-    else if (strcmp("friendship", StatName) == 0)
+    else if (strcmp("sadness", StatName) == 0)
     {
         return 4;
+    }
+    else if (strcmp("anger", StatName) == 0)
+    {
+        return 5;
+    }
+    else if (strcmp("friendship", StatName) == 0)
+    {
+        return 6;
+    }
+    else if (strcmp("health", StatName) == 0)
+    {
+        return 7;
     }
     else
         return 0;
@@ -43,7 +55,10 @@ int saveGame(ItemList *item, Status *status)
 
     fp = fopen("./savedata/Status_data.txt", "w");
     fprintf(fp, "hunger=%d\n", status->hunger);
-    fprintf(fp, "feeling=%d\n", status->feeling);
+    fprintf(fp, "normal=%d\n", status->normal);
+    fprintf(fp, "delight=%d\n", status->delight);
+    fprintf(fp, "sadness=%d\n", status->sadness);
+    fprintf(fp, "anger=%d\n", status->anger);
     fprintf(fp, "health=%d\n", status->health);
     fprintf(fp, "friendship=%d\n", status->friendship);
     fclose(fp);
@@ -67,8 +82,6 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         items->itemArr[i].amount = 0;
         items->itemArr[i].price = 0;
     }
-
-    printf("%d", sizeof(items->itemArr) / sizeof(item));
 
     FILE *fp = fopen("./gamedata/iteminfo.txt", "r");
     while (fgets(input, sizeof(input), fp) != 0)
@@ -138,18 +151,47 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
             stats->hunger = itemValue;
             break;
         case 2:
-            stats->feeling = itemValue;
+            stats->normal = itemValue;
             break;
         case 3:
-            stats->health = itemValue;
-            break;
-        case 4:
-            stats->friendship = itemValue;
+            stats->delight = itemValue;
             break;
 
+        case 4:
+            stats->sadness = itemValue;
+            break;
+        case 5:
+            stats->anger = itemValue;
+            break;
+        case 6:
+            stats->friendship = itemValue;
+            break;
+        case 7:
+            stats->health = itemValue;
+            break;
         default:
             break;
         }
     }
     fclose(fp);
+
+    fp = fopen("./savedata/Player_data.txt", "r"); // 상태 불러오기
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        ptr = strtok(input, "=");
+        strcpy(itemName, ptr);
+        ptr = strtok(NULL, "");
+
+        if (strcmp(itemName, "PlayerName") == 0)
+        {
+            strcpy(playerdat->playerName, ptr);
+        }
+        else if (strcmp(itemName, "CatName") == 0)
+        {
+            strcpy(playerdat->dreamCatName, ptr);
+        }
+    }
+    fclose(fp);
+
+    return 0;
 }
