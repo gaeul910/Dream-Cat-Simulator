@@ -29,6 +29,7 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 
 int main()
 {
+    system("mode con:cols=100 lines=13"); // 콘솔창 크기조절(가로,세로 증감 비율 다름 약 2:1)
     ItemList *itemlist = (ItemList *)malloc(sizeof(ItemList));
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));
