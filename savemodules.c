@@ -193,5 +193,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     }
     fclose(fp);
 
+    stats->updatetime = time(NULL); // 추후 흘러간 시간 계산 후 마지막에 수행
+
     return 0;
 }

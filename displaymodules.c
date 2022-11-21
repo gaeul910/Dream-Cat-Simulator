@@ -23,11 +23,13 @@ int getRandomCharacterNum(Status *stats)
     getCurrentStat(imgname, stats);
     strcat(filedir, imgname);
     strcat(filedir, ".txt");
+    printf("%s", filedir);
     FILE *catimg = fopen(filedir, "r");
 
     // printf("%s", filedir);
     char input[128];
     fgets(input, sizeof(input), catimg);
+    printf("%s", input);
     strtok(input, "=");
     if (strcmp(input, "imgcount") == 0)
     {

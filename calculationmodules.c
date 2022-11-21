@@ -1,6 +1,6 @@
 time_t StatUpdate(Status *stats)
 {
-    time_t timepassed = stats->updatetime - time(NULL);
+    time_t timepassed = time(NULL) - stats->updatetime;
 
     if (timepassed >= 1)
     {
@@ -8,6 +8,14 @@ time_t StatUpdate(Status *stats)
         stats->sadness += 2 * timepassed;
         stats->delight -= 2 * timepassed;
         stats->anger += 1 * timepassed;
+
+        stats->updatetime = time(NULL);
+
+        return 1;
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -32,7 +40,7 @@ int getCurrentStat(char *statcode, Status *stats)
     }
     else if (stats->anger > stats->delight && stats->anger > stats->sadness && stats->anger > stats->normal)
     {
-        strcpy(statcode, "anger");
+        strcpy(statcode, "angry");
     }
 
     return 0;

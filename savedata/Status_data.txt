@@ -1,4 +1,4 @@
-hunger=10
+hunger=1000
 normal=2000
 delight=3000
 sadness=4000
