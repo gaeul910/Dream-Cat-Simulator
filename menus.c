@@ -27,7 +27,7 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 continue;
             }
         }
-        Sleep(2000);
+        Sleep(1000);
         system("cls");
     }
     return 0;
@@ -72,10 +72,10 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 break;
             case 's':
                 system("cls");
-                printf("[i] 게임을 저장하고 있습니다...");
+                printf("[i] 게임을 저장하고 있습니다.\n");
                 if (saveGame(list, stats) == 0)
                 {
-                    printf("게임을 성공적으로 저장했습니다!");
+                    printf("게임을 성공적으로 저장했습니다!\n");
                 }
                 else
                 {
@@ -89,7 +89,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 continue;
             }
         }
-        Sleep(2000);
+        Sleep(1000);
         system("cls");
     }
     return 0;
