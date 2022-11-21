@@ -1,4 +1,4 @@
-int interaction(ItemList *list, Status *stats, PlayerData *playerdat)
+int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     char input;
     char laststat[128];
@@ -61,7 +61,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             switch (input)
             {
             case 'f':
-                // interaction();
+                interactionMenu(list, stats, playerdat);
                 break;
             case 'e':
                 // inventory(); //구현 X
@@ -71,7 +71,16 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 shop(list);
                 break;
             case 's':
-                saveGame(list, stats); // 저장
+                system("cls");
+                printf("[i] 게임을 저장하고 있습니다...");
+                if (saveGame(list, stats) == 0)
+                {
+                    printf("게임을 성공적으로 저장했습니다!");
+                }
+                else
+                {
+                    printf("저장 오류가 발생했습니다.");
+                }
                 break;
             case 'o':
                 // option();
