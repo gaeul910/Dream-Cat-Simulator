@@ -1,5 +1,6 @@
 int seeinventory(ItemList *itemlist)
 {
+    system("cls");
     typedef struct Inventory
     {
         item inventoryitem[256];

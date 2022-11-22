@@ -9,6 +9,8 @@
 #include "othermodules.c"
 #include "savemodules.c"
 #include "displaymodules.c"
+#include "inventory.c"
+#include "minigames.c"
 #include "interaction_system.c"
 #include "shop.c"
 #include "menus.c"

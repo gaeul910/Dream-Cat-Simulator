@@ -64,7 +64,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 interactionMenu(list, stats, playerdat);
                 break;
             case 'e':
-                // inventory(); //구현 X
+                seeinventory(list);
                 break;
             case 'm':
                 // openmap(); //구현 X
