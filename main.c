@@ -8,8 +8,8 @@
 #include "calculationmodules.c"
 #include "othermodules.c"
 #include "savemodules.c"
-#include "displaymodules.c"
 #include "interaction_system.c"
+#include "displaymodules.c"
 #include "shop.c"
 #include "menus.c"
 
