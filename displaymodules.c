@@ -1,16 +1,27 @@
 int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *windowName)
 {
-    printf("사용자 이름: %s    개냥이 이름: %s\n", playerdat->playerName, playerdat->dreamCatName);
-    printf("========================\n");
-    printf("배고픔: %d%%    건강: %d%%    친밀도: %d\n", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
+    makebannerbox(5);
+    gotoxy(3, 1);
+    printf("사용자 이름: %s", playerdat->playerName);
+    gotoxy(3, 2);
+    printf("개냥이 이름: %s", playerdat->dreamCatName);
+    gotoxy(0, 6);
+    makebannerbox(5);
+    gotoxy(3, 7);
+    printf("배고픔: %d%%    건강: %d%%    친밀도: %d", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
+    gotoxy(3, 9);
     printf("기분: %s\n", stats->laststatcode);
-
-    printf("========================\n");
 
     if (windowName != NULL)
     {
+        makebannerbox(3);
+        gotoxy(3, 11);
         printf("%s", windowName);
-        printf("========================\n");
+        gotoxy(0, 15);
+    }
+    else
+    {
+        gotoxy(0, 12);
     }
 
     return 0;
@@ -95,6 +106,7 @@ int printCharacter(int *imgnum, Status *stats)
     {
         if (strcmp(input, strimgnum) == 0)
         {
+            printf("  ");
             flag = 1;
             break;
         }
@@ -105,6 +117,7 @@ int printCharacter(int *imgnum, Status *stats)
         {
             printf("%s", input);
         }
+        printf("\n");
     }
     else
     {
