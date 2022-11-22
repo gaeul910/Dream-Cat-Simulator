@@ -9,7 +9,7 @@ void gotoxy(int x, int y) // cmd 커서 이동 함수
 int cursor(int start, int end) // 아이템 커서 이동 기능
 {
     int x = 0;
-    int y = 3;
+    int y = start + 1;
     while (1)
     {
         int key = getch();
