@@ -91,18 +91,42 @@ int baseball()
         }
     }
 }
+
 int explain()
 {
     int respond;
     char fileinput[256];
     FILE *fp = fopen("./gamedata/textresources/baseballtutorial.txt", "r");
+    if (fp == NULL)
+        printf("File is NULL");
     while (fgets(fileinput, sizeof(fileinput), fp) != 0)
     {
         printf("%s\n", fileinput);
         Sleep(1500);
     }
     fclose(fp);
-    experience();
+    while (1)
+    {
+        scanf("%d", &respond);
+        if (respond == 0)
+        {
+            printf("이해하셨다니 다행입니다!!\n");
+            Sleep(1000);
+            printf("그렇다면, 이제부터 숫자야구를 시작하겠습니다!\n");
+            Sleep(1000);
+            printf("-----------------------------------------------------------------------\n");
+            baseball();
+        }
+        else if (respond == 1)
+        {
+            printf("그렇다면, 다시 설명해드리겠습니다.\n");
+            explain();
+        }
+        else
+        {
+            printf("0과 1중에서만 입력해주세요...\n ");
+        }
+    }
 }
 void experience()
 {
