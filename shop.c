@@ -1,6 +1,6 @@
 void eraser(int start, int end)
 {
-    char Eraser[] = "                       ";
+    char Eraser[] = "                                            ";
     gotoxy(0, start);
     for (int i = start; i <= end; i++)
     {
@@ -23,30 +23,61 @@ void shop_food(ItemList *itemlist)
     {
     case 4:
     {
-        addItem(1, 1, itemlist);
-        itemlist->gold -= itemlist->itemArr[1].price;
+        int how_many;
         gotoxy(0, 7);
-        printf("추가 완료");
+        printf("구매 갯수 : ");
+        scanf("%d", &how_many);
+        addItem(1, how_many, itemlist);
+        if (itemlist->gold >= (itemlist->itemArr[1].price * how_many))
+        {
+            itemlist->gold -= (itemlist->itemArr[1].price * how_many);
+            printf("추가 완료");
+        }
+        else
+        {
+            printf("돈이 더 필요해요!\n");
+        }
         break;
     }
     case 5:
     {
-        addItem(2, 1, itemlist);
-        itemlist->gold -= itemlist->itemArr[2].price;
+        int how_many;
         gotoxy(0, 7);
-        printf("추가 완료");
+        printf("구매 갯수 : ");
+        scanf("%d", &how_many);
+        addItem(2, how_many, itemlist);
+        if (itemlist->gold >= (itemlist->itemArr[2].price * how_many))
+        {
+            itemlist->gold -= (itemlist->itemArr[2].price * how_many);
+            printf("추가 완료");
+        }
+        else
+        {
+            printf("돈이 더 필요해요!\n");
+        }
         break;
     }
     case 6:
     {
-        addItem(3, 1, itemlist);
-        itemlist->gold -= itemlist->itemArr[3].price;
+        int how_many;
         gotoxy(0, 7);
-        printf("추가 완료");
+        printf("구매 갯수 : ");
+        scanf("%d", &how_many);
+        addItem(3, how_many, itemlist);
+        if (itemlist->gold >= (itemlist->itemArr[3].price * how_many))
+        {
+            itemlist->gold -= (itemlist->itemArr[3].price * how_many);
+            printf("추가 완료");
+        }
+        else
+        {
+            printf("돈이 더 필요해요!\n");
+        }
         break;
     }
 
     default:
+        gotoxy(0, 7);
         break;
     }
 
@@ -61,7 +92,7 @@ void shop(ItemList *itemlist)
 
         add_line();
         gotoxy(10, 1);
-        printf("상점(임시 인터페이스)\n");
+        printf("상점\n");
         add_line();
         printf(" 먹이\n");
         printf(" 간식\n");
