@@ -1,10 +1,4 @@
-void gotoxy(int x, int y) // cmd 커서 이동 함수
-{
-    COORD Pos;
-    Pos.X = x;
-    Pos.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
-}
+
 
 int cursor(int start, int end) // 아이템 커서 이동 기능
 {

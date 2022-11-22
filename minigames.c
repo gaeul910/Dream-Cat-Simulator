@@ -78,7 +78,7 @@ int rockscissorspapermenu(ItemList *items)
         {
             // 가위바위보 실패창 디자인
             printf("실패..");
-            delay(3000);
+            Sleep(3000);
             return 0;
         }
         else if (result == 0)
