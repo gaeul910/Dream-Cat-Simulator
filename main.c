@@ -12,8 +12,19 @@
 #include "inventory.c"
 #include "minigames.c"
 #include "interaction_system.c"
+#include "displaymodules.c"
 #include "shop.c"
 #include "menus.c"
+
+void Cursor_view()
+{
+    CONSOLE_CURSOR_INFO cursorInfo = {
+        0,
+    };
+    cursorInfo.bVisible = 0; // 커서를 보일지 말지 결정(0이면 안보임, 0제외 숫자 값이면 보임)
+    cursorInfo.dwSize = 1;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
@@ -25,13 +36,13 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
     // saveGame(itemlist, status);
     // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
     mainMenu(itemlist, status, playerdat);
-
     return 0;
 }
 
 int main()
 {
-    system("mode con:cols=100 lines=13"); // 콘솔창 크기조절(가로,세로 증감 비율 다름 약 2:1)
+    system("mode con:cols=80 lines=25"); // 콘솔창 크기조절(가로,세로 증감 비율 다름 약 2:1)
+    Cursor_view();
     ItemList *itemlist = (ItemList *)malloc(sizeof(ItemList));
     Status *status = (Status *)malloc(sizeof(Status));
     PlayerData *playerdata = (PlayerData *)malloc(sizeof(PlayerData));

@@ -113,3 +113,36 @@ int printCharacter(int *imgnum, Status *stats)
 
     return 0;
 }
+
+void shop_banner()
+{
+    printf("╔");
+    for (int i = 1; i < 79; i++)
+    {
+        printf("═");
+    }
+    printf("╗\n");
+
+    for (int i = 1; i < 6; i++)
+    {
+        printf("║");
+        gotoxy(79, i);
+        printf("║\n");
+    }
+
+    printf("╚");
+    for (int i = 1; i < 79; i++)
+    {
+        printf("═");
+    }
+    printf("╝\n");
+
+    FILE *fp = fopen("C:\\Users\\user\\Dreamcat\\Dream-Cat-Simulator\\shop_banner.txt", "r");
+    char input[100];
+    for (int i = 1; i < 6; i++)
+    {
+        fgets(input, sizeof(input), fp);
+        gotoxy(20, i);
+        printf("%s", input);
+    }
+}
