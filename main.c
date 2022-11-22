@@ -17,16 +17,9 @@
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
-    loadGame(itemlist, status, playerdat);
-    // for (int i = 0; i < itemlist->itemcount; i++)
-    // {
-    //     printf("[+] %s %d %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount, itemlist->itemArr[i].price);
-    // }
-    // saveGame(itemlist, status);
-    // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
-    mainMenu(itemlist, status, playerdat);
 
-    return 0;
+    //  loadGame(itemlist, status, playerdat);
+    // mainMenu(itemlist, status, playerdat);
 }
 
 int main()
