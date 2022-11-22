@@ -51,6 +51,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             printf("[E] 인벤토리");
             printf("[M] 지도 열기");
             printf("[F] 상호 작용");
+            printf("\n");
             printf("[S] 저장하기");
             printf("[O] 옵션");
             printf("%d", randomimg);
