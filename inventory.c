@@ -10,12 +10,12 @@ int seeinventory(ItemList *itemlist)
 
     char input;
     int k = 0;
-    int page = k / 5;
-    int MAXpage = (inventory->inventorycount / 5) + 1;
+    int page = k / 10;
+    int MAXpage = (inventory->inventorycount / 10) + 1;
     inventory->inventorycount = 0;
-    printf("===========================================\n");
-    printf("             인벤토리 ( 1 / %d )             \n", page + 1);
-    printf("===========================================\n");
+    printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                         인벤토리 ( 1 / %d )                           ║\n", MAXpage);
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     for (int i = 0; i < itemlist->itemcount; i++)
     {
         if (itemlist->itemArr[i].amount != 0)
@@ -40,9 +40,9 @@ int seeinventory(ItemList *itemlist)
                 if (input == 'h')
                 {
                     system("cls");
-                    printf("===========================================\n");
-                    printf("            인벤토리 ( %d / %d )       \n", page, MAXpage);
-                    printf("===========================================\n");
+                    printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+                    printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
+                    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
                 }
                 else
                 {
@@ -61,11 +61,11 @@ int seeinventory(ItemList *itemlist)
                     input = getch();
                     if (input == 'g')
                     {
-                        k = k - 5 - (k % 5);
+                        k = k - 10 - (k % 10);
                         system("cls");
-                        printf("===========================================\n");
-                        printf("            인벤토리 ( %d / %d )       \n", page, MAXpage);
-                        printf("===========================================\n");
+                        printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+                        printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
+                        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
                         break;
                     }
                     else
@@ -89,19 +89,19 @@ int seeinventory(ItemList *itemlist)
                     input = getch();
                     if (input == 'g')
                     {
-                        k = k - 10;
+                        k = k - 20;
                         system("cls");
-                        printf("===========================================\n");
-                        printf("            인벤토리 ( %d / %d )       \n", page, MAXpage);
-                        printf("===========================================\n");
+                        printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+                        printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
+                        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
                         break;
                     }
                     else if (input == 'h')
                     {
                         system("cls");
-                        printf("===========================================\n");
-                        printf("            인벤토리 ( %d / %d )       \n", page, MAXpage);
-                        printf("===========================================\n");
+                        printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+                        printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
+                        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
                         break;
                     }
                     else
