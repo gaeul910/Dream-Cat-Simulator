@@ -127,6 +127,24 @@ int printCharacter(int *imgnum, Status *stats)
     return 0;
 }
 
+int windowNameBanner(char *windowname)
+{
+    if (windowname != "NULL")
+    {
+        makebannerbox(3);
+        gotoxy(3, 1);
+        printf("%s", windowname);
+        gotoxy(0, 3);
+
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+    return -1;
+}
+
 void shop_banner()
 {
     printf("╔");
