@@ -13,6 +13,7 @@
 #include "minigames.c"
 #include "interaction_system.c"
 #include "shop.c"
+#include "map.c"
 #include "menus.c"
 
 void Cursor_view()

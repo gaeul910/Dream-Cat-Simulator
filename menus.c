@@ -68,8 +68,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 seeinventory(list);
                 break;
             case 'm':
-                // openmap(); //구현 X
-                shop(list);
+                openmap(list);
                 break;
             case 's':
                 system("cls");
