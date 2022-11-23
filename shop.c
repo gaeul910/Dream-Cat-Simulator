@@ -93,10 +93,17 @@ void shop(ItemList *itemlist)
 
         shop_banner();
         gotoxy(0, 7);
-        printf(" 먹이\n");
-        printf(" 간식\n");
-        printf(" 장난감\n");
-        printf(" 기타\n");
+        printf(" o 먹이\n");
+        printf(" o 간식\n");
+        printf(" o 장난감\n");
+        printf(" o 기타\n");
+
+        gotoxy(0, 23);
+        add_line();
+        printf("[↑] 위로 이동\t");
+        printf("[↓] 아래로 이동\t");
+        gotoxy(68, 24);
+        printf("[Q] 나가기\t");
 
         int num = cursor(7, 10);
 

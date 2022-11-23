@@ -150,7 +150,7 @@ void shop_banner()
     }
     printf("╝\n");
 
-    FILE *fp = fopen("C:\\Users\\user\\Dreamcat\\Dream-Cat-Simulator\\shop_banner.txt", "r");
+    FILE *fp = fopen(".\\shop_banner.txt", "r");
     char input[100];
     for (int i = 1; i < 6; i++)
     {
@@ -158,4 +158,13 @@ void shop_banner()
         gotoxy(20, i);
         printf("%s", input);
     }
+}
+
+void add_line() // 줄 만들기
+{
+    for (int i = 1; i < 80; i++)
+    {
+        printf("═");
+    }
+    printf("\n");
 }
