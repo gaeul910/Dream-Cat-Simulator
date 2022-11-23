@@ -48,15 +48,6 @@ int cursor(int start, int end) // 아이템 커서 이동 기능
     }
 }
 
-void add_line() //(임시) 줄 만들기
-{
-    for (int i = 0; i < 26; i++)
-    {
-        printf("=");
-    }
-    printf("\n");
-}
-
 void food()
 {
     system("cls");
