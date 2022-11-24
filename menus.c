@@ -20,8 +20,11 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             input = getch();
             switch (input)
             {
+            case 'q':
+            case 'Q':
+                return 0;
             case 'f':
-                food();
+                food(list, stats);
                 break;
             default:
                 continue;

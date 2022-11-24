@@ -1,0 +1,12 @@
+1
+hunger=150
+sadness=-10
+END
+2
+hunger=200
+sadness=-15
+END
+3
+hunger=300
+sadness=-20
+END

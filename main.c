@@ -35,8 +35,8 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
     // }
     // saveGame(itemlist, status);
     // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
-    // mainMenu(itemlist, status, playerdat);
-    rockscissorspapermenu(itemlist);
+    mainMenu(itemlist, status, playerdat);
+    // rockscissorspapermenu(itemlist);
     return 0;
 }
 
