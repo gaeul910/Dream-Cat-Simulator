@@ -7,7 +7,7 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
     while (1)
     {
-        if (StatUpdate(stats) == 1)
+        if (StatUpdate(stats, 1) == 1)
         {
             printStatus(list, stats, playerdat, NULL);
             printCharacter(&randomimg, stats);
@@ -42,7 +42,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
     while (1)
     {
-        if (StatUpdate(stats) == 1)
+        if (StatUpdate(stats, 1) == 1)
         {
             printStatus(list, stats, playerdat, NULL);
             printCharacter(&randomimg, stats);

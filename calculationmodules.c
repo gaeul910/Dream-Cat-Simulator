@@ -1,22 +1,49 @@
-time_t StatUpdate(Status *stats)
+time_t StatUpdate(Status *stats, int isonline)
 {
     time_t timepassed = time(NULL) - stats->updatetime;
-
-    if (timepassed >= 1)
+    if (isonline == 1) // for online calculation
     {
-        stats->hunger -= 3 * timepassed;
-        stats->sadness += 2 * timepassed;
-        stats->delight -= 2 * timepassed;
-        stats->anger += 1 * timepassed;
+        if (timepassed >= 1)
+        {
+            stats->hunger -= 3 * timepassed;
+            stats->sadness += 2 * timepassed;
+            stats->delight -= 2 * timepassed;
+            stats->anger += 1 * timepassed;
 
-        stats->updatetime = time(NULL);
+            stats->updatetime = time(NULL);
 
-        return 1;
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (isonline == 0) // for offline calculation
+    {
+        time_t offlinetime = timepassed / 20;
+        if (offlinetime >= 1)
+        {
+            stats->hunger -= 3 * offlinetime;
+            stats->sadness += 2 * offlinetime;
+            stats->delight -= 2 * offlinetime;
+            stats->anger += 1 * offlinetime;
+
+            stats->updatetime = time(NULL) - (timepassed % 20);
+            StatUpdate(stats, 0); // 나머지 시간은 온라인 시간으로 계산
+
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     else
     {
-        return 0;
+        printf("Error: Unknown Option for StatUpdate.");
     }
+    return -1;
 }
 
 int getCurrentStat(char *statcode, Status *stats)

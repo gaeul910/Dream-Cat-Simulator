@@ -40,6 +40,10 @@ int Check_StatName(char *StatName, int StatAmount)
     {
         return 7;
     }
+    else if (strcmp("savetime", StatName) == 0)
+    {
+        return 8;
+    }
     else
         return 0;
 }
@@ -58,9 +62,10 @@ int saveGame(ItemList *item, Status *status)
     fprintf(fp, "normal=%d\n", status->normal);
     fprintf(fp, "delight=%d\n", status->delight);
     fprintf(fp, "sadness=%d\n", status->sadness);
-    fprintf(fp, "anger=%d\n", status->anger);
+    fprintf(fp, "angry=%d\n", status->anger);
     fprintf(fp, "health=%d\n", status->health);
     fprintf(fp, "friendship=%d\n", status->friendship);
+    fprintf(fp, "savetime=%d", time(NULL));
     fclose(fp);
 
     return 0;
@@ -168,6 +173,10 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
             break;
         case 7:
             stats->health = itemValue;
+            break;
+        case 8:
+            stats->updatetime = (time_t)itemValue;
+            StatUpdate(stats, 0);
             break;
         default:
             break;
