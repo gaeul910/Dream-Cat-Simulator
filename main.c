@@ -28,7 +28,16 @@ void Cursor_view()
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
-    loadGame(itemlist, status, playerdat);
+    initGame(itemlist, status, playerdat);
+    if ((int)initGame != 1)
+    {
+        loadGame(itemlist, status, playerdat);
+    }
+    else if ((int)initGame == 1)
+    {
+        saveGame(itemlist, status);
+    }
+
     // for (int i = 0; i < itemlist->itemcount; i++)
     // {
     //     printf("[+] %s %d %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount, itemlist->itemArr[i].price);
