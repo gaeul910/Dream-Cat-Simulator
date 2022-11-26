@@ -202,7 +202,57 @@ int baseball()
     int overlap = 0;
     int i;
     int j;
-    for (int a = 0; a < 4; a++)
+    int difficulty;
+    int size;
+    int chance;
+    int outcount;
+    int cheat = 0;
+    printf("어떤 난이도로 하실건가요? 어려운 난이도일수록 보상이 늘어납니다!\n\n");
+    Sleep(1000);
+    printf("쉬움 난이도 : 3개의 숫자를 맞혀야 하며, 8번의 기회가 주어집니다.\n\n");
+    Sleep(1000);
+    printf("보통 난이도 : 4개의 숫자를 맞혀야 하며, 10번의 기회가 주어집니다.\n\n");
+    Sleep(1000);
+    printf("어려움 난이도 : 5개의 숫자를 맞혀야 하며, 12번의 기회가 주어집니다.\n\n");
+    Sleep(1000);
+    printf("이제 난이도를 선택해주세요!(쉬움 : 0  보통 : 1  어려움 : 2)\n");
+    while (1)
+    {
+        scanf_s("%d", &difficulty);
+        if (difficulty == 0)
+        {
+            printf("쉬움 난이도로 선택하셨습니다.\n");
+            printf("-----------------------------------------------------------------------\n");
+            size = 3;
+            chance = 8;
+            outcount = 9;
+            break;
+        }
+        else if (difficulty == 1)
+        {
+            printf("보통 난이도로 선택하셨습니다.\n");
+            printf("-----------------------------------------------------------------------\n");
+            size = 4;
+            chance = 10;
+            outcount = 16;
+            break;
+        }
+        else if (difficulty == 2)
+        {
+            printf("어려움 난이도로 선택하셨습니다! 무운을 빌게요!\n");
+            printf("-----------------------------------------------------------------------\n");
+            size = 5;
+            chance = 12;
+            outcount = 25;
+            break;
+        }
+        else
+        {
+            printf("0, 1, 2 중에서만 입력해주세요...\n");
+        }
+    }
+    printf("로딩 중. . . . .\n\n");
+    for (int a = 0; a < 5; a++)
     {
         ans[a] = getRandomValue(10);
         for (int b = 0; b < a; b++)
@@ -214,16 +264,44 @@ int baseball()
             }
         }
     }
-    printf("10회 내에 맞히지 못하면 실패합니다!!\n");
+    printf("%d회 내에 맞히지 못하면 실패합니다!!\n", chance);
     while (1)
     {
         count++;
-        printf("%d번째 입력입니다. 숫자 4개를 입력하세요!! : ", count);
-        for (int i = 0; i < 4; i++)
+        printf("%d번째 입력입니다. 숫자 %d개를 입력하세요!! : ", count, size);
+        for (int i = 0; i < size; i++)
         {
             scanf("%d", &input[i]);
         }
-        for (int c = 1; c < 4; c++)
+
+        for (int c = 0; c < size; c++)
+        {
+            if (input[c] == 0)
+            {
+                cheat++;
+            }
+        }
+        if (cheat == size)
+        {
+            printf("치트모드 발동!!!!!!\n\n");
+            Sleep(1000);
+            printf("답을 알려드리겠습니다!\n\n");
+            Sleep(1000);
+            for (int i = 0; i < size; i++)
+            {
+                printf("%d ", ans[i]);
+            }
+            Sleep(1000);
+            printf("\n\n너무 치트모드를 자주 사용하시면 게임의 재미가 떨어질 수 있습니다...\n\n");
+            Sleep(1000);
+            printf("그러니까 치트모드는 적당히!! 사용해주세요... :)\n\n");
+            count--;
+            overlap = 0;
+            cheat = 0;
+            continue;
+        }
+
+        for (int c = 1; c < size; c++)
         {
             for (int d = 0; d < c; d++)
             {
@@ -240,9 +318,9 @@ int baseball()
             count--;
             continue;
         }
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < size; i++)
         {
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < size; j++)
             {
                 if ((ans[i] == input[j]) && i == j)
                 {
@@ -258,12 +336,13 @@ int baseball()
                 }
             }
         }
-        if (strike == 4)
+        if (strike == size)
         {
             printf("정답을 맞히셨어요!!");
+            Sleep(10000);
             break;
         }
-        else if (out >= 16)
+        else if (out >= outcount)
         {
             printf("아웃입니다!\n");
             out = 0;
@@ -277,7 +356,7 @@ int baseball()
             strike = 0;
             ball = 0;
         }
-        if (count == 10)
+        if (count == chance)
         {
             printf("기회를 모두 사용해서 실패입니다...");
             break;
