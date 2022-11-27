@@ -14,14 +14,23 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
             // 반드시 while문 마지막에 스크린 모두 지우기 실행
             printf("[F] 먹이주기    ");
+            printf("[G] 놀아주기    ");
         }
         if (kbhit() == 1)
         {
             input = getch();
             switch (input)
             {
+            case 'q':
+            case 'Q':
+                return 0;
+            case 'F':
             case 'f':
-                food();
+                food(list, stats);
+                break;
+            case 'G': // 임시할당
+            case 'g':
+                playing(list, stats);
                 break;
             default:
                 continue;
