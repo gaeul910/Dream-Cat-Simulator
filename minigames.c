@@ -193,8 +193,8 @@ int rockscissorspapermenu(ItemList *items)
 
 int baseball()
 {
-    int ans[4];
-    int input[4];
+    int ans[5];
+    int input[5];
     int strike = 0;
     int ball = 0;
     int out = 0;
@@ -218,7 +218,7 @@ int baseball()
     printf("이제 난이도를 선택해주세요!(쉬움 : 0  보통 : 1  어려움 : 2)\n");
     while (1)
     {
-        scanf_s("%d", &difficulty);
+        scanf("%d", &difficulty);
         if (difficulty == 0)
         {
             printf("쉬움 난이도로 선택하셨습니다.\n");
