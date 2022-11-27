@@ -56,6 +56,10 @@ int saveGame(ItemList *item, Status *status)
     fprintf(fp, "savetime=%d", time(NULL));
     fclose(fp);
 
+    fp = fopen("./savedata/gold.txt", "w");
+    fprintf(fp, "gold=%d", item->gold);
+    fclose(fp);
+
     return 0;
 }
 
@@ -178,6 +182,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         ptr = strtok(input, "=");
         strcpy(itemName, ptr);
         ptr = strtok(NULL, "");
+        itemValue = 0;
 
         if (strcmp(itemName, "PlayerName") == 0)
         {
@@ -186,6 +191,25 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         else if (strcmp(itemName, "CatName") == 0)
         {
             strcpy(playerdat->dreamCatName, ptr);
+        }
+    }
+    fclose(fp);
+
+    fp = fopen("./savedata/gold.txt", "r");
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        ptr = strtok(input, "=");
+        strcpy(itemName, ptr);
+        ptr = strtok(NULL, "");
+
+        if (strcmp(itemName, "gold") == 0)
+        {
+            for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+            {
+                itemValue *= 10;
+                itemValue += ptr[i] - '0';
+            }
+            items->gold = itemValue;
         }
     }
     fclose(fp);
@@ -222,6 +246,7 @@ int initGame(ItemList *items, Status *stats, PlayerData *playerdat)
         stats->sadness = 0;
         stats->anger = 0;
         stats->friendship = 0;
+        items->gold = 0;
         saveGame(items, stats);
         system("cls");
         return 1;
