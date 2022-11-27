@@ -140,3 +140,20 @@ void apply_effect(Status *stats, int type, int rate)
         break;
     }
 }
+
+int fileprint(char *filedir)
+{
+    char input[256];
+    FILE *fp = fopen(filedir, "r");
+    if (fp == NULL)
+    {
+        printf("Error: File does not exist.");
+        return -1;
+    }
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        printf("%s", input);
+    }
+
+    return 0;
+}
