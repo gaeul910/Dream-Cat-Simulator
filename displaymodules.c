@@ -168,7 +168,7 @@ void shop_banner()
     }
     printf("╝\n");
 
-    FILE *fp = fopen(".\\shop_banner.txt", "r");
+    FILE *fp = fopen(".\\gamedata\\imgresources\\shop_banner.txt", "r");
     char input[100];
     for (int i = 1; i < 6; i++)
     {
@@ -201,7 +201,7 @@ void map_banner()
     }
     printf("╝\n");
 
-    FILE *fp = fopen(".\\map_banner.txt", "r");
+    FILE *fp = fopen(".\\gamedata\\imgresources\\map_banner.txt", "r");
     char input[100];
     for (int i = 1; i < 6; i++)
     {
