@@ -424,6 +424,7 @@ void experience()
 
 int startbaseball()
 {
+    windowNameBanner("                             숫자 야구");
     printf("숫자야구에 오신 것을 환영합니다!\n\n");
     Sleep(1000);
     printf("이전에 숫자야구를 해보신 적이 있나요?\n\n");
