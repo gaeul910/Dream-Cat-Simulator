@@ -58,12 +58,12 @@ void food(ItemList *list, Status *stats)
 
     FILE *fp = fopen(".\\gamedata\\item_effect_info.txt", "r");
 
-    for (int i = 1; i < 4; i++)
+    for (int i = 1; i < 6; i++)
     {
         printf(" o %s %d\n", list->itemArr[i].name, list->itemArr[i].amount);
     }
 
-    int num = cursor(3, 5);
+    int num = cursor(3, 7);
 
     switch (num)
     {
@@ -71,6 +71,10 @@ void food(ItemList *list, Status *stats)
         return;
     case 3:
     {
+        if (list->itemArr[1].amount <= 0)
+        {
+            break;
+        }
         char number[100];
         int effect_type;
         int effect_rate;
@@ -95,14 +99,285 @@ void food(ItemList *list, Status *stats)
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
         }
+
+        list->itemArr[1].amount--;
+
         break;
     }
     case 4:
-        printf("you select item2\n");
+    {
+        if (list->itemArr[2].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "2\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[2].amount--;
+
         break;
+    }
     case 5:
-        printf("you select item3\n");
+    {
+        if (list->itemArr[3].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "3\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[3].amount--;
+
         break;
+    }
+    case 6:
+    {
+        if (list->itemArr[4].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "4\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[4].amount--;
+
+        break;
+    }
+    case 7:
+    {
+        if (list->itemArr[5].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "5\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[5].amount--;
+
+        break;
+    }
+
+    default:
+        break;
+    }
+
+    system("pause");
+}
+
+void playing(ItemList *list, Status *stats)
+{
+    system("cls");
+    add_line();
+    gotoxy(10, 1);
+    printf("소지품\n");
+    add_line();
+
+    FILE *fp = fopen(".\\gamedata\\item_effect_info.txt", "r");
+
+    for (int i = 6; i < 9; i++)
+    {
+        printf(" o %s %d\n", list->itemArr[i].name, list->itemArr[i].amount);
+    }
+
+    int num = cursor(3, 5);
+
+    switch (num)
+    {
+    case 0:
+        return;
+    case 3:
+    {
+        if (list->itemArr[6].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "1\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[6].amount--;
+
+        break;
+    }
+    case 4:
+    {
+        if (list->itemArr[7].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "2\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[7].amount--;
+
+        break;
+    }
+    case 5:
+    {
+        if (list->itemArr[8].amount <= 0)
+        {
+            break;
+        }
+        char number[100];
+        int effect_type;
+        int effect_rate;
+
+        while (1)
+        {
+            fgets(number, 100, fp);
+            if (strcmp(number, "3\n") == 0)
+            {
+                break;
+            }
+        }
+        char effect[20];
+        while (1)
+        {
+            fgets(effect, 20, fp);
+            if (strcmp(effect, "END\n") == 0)
+            {
+                break;
+            }
+            effect_type = judg_effect(strtok(effect, "="));
+            effect_rate = change_rate(strtok(NULL, "="));
+            apply_effect(stats, effect_type, effect_rate);
+        }
+
+        list->itemArr[8].amount--;
+
+        break;
+    }
 
     default:
         break;
