@@ -38,105 +38,27 @@ int makebannerbox(int colsize)
     return 0;
 }
 
-int judg_effect(char *effect)
+void add_line() // 줄 만들기
 {
-    if (strcmp(effect, "hunger") == 0)
+    for (int i = 1; i < 80; i++)
     {
-        return 1;
+        printf("═");
     }
-    else if (strcmp(effect, "health") == 0)
-    {
-        return 2;
-    }
-    else if (strcmp(effect, "normal") == 0)
-    {
-        return 3;
-    }
-    else if (strcmp(effect, "delight") == 0)
-    {
-        return 4;
-    }
-    else if (strcmp(effect, "sadness") == 0)
-    {
-        return 5;
-    }
-    else if (strcmp(effect, "anger") == 0)
-    {
-        return 6;
-    }
-    else if (strcmp(effect, "friendship") == 0)
-    {
-        return 7;
-    }
-    else
-    {
-        return 0;
-    }
+    printf("\n");
 }
 
-int change_rate(char *rate)
+void key_box()
 {
-    int num = 0;
-    int minus = 1;
-    int i = 0;
-    while (rate[i] != 10)
-    {
-        printf("%d", rate[i]);
-        num *= 10;
-        if (rate[i] >= '0' && rate[i] <= '9')
-        {
-            num += rate[i] - '0';
-        }
-        else if (rate[i] == '-')
-        {
-            minus = -1;
-        }
-        i++;
-    }
-
-    return minus * num;
+    gotoxy(0, 23);
+    add_line();
 }
 
-void apply_effect(Status *stats, int type, int rate)
+void eraser(int start, int end)
 {
-    switch (type)
+    char Eraser[] = "                                            ";
+    gotoxy(0, start);
+    for (int i = start; i <= end; i++)
     {
-    case 1:
-    {
-        stats->hunger += rate;
-        break;
-    }
-    case 2:
-    {
-        stats->health += rate;
-        break;
-    }
-    case 3:
-    {
-        stats->normal += rate;
-        break;
-    }
-    case 4:
-    {
-        stats->delight += rate;
-        break;
-    }
-    case 5:
-    {
-        stats->sadness += rate;
-        break;
-    }
-    case 6:
-    {
-        stats->anger += rate;
-        break;
-    }
-    case 7:
-    {
-        stats->friendship += rate;
-        break;
-    }
-    default:
-        break;
+        printf("%s\n", Eraser);
     }
 }

@@ -1,6 +1,6 @@
 
 
-int cursor(int start, int end) // 아이템 커서 이동 기능
+int cursor(int start, int end, int move) // 아이템 커서 이동 기능
 {
     int x = 0;
     int y = start + 1;
@@ -16,11 +16,11 @@ int cursor(int start, int end) // 아이템 커서 이동 기능
             {
             case 72:
             {
-                y--;
+                y -= move;
                 break;
             }
             case 80:
-                y++;
+                y += move;
                 break;
 
             default:
@@ -37,11 +37,11 @@ int cursor(int start, int end) // 아이템 커서 이동 기능
         }
         if (y < start)
         {
-            y++;
+            y += move;
         }
         else if (y > end)
         {
-            y--;
+            y -= move;
         }
         gotoxy(x, y);
         printf(">");
@@ -60,10 +60,10 @@ void food(ItemList *list, Status *stats)
 
     for (int i = 1; i < 6; i++)
     {
-        printf(" o %s %d\n", list->itemArr[i].name, list->itemArr[i].amount);
+        printf(" o %s %d\n\n", list->itemArr[i].name, list->itemArr[i].amount);
     }
 
-    int num = cursor(3, 7);
+    int num = cursor(3, 7, 2);
 
     switch (num)
     {
@@ -264,10 +264,10 @@ void playing(ItemList *list, Status *stats)
 
     for (int i = 6; i < 9; i++)
     {
-        printf(" o %s %d\n", list->itemArr[i].name, list->itemArr[i].amount);
+        printf(" o %s %d\n\n", list->itemArr[i].name, list->itemArr[i].amount);
     }
 
-    int num = cursor(3, 5);
+    int num = cursor(3, 5, 2);
 
     switch (num)
     {
