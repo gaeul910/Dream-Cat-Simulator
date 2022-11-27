@@ -1,17 +1,20 @@
 int initGame(ItemList *items, Status *stats, PlayerData *playerdat)
 {
     char temp[128];
+    int randoming = 0;
+    randoming = getRandomValue(7);
     FILE *er = fopen("./savedata/playerinfo.txt", "r");
     if ((er = fopen("./savedata/playerinfo.txt", "r")) == NULL)
     {
         fclose(er);
-        FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기
         printf("╔══════════════════════════════════════════════════════════════════════╗\n");
         printf("║             Dream-Cat-Simulator에 오신 것을 환영합니다!              ║\n");
-        printf("╚══════════════════════════════════════════════════════════════════════╝\n\n");
-        printf("사용자 이름을 입력해주세요!\n");
+        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+        printCharacter(&randoming, stats);
+        printf("\n\n사용자 이름을 입력해주세요!\n");
         gets(temp);
         strcpy(playerdat->playerName, temp);
+        FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기
         fprintf(fp, "PlayerName=%s", temp);
         printf("개냥이 이름을 입력해주세요!\n");
         gets(temp);
