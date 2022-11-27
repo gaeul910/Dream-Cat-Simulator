@@ -62,3 +62,64 @@ void eraser(int start, int end)
         printf("%s\n", Eraser);
     }
 }
+
+void apply_effect(Status *stats, int type, int rate)
+{
+    switch (type)
+    {
+    case 1:
+    {
+        stats->hunger += rate;
+        break;
+    }
+    case 2:
+    {
+        stats->health += rate;
+        break;
+    }
+    case 3:
+    {
+        stats->normal += rate;
+        break;
+    }
+    case 4:
+    {
+        stats->delight += rate;
+        break;
+    }
+    case 5:
+    {
+        stats->sadness += rate;
+        break;
+    }
+    case 6:
+    {
+        stats->anger += rate;
+        break;
+    }
+    case 7:
+    {
+        stats->friendship += rate;
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+int fileprint(char *filedir)
+{
+    char input[256];
+    FILE *fp = fopen(filedir, "r");
+    if (fp == NULL)
+    {
+        printf("Error: File does not exist.");
+        return -1;
+    }
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        printf("%s", input);
+    }
+
+    return 0;
+}
