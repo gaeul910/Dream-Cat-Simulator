@@ -1,3 +1,8 @@
+typedef struct miniGameData
+{
+    time_t rsp_lastPlayed;
+} miniGameData;
+
 int rockscissorspaper()
 {
     char input = 0;
@@ -436,8 +441,26 @@ int startbaseball()
 int miniGameLobby(ItemList *items)
 {
     char input[256];
+    char keyinput = 0;
+    char *ptr = 0;
+    char itemName[256];
+    miniGameData *gamedata = (miniGameData *)malloc(sizeof(miniGameData));
     FILE *fp = fopen("./Minigame_data.txt", "r");
+
     while (fgets(input, sizeof(input), fp) != 0)
     {
+        ptr = strtok(input, "=");
+        strcpy(itemName, ptr);
+        ptr = strtok(NULL, "");
+
+        if (strcmp(itemName, "rsp_lastplayed") == 0)
+        {
+            gamedata->rsp_lastPlayed = 0;
+            for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+            {
+                gamedata->rsp_lastPlayed *= 10;
+                gamedata->rsp_lastPlayed += ptr[i] - '0';
+            }
+        }
     }
 }
