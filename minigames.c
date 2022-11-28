@@ -484,6 +484,6 @@ int miniGameLobby(ItemList *items)
         return 0;
         break;
     default:
-        continue;
+        break;
     }
 }
