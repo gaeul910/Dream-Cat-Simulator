@@ -5,19 +5,18 @@ void openmap(ItemList *list)
         system("cls");
         map_banner();
         gotoxy(0, 7);
-        printf(" 상점\n");
-        printf(" 이동2\n");
-        printf(" 이동3\n");
-        printf(" 이동4\n");
+        printf(" 상점\n\n");
+        printf(" 이동2\n\n");
+        printf(" 이동3\n\n");
+        printf(" 이동4\n\n");
 
-        gotoxy(0, 23);
-        add_line();
+        key_box();
         printf("[↑] 위로 이동\t");
         printf("[↓] 아래로 이동\t");
         gotoxy(68, 24);
         printf("[Q] 나가기\t");
 
-        int num = cursor(7, 10);
+        int num = cursor(6, 13, 2);
 
         switch (num)
         {
