@@ -463,4 +463,27 @@ int miniGameLobby(ItemList *items)
             }
         }
     }
+
+    keyinput = getch();
+    switch (keyinput)
+    {
+    case '1':
+        if (time(NULL) - gamedata->rsp_lastPlayed > 300)
+        {
+            rockscissorspapermenu(items);
+        }
+        else
+        {
+            printf("오류: 쿨타임이 끝나지 않았습니다.\n다음 게임은 %d초 후 진행할 수 있습니다.", 300 - (time(NULL) - gamedata->rsp_lastPlayed));
+        }
+        gamedata->rsp_lastPlayed = time(NULL);
+        break;
+    case '2':
+        break;
+    case 'q':
+        return 0;
+        break;
+    default:
+        continue;
+    }
 }

@@ -1,5 +1,3 @@
-
-
 int cursor(int start, int end) // 아이템 커서 이동 기능
 {
     int x = 0;
