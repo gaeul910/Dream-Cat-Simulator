@@ -72,6 +72,7 @@ int rockscissorspaper()
 
 int rockscissorspapermenu(ItemList *items)
 {
+    system("cls");
     items->gold = 10000;
     char input = 0;
     int result = -2;
@@ -438,6 +439,26 @@ int startbaseball()
     experience();
 }
 
+int saveMinigameData(miniGameData *minigamedata)
+{
+    FILE *fp = fopen("./savedata/Minigame_data.txt", "w");
+    fprintf(fp, "rsp_lastplayed=%d", minigamedata->rsp_lastPlayed);
+    fclose(fp);
+
+    return 0;
+}
+
+int miniGameLobbyDisplay()
+{
+    system("cls");
+
+    windowNameBanner("미니게임 로비");
+    key_box(0);
+    printf("[1] 아이템 가위바위보    ");
+    printf("[2] 숫자야구               ");
+    printf("[Q] 이전");
+}
+
 int miniGameLobby(ItemList *items)
 {
     char input[256];
@@ -445,45 +466,60 @@ int miniGameLobby(ItemList *items)
     char *ptr = 0;
     char itemName[256];
     miniGameData *gamedata = (miniGameData *)malloc(sizeof(miniGameData));
-    FILE *fp = fopen("./Minigame_data.txt", "r");
+    FILE *fp = fopen("./savedata/Minigame_data.txt", "r");
 
-    while (fgets(input, sizeof(input), fp) != 0)
+    if (fp != NULL)
     {
-        ptr = strtok(input, "=");
-        strcpy(itemName, ptr);
-        ptr = strtok(NULL, "");
-
-        if (strcmp(itemName, "rsp_lastplayed") == 0)
+        while (fgets(input, sizeof(input), fp) != 0)
         {
-            gamedata->rsp_lastPlayed = 0;
-            for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+            ptr = strtok(input, "=");
+            strcpy(itemName, ptr);
+            ptr = strtok(NULL, "");
+
+            if (strcmp(itemName, "rsp_lastplayed") == 0)
             {
-                gamedata->rsp_lastPlayed *= 10;
-                gamedata->rsp_lastPlayed += ptr[i] - '0';
+                gamedata->rsp_lastPlayed = 0;
+                for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+                {
+                    gamedata->rsp_lastPlayed *= 10;
+                    gamedata->rsp_lastPlayed += ptr[i] - '0';
+                }
             }
         }
     }
-
-    keyinput = getch();
-    switch (keyinput)
+    else
     {
-    case '1':
-        if (time(NULL) - gamedata->rsp_lastPlayed > 300)
+        gamedata->rsp_lastPlayed = 0;
+    }
+
+    while (1)
+    {
+        miniGameLobbyDisplay();
+        keyinput = getch();
+        switch (keyinput)
         {
-            rockscissorspapermenu(items);
+        case '1':
+            if (time(NULL) - gamedata->rsp_lastPlayed > 300)
+            {
+                rockscissorspapermenu(items);
+                gamedata->rsp_lastPlayed = time(NULL);
+                saveMinigameData(gamedata);
+            }
+            else
+            {
+                gotoxy(0, 21);
+                printf("오류: 쿨타임이 끝나지 않았습니다.\n다음 게임은 %d초 후 진행할 수 있습니다.", 300 - (time(NULL) - gamedata->rsp_lastPlayed));
+                Sleep(1500);
+                eraser(21, 22);
+            }
+            break;
+        case '2':
+            break;
+        case 'q':
+            return 0;
+            break;
+        default:
+            break;
         }
-        else
-        {
-            printf("오류: 쿨타임이 끝나지 않았습니다.\n다음 게임은 %d초 후 진행할 수 있습니다.", 300 - (time(NULL) - gamedata->rsp_lastPlayed));
-        }
-        gamedata->rsp_lastPlayed = time(NULL);
-        break;
-    case '2':
-        break;
-    case 'q':
-        return 0;
-        break;
-    default:
-        break;
     }
 }

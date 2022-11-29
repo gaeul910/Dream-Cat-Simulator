@@ -10,7 +10,7 @@ void openmap(ItemList *list)
         printf(" 이동3\n\n");
         printf(" 이동4\n\n");
 
-        key_box();
+        key_box(0);
         printf("[↑] 위로 이동\t");
         printf("[↓] 아래로 이동\t");
         gotoxy(68, 24);

@@ -141,7 +141,7 @@ void shop(ItemList *itemlist)
         printf(" o 장난감\n\n");
         printf(" o 기타\n\n");
 
-        key_box();
+        key_box(0);
         printf("[↑] 위로 이동\t");
         printf("[↓] 아래로 이동\t");
         gotoxy(68, 24);

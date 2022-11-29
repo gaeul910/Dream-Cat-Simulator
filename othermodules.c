@@ -47,9 +47,9 @@ void add_line() // 줄 만들기
     printf("\n");
 }
 
-void key_box()
+void key_box(int position)
 {
-    gotoxy(0, 23);
+    gotoxy(0, 23 - position);
     add_line();
 }
 
@@ -60,50 +60,6 @@ void eraser(int start, int end)
     for (int i = start; i <= end; i++)
     {
         printf("%s\n", Eraser);
-    }
-}
-
-void apply_effect(Status *stats, int type, int rate)
-{
-    switch (type)
-    {
-    case 1:
-    {
-        stats->hunger += rate;
-        break;
-    }
-    case 2:
-    {
-        stats->health += rate;
-        break;
-    }
-    case 3:
-    {
-        stats->normal += rate;
-        break;
-    }
-    case 4:
-    {
-        stats->delight += rate;
-        break;
-    }
-    case 5:
-    {
-        stats->sadness += rate;
-        break;
-    }
-    case 6:
-    {
-        stats->anger += rate;
-        break;
-    }
-    case 7:
-    {
-        stats->friendship += rate;
-        break;
-    }
-    default:
-        break;
     }
 }
 
