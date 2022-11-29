@@ -37,3 +37,27 @@ int makebannerbox(int colsize)
 
     return 0;
 }
+
+int removeEnter(char *input)
+{
+    int i = 0;
+    for (i = 0; input[i] != 10 || input[i] != 0; i++)
+    {
+        continue;
+    }
+    if (input[i] == 10)
+    {
+        input[i] = 0;
+        return 1;
+    }
+    else if (input[i] == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+
+    return -1;
+}

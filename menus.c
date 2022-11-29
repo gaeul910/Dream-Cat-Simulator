@@ -83,7 +83,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 }
                 break;
             case 'o':
-                // option();
+                optionsMenu(list, stats, playerdat);
                 break;
             default:
                 continue;

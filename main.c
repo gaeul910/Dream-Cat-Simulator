@@ -14,6 +14,7 @@
 #include "interaction_system.c"
 #include "shop.c"
 #include "map.c"
+#include "options.c"
 #include "menus.c"
 
 void Cursor_view()
