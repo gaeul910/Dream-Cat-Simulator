@@ -13,15 +13,25 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             printCharacter(&randomimg, stats);
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
             // 반드시 while문 마지막에 스크린 모두 지우기 실행
+            key_box(0);
             printf("[F] 먹이주기    ");
+            printf("[G] 놀아주기    ");
         }
         if (kbhit() == 1)
         {
             input = getch();
             switch (input)
             {
+            case 'q':
+            case 'Q':
+                return 0;
+            case 'F':
             case 'f':
-                food();
+                food(list, stats);
+                break;
+            case 'G': // 임시할당
+            case 'g':
+                playing(list, stats);
                 break;
             default:
                 continue;
@@ -48,11 +58,12 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             printCharacter(&randomimg, stats);
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
             // 반드시 while문 마지막에 스크린 모두 지우기 실행
-            printf("[E] 인벤토리");
-            printf("[M] 지도 열기");
-            printf("[F] 상호 작용");
+            key_box(1);
+            printf("[E] 인벤토리    ");
+            printf("[M] 지도 열기    ");
+            printf("[F] 상호 작용    ");
             printf("\n");
-            printf("[S] 저장하기");
+            printf("[S] 저장하기    ");
             printf("[O] 옵션");
             printf("%d", randomimg);
         }
