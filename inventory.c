@@ -8,6 +8,7 @@ int seeinventory(ItemList *itemlist)
     Inventory *inventory = (Inventory *)malloc(sizeof(Inventory));
 
     char input;
+    char windowName[256];
     int MAXpage = 0;
     int k = 0;
     system("cls");
@@ -27,10 +28,8 @@ int seeinventory(ItemList *itemlist)
     MAXpage = 1 + (inventory->inventorycount / 10);
     int page = k / 10;
     k = 0;
-    printf("\n");
-    printf("╔══════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                         인벤토리 ( 1 / %d )                           ║\n", MAXpage);
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    sprintf(windowName, "인벤토리 ( 1 / %d )", MAXpage);
+    windowNameBanner(windowName);
     while (1)
     {
         for (k; k < inventory->inventorycount; k++)
@@ -40,6 +39,7 @@ int seeinventory(ItemList *itemlist)
             {
                 if (k <= 9 && inventory->inventorycount >= 9)
                 {
+                    key_box(0);
                     printf("[H] 다음 페이지");
                     if (kbhit() == 1)
                     {
@@ -47,9 +47,8 @@ int seeinventory(ItemList *itemlist)
                         if (input == 'h')
                         {
                             system("cls");
-                            printf("╔══════════════════════════════════════════════════════════════════════╗\n");
-                            printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
-                            printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+                            sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                            windowNameBanner(windowName);
                         }
                         else
                         {
@@ -64,6 +63,7 @@ int seeinventory(ItemList *itemlist)
                 // }
                 else if (k == inventory->inventorycount)
                 {
+                    key_box(0);
                     printf("[G] 이전 페이지");
                     while (1)
                     {
@@ -74,9 +74,8 @@ int seeinventory(ItemList *itemlist)
                             {
                                 k = k - 10 - (k % 10);
                                 system("cls");
-                                printf("╔══════════════════════════════════════════════════════════════════════╗\n");
-                                printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
-                                printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                                windowNameBanner(windowName);
                                 break;
                             }
                             else
@@ -92,6 +91,7 @@ int seeinventory(ItemList *itemlist)
                 }
                 else
                 {
+                    key_box(0);
                     printf("[G] 이전 페이지    [H] 다음 페이지");
                     while (1)
                     {
@@ -102,17 +102,15 @@ int seeinventory(ItemList *itemlist)
                             {
                                 k = k - 20;
                                 system("cls");
-                                printf("╔══════════════════════════════════════════════════════════════════════╗\n");
-                                printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
-                                printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                                windowNameBanner(windowName);
                                 break;
                             }
                             else if (input == 'h')
                             {
                                 system("cls");
-                                printf("╔══════════════════════════════════════════════════════════════════════╗\n");
-                                printf("║                         인벤토리 ( %d / %d )                          ║\n", page, MAXpage);
-                                printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                                windowNameBanner(windowName);
                                 break;
                             }
                             else if (input == 'h')

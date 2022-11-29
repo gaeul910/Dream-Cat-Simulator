@@ -6,7 +6,7 @@ void openmap(ItemList *list)
         map_banner();
         gotoxy(0, 7);
         printf(" 상점\n\n");
-        printf(" 이동2\n\n");
+        printf(" 미니게임\n\n");
         printf(" 이동3\n\n");
         printf(" 이동4\n\n");
 
@@ -31,13 +31,13 @@ void openmap(ItemList *list)
             shop(list);
             break;
         }
-        case 8:
-            printf("you select item2\n");
-            break;
         case 9:
+            miniGameLobby(list);
+            break;
+        case 11:
             printf("you select item3\n");
             break;
-        case 10:
+        case 13:
             printf("you select item3\n");
             break;
 
