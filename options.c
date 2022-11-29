@@ -56,7 +56,7 @@ int changePlayerData(PlayerData *playerdat)
     return 0;
 }
 
-int runResetGame()
+int runResetGame(ItemList *items, Status *stats, PlayerData *playerdat)
 {
     FILE *fp = fopen("./savedata/items.txt", "w");
     fclose(fp);
@@ -67,12 +67,13 @@ int runResetGame()
     fp = fopen("./savedata/Status_data.txt", "w");
     fclose(fp);
 
-    initGame();
+    system("cls");
+    initGame(items, stats, playerdat, 1);
 
     return 0;
 }
 
-int resetGame()
+int resetGame(ItemList *items, Status *stats, PlayerData *playerdat)
 {
     system("cls");
     windowNameBanner("게임 초기화");
@@ -88,7 +89,7 @@ int resetGame()
         switch (input)
         {
         case 'y':
-            runResetGame();
+            runResetGame(items, stats, playerdat);
             return 1;
         case 'n':
             return 0;
@@ -109,8 +110,8 @@ int optionsMenu(ItemList *items, Status *stats, PlayerData *playerdat)
         system("cls");
         windowNameBanner("옵션");
         gotoxy(0, 7);
-        printf(" 이름 변경\n");
-        printf(" 게임 초기화\n");
+        printf(" 이름 변경\n\n");
+        printf(" 게임 초기화\n\n");
 
         key_box(0);
         printf("[↑] 위로 이동\t");
@@ -118,26 +119,26 @@ int optionsMenu(ItemList *items, Status *stats, PlayerData *playerdat)
         gotoxy(68, 24);
         printf("[Q] 나가기\t");
 
-        int num = cursor(7, 10);
+        int num = cursor(6, 9, 2);
 
         switch (num)
         {
         case 0:
+            system("cls");
+            return 0;
+        case 7:
         {
             system("cls");
             changePlayerData(playerdat);
             break;
         }
-        case 7:
+        case 9:
         {
-            resetGame();
+            resetGame(items, stats, playerdat);
             break;
         }
         case 8:
             printf("you select item2\n");
-            break;
-        case 9:
-            printf("you select item3\n");
             break;
         case 10:
             printf("you select item3\n");

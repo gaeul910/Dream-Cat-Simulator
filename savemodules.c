@@ -219,11 +219,11 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     return 0;
 }
 
-int initGame(ItemList *items, Status *stats, PlayerData *playerdat)
+int initGame(ItemList *items, Status *stats, PlayerData *playerdat, int doinit)
 {
     char temp[128];
-    FILE *er = fopen("./savedata/playerinfo.txt", "r");
-    if ((er = fopen("./savedata/playerinfo.txt", "r")) == NULL)
+    FILE *er = fopen("./savedata/player_data.txt", "r");
+    if ((er = fopen("./savedata/player_data.txt", "r")) == NULL || doinit == 1)
     {
         fclose(er);
         FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기

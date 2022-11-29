@@ -29,12 +29,12 @@ void Cursor_view()
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
-    initGame(itemlist, status, playerdat);
-    if ((int)initGame != 1)
+    int flag = initGame(itemlist, status, playerdat, 0);
+    if (flag != 1)
     {
         loadGame(itemlist, status, playerdat);
     }
-    else if ((int)initGame == 1)
+    else if (flag == 1)
     {
         saveGame(itemlist, status);
     }
