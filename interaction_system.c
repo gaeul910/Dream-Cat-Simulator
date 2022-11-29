@@ -49,11 +49,11 @@ int cursor(int start, int end, int move) // 아이템 커서 이동 기능
 void food(ItemList *list, Status *stats)
 {
     system("cls");
-    add_line();
+    makebannerbox(3);
     gotoxy(10, 1);
-    printf("소지품\n");
-    add_line();
+    printf("밥 줘요\n");
 
+    gotoxy(0, 3);
     FILE *fp = fopen(".\\gamedata\\item_effect_info.txt", "r");
 
     for (int i = 1; i < 6; i++)
@@ -61,7 +61,13 @@ void food(ItemList *list, Status *stats)
         printf(" o %s %d\n\n", list->itemArr[i].name, list->itemArr[i].amount);
     }
 
-    int num = cursor(3, 7, 2);
+    key_box(0);
+    printf("[↑] 위로 이동\t");
+    printf("[↓] 아래로 이동\t");
+    gotoxy(68, 24);
+    printf("[Q] 나가기\t");
+
+    int num = cursor(2, 11, 2);
 
     switch (num)
     {
@@ -71,6 +77,8 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[1].amount <= 0)
         {
+            gotoxy(1, 22);
+            printf("갯수 부족");
             break;
         }
         char number[100];
@@ -99,13 +107,17 @@ void food(ItemList *list, Status *stats)
         }
 
         list->itemArr[1].amount--;
+        gotoxy(1, 22);
+        printf("적용 완료");
 
         break;
     }
-    case 4:
+    case 5:
     {
         if (list->itemArr[2].amount <= 0)
         {
+            gotoxy(1, 22);
+            printf("갯수 부족");
             break;
         }
         char number[100];
@@ -134,13 +146,17 @@ void food(ItemList *list, Status *stats)
         }
 
         list->itemArr[2].amount--;
+        gotoxy(1, 22);
+        printf("적용 완료");
 
         break;
     }
-    case 5:
+    case 7:
     {
         if (list->itemArr[3].amount <= 0)
         {
+            gotoxy(1, 22);
+            printf("갯수 부족");
             break;
         }
         char number[100];
@@ -169,13 +185,17 @@ void food(ItemList *list, Status *stats)
         }
 
         list->itemArr[3].amount--;
+        gotoxy(1, 22);
+        printf("적용 완료");
 
         break;
     }
-    case 6:
+    case 9:
     {
         if (list->itemArr[4].amount <= 0)
         {
+            gotoxy(1, 22);
+            printf("갯수 부족");
             break;
         }
         char number[100];
@@ -204,13 +224,17 @@ void food(ItemList *list, Status *stats)
         }
 
         list->itemArr[4].amount--;
+        gotoxy(1, 22);
+        printf("적용 완료");
 
         break;
     }
-    case 7:
+    case 11:
     {
         if (list->itemArr[5].amount <= 0)
         {
+            gotoxy(1, 22);
+            printf("갯수 부족");
             break;
         }
         char number[100];
@@ -239,6 +263,8 @@ void food(ItemList *list, Status *stats)
         }
 
         list->itemArr[5].amount--;
+        gotoxy(1, 22);
+        printf("적용 완료");
 
         break;
     }
@@ -253,11 +279,17 @@ void food(ItemList *list, Status *stats)
 void playing(ItemList *list, Status *stats)
 {
     system("cls");
-    add_line();
+    makebannerbox(3);
     gotoxy(10, 1);
-    printf("소지품\n");
-    add_line();
+    printf("놀아줘요\n");
 
+    key_box(0);
+    printf("[↑] 위로 이동\t");
+    printf("[↓] 아래로 이동\t");
+    gotoxy(68, 24);
+    printf("[Q] 나가기\t");
+
+    gotoxy(0, 3);
     FILE *fp = fopen(".\\gamedata\\item_effect_info.txt", "r");
 
     for (int i = 6; i < 9; i++)
@@ -265,7 +297,7 @@ void playing(ItemList *list, Status *stats)
         printf(" o %s %d\n\n", list->itemArr[i].name, list->itemArr[i].amount);
     }
 
-    int num = cursor(3, 5, 2);
+    int num = cursor(2, 7, 2);
 
     switch (num)
     {
@@ -306,7 +338,7 @@ void playing(ItemList *list, Status *stats)
 
         break;
     }
-    case 4:
+    case 5:
     {
         if (list->itemArr[7].amount <= 0)
         {
@@ -341,7 +373,7 @@ void playing(ItemList *list, Status *stats)
 
         break;
     }
-    case 5:
+    case 7:
     {
         if (list->itemArr[8].amount <= 0)
         {

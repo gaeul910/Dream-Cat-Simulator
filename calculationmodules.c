@@ -116,7 +116,6 @@ int change_rate(char *rate)
     int i = 0;
     while (rate[i] != 10)
     {
-        printf("%d", rate[i]);
         num *= 10;
         if (rate[i] >= '0' && rate[i] <= '9')
         {
