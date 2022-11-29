@@ -67,7 +67,7 @@ int runResetGame()
     fp = fopen("./savedata/Status_data.txt", "w");
     fclose(fp);
 
-    loadGame();
+    initGame();
 
     return 0;
 }
