@@ -168,12 +168,12 @@ void shop_banner()
     }
     printf("╝\n");
 
-    FILE *fp = fopen(".\\shop_banner.txt", "r");
+    FILE *fp = fopen(".\\gamedata\\imgresources\\shop_banner.txt", "r");
     char input[100];
     for (int i = 1; i < 6; i++)
     {
         fgets(input, sizeof(input), fp);
-        gotoxy(20, i);
+        gotoxy(23, i);
         printf("%s", input);
     }
 }
@@ -201,21 +201,12 @@ void map_banner()
     }
     printf("╝\n");
 
-    FILE *fp = fopen(".\\map_banner.txt", "r");
+    FILE *fp = fopen("./gamedata/imgresources/map_banner.txt", "r");
     char input[100];
     for (int i = 1; i < 6; i++)
     {
         fgets(input, sizeof(input), fp);
-        gotoxy(20, i);
+        gotoxy(27, i);
         printf("%s", input);
     }
-}
-
-void add_line() // 줄 만들기
-{
-    for (int i = 1; i < 80; i++)
-    {
-        printf("═");
-    }
-    printf("\n");
 }

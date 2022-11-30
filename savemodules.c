@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 int initGame(ItemList *items, Status *stats, PlayerData *playerdat)
 {
     char temp[128];
@@ -38,6 +39,8 @@ int initGame(ItemList *items, Status *stats, PlayerData *playerdat)
     }
 }
 
+=======
+>>>>>>> 9cec02d175e9af9c48465836d45113c37a9d91a1
 int Check_StatName(char *StatName, int StatAmount)
 {
     if (strcmp("hunger", StatName) == 0)
@@ -94,6 +97,10 @@ int saveGame(ItemList *item, Status *status)
     fprintf(fp, "health=%d\n", status->health);
     fprintf(fp, "friendship=%d\n", status->friendship);
     fprintf(fp, "savetime=%d", time(NULL));
+    fclose(fp);
+
+    fp = fopen("./savedata/gold.txt", "w");
+    fprintf(fp, "gold=%d", item->gold);
     fclose(fp);
 
     return 0;
@@ -218,6 +225,7 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
         ptr = strtok(input, "=");
         strcpy(itemName, ptr);
         ptr = strtok(NULL, "");
+        itemValue = 0;
 
         if (strcmp(itemName, "PlayerName") == 0)
         {
@@ -230,9 +238,67 @@ int loadGame(ItemList *items, Status *stats, PlayerData *playerdat)
     }
     fclose(fp);
 
+    fp = fopen("./savedata/gold.txt", "r");
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        ptr = strtok(input, "=");
+        strcpy(itemName, ptr);
+        ptr = strtok(NULL, "");
+
+        if (strcmp(itemName, "gold") == 0)
+        {
+            for (int i = 0; (ptr[i] != 10) && (ptr[i] != 0); i++)
+            {
+                itemValue *= 10;
+                itemValue += ptr[i] - '0';
+            }
+            items->gold = itemValue;
+        }
+    }
+    fclose(fp);
+
     stats->updatetime = time(NULL); // 추후 흘러간 시간 계산 후 마지막에 수행
 
     return 0;
+}
+
+int initGame(ItemList *items, Status *stats, PlayerData *playerdat, int doinit)
+{
+    char temp[128];
+    FILE *er = fopen("./savedata/player_data.txt", "r");
+    if ((er = fopen("./savedata/player_data.txt", "r")) == NULL || doinit == 1)
+    {
+        fclose(er);
+        FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기
+        printf("╔══════════════════════════════════════════════════════════════════════╗\n");
+        printf("║             Dream-Cat-Simulator에 오신 것을 환영합니다!              ║\n");
+        printf("╚══════════════════════════════════════════════════════════════════════╝\n\n");
+        printf("사용자 이름을 입력해주세요!\n");
+        fgets(temp, sizeof(temp), stdin);
+        strcpy(playerdat->playerName, temp);
+        fprintf(fp, "PlayerName=%s", temp);
+        printf("개냥이 이름을 입력해주세요!\n");
+        fgets(temp, sizeof(temp), stdin);
+        strcpy(playerdat->dreamCatName, temp);
+        fprintf(fp, "DreamCatName=%s", temp);
+        fclose(fp);
+        stats->hunger = 1000;
+        stats->health = 1000;
+        stats->delight = 500;
+        stats->normal = 750;
+        stats->sadness = 0;
+        stats->anger = 0;
+        stats->friendship = 0;
+        items->gold = 0;
+        saveGame(items, stats);
+        system("cls");
+        return 1;
+    }
+    else
+    {
+        fclose(er);
+        return 0;
+    }
 }
 
 int gamereset()

@@ -14,6 +14,7 @@
 #include "interaction_system.c"
 #include "shop.c"
 #include "map.c"
+#include "options.c"
 #include "menus.c"
 
 void Cursor_view()
@@ -28,12 +29,12 @@ void Cursor_view()
 
 int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
-    initGame(itemlist, status, playerdat);
-    if ((int)initGame != 1)
+    int flag = initGame(itemlist, status, playerdat, 0);
+    if (flag != 1)
     {
         loadGame(itemlist, status, playerdat);
     }
-    else if ((int)initGame == 1)
+    else if (flag == 1)
     {
         saveGame(itemlist, status);
     }
@@ -44,8 +45,9 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
     // }
     // saveGame(itemlist, status);
     // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
-    // mainMenu(itemlist, status, playerdat);
-    rockscissorspapermenu(itemlist);
+    mainMenu(itemlist, status, playerdat);
+    // baseball();
+    // miniGameLobby(itemlist);
     return 0;
 }
 
