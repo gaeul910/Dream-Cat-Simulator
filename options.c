@@ -70,6 +70,8 @@ int runResetGame(ItemList *items, Status *stats, PlayerData *playerdat)
     system("cls");
     initGame(items, stats, playerdat, 1);
 
+    saveGame(items, stats);
+
     return 0;
 }
 
