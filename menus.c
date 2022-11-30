@@ -1,3 +1,51 @@
+int exitGameMenu(ItemList *items, Status *stats)
+{
+    windowNameBanner("게임 종료");
+    printf("정말로 게임을 종료하시겠어요?");
+    while (1)
+    {
+        system("cls");
+        windowNameBanner("옵션");
+        gotoxy(0, 7);
+        printf(" 저장하고 종료\n\n");
+        printf(" 저장하지 않고 종료\n\n");
+        printf(" 게임으로 돌아가기");
+
+        key_box(0);
+        printf("[↑] 위로 이동\t");
+        printf("[↓] 아래로 이동\t");
+        gotoxy(62, 24);
+        printf("[Q] 나가기\t");
+
+        int num = cursor(6, 12, 2);
+
+        switch (num)
+        {
+        case 0:
+            system("cls");
+            return 0;
+        case 7:
+        {
+            system("cls");
+            saveGame(items, stats);
+            return 1;
+            break;
+        }
+        case 9:
+        {
+            return 1;
+            break;
+        }
+        case 11:
+            return 0;
+            break;
+
+        default:
+            break;
+        }
+    }
+}
+
 int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     char input;
@@ -65,7 +113,8 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             printf("\n");
             printf("[S] 저장하기    ");
             printf("[O] 옵션");
-            printf("%d", randomimg);
+            gotoxy(60, 23);
+            printf("[Q] 나가기\t");
         }
         if (kbhit() == 1)
         {
@@ -95,6 +144,12 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 break;
             case 'o':
                 optionsMenu(list, stats, playerdat);
+                break;
+            case 'q':
+                if (exitGameMenu(list, stats) == 1)
+                {
+                    return 0;
+                }
                 break;
             default:
                 continue;
