@@ -52,18 +52,23 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
     char laststat[128];
     getCurrentStat(stats->laststatcode, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
     int randomimg = 0;
+    int displayflag = 1;
+    system("cls");
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
     while (1)
     {
-        if (StatUpdate(stats, 1) == 1)
+        if (StatUpdate(stats, 1) == 1 || displayflag == 1)
         {
-            printStatus(list, stats, playerdat, NULL);
-            printCharacter(&randomimg, stats);
+            mainDisplay(list, stats, playerdat, randomimg, NULL, displayflag);
+            if (displayflag == 1)
+            {
+                key_box(0);
+                printf("[F] 먹이주기    ");
+                printf("[G] 놀아주기    ");
+            }
+            displayflag = 0;
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
             // 반드시 while문 마지막에 스크린 모두 지우기 실행
-            key_box(0);
-            printf("[F] 먹이주기    ");
-            printf("[G] 놀아주기    ");
         }
         if (kbhit() == 1)
         {
@@ -76,17 +81,19 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             case 'F':
             case 'f':
                 food(list, stats);
+                displayflag = 1;
                 break;
             case 'G': // 임시할당
             case 'g':
                 playing(list, stats);
+                displayflag = 1;
                 break;
             default:
                 continue;
             }
         }
         Sleep(1000);
-        system("cls");
+        // system("cls");
     }
     return 0;
 }
@@ -94,18 +101,20 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     Status *oldStats = (Status *)malloc(sizeof(Status));
     char input;
+    system("cls");
 
     getCurrentStat(stats->laststatcode, stats); // 현재의 상태코드를 laststat에 입력시켜줌 (아직 개발중인 모듈임)
     int randomimg = 0;
     randomimg = getRandomCharacterNum(stats); // 현재 상태에 의거한 랜덤 이미지 번호 뽑아오기
+    int displayflag = 1;
     while (1)
     {
-        if (StatUpdate(stats, 1) == 1)
+        if (StatUpdate(stats, 1) == 1 || displayflag == 1)
         {
-            printStatus(list, stats, playerdat, NULL);
-            printCharacter(&randomimg, stats);
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
             // 반드시 while문 마지막에 스크린 모두 지우기 실행
+            // displayflag = 1 -> 화면이 처음 출력되거나 지워졌을 때 화면 전체를 다시 출력하도록 함
+            mainDisplay(list, stats, playerdat, randomimg, NULL, displayflag);
             key_box(1);
             printf("[E] 인벤토리    ");
             printf("[M] 지도 열기    ");
@@ -115,6 +124,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             printf("[O] 옵션");
             gotoxy(60, 23);
             printf("[Q] 나가기\t");
+            displayflag = 0;
         }
         if (kbhit() == 1)
         {
@@ -123,40 +133,47 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             {
             case 'f':
                 interactionMenu(list, stats, playerdat);
+                displayflag = 1;
                 break;
             case 'e':
                 seeinventory(list);
+                displayflag = 1;
                 break;
             case 'm':
                 openmap(list);
+                displayflag = 1;
                 break;
             case 's':
-                system("cls");
-                printf("[i] 게임을 저장하고 있습니다.\n");
+                gotoxy(0, 21);
                 if (saveGame(list, stats) == 0)
                 {
-                    printf("게임을 성공적으로 저장했습니다!\n");
+                    printf("알림: 게임을 성공적으로 저장했습니다!\n");
                 }
                 else
                 {
-                    printf("저장 오류가 발생했습니다.");
+                    printf("오류: 저장 오류가 발생했습니다.");
                 }
+                Sleep(1500);
+                eraser(21, 21);
+                gotoxy(0, 0);
                 break;
             case 'o':
                 optionsMenu(list, stats, playerdat);
+                displayflag = 1;
                 break;
             case 'q':
                 if (exitGameMenu(list, stats) == 1)
                 {
                     return 0;
                 }
+                displayflag = 1;
                 break;
             default:
                 continue;
             }
         }
         Sleep(1000);
-        system("cls");
+        // system("cls");
     }
     return 0;
 }
