@@ -1,5 +1,7 @@
 int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *windowName)
 {
+    eraser(0, 10);
+    gotoxy(0, 0);
     makebannerbox(5);
     gotoxy(3, 1);
     printf("사용자 이름: %s", playerdat->playerName);
@@ -34,7 +36,7 @@ int getRandomCharacterNum(Status *stats)
     getCurrentStat(imgname, stats);
     strcat(filedir, imgname);
     strcat(filedir, ".txt");
-    printf("%s", filedir);
+    // printf("%s", filedir);
     FILE *catimg = fopen(filedir, "r");
 
     // printf("%s", filedir);
@@ -67,64 +69,61 @@ int getRandomCharacterNum(Status *stats)
     return -1;
 }
 
-int printCharacter(int *imgnum, Status *stats)
+int printCharacter(int *imgnum, Status *stats, int mustprint)
 {
     char currentstat[128];
     getCurrentStat(currentstat, stats);
-    if ((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0) // 기분 상태가 변경되었는지 확인
+    if (((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0) || mustprint == 1) // 기분 상태가 변경되었는지 확인
     {
-        *imgnum = getRandomCharacterNum(stats);
-        strcpy(stats->laststatcode, currentstat);
-    } // 마지막 출력으로부터 상태가 변경되어 새로운 이미지가 필요한지 판별
-
-    // int imgnumcp = *imgnum;
-    // int temp = 1;
-    char strimgnum[128];
-
-    // while (imgnumcp % temp > 10)
-    // {
-    //     temp *= 10;
-    // }
-
-    // for (int i = 0; temp != 1; i++)
-    // {
-    //     strimgnum[i] = (imgnumcp / temp) - '0';
-    //     imgnumcp = imgnumcp - (temp * (strimgnum[i] - '0'));
-    //     temp /= 10;
-    // } // 이미지 코드 string으로 변환
-
-    sprintf(strimgnum, "%d", *imgnum);
-    strcat(strimgnum, "\n");
-    char filedir[128] = "./catimg/";
-    strcat(filedir, currentstat);
-    strcat(filedir, ".txt");
-    FILE *catimg = fopen(filedir, "r");
-
-    char input[128];
-    int flag = 0;
-    while (fgets(input, sizeof(input), catimg) != 0)
-    {
-        if (strcmp(input, strimgnum) == 0)
+        if ((stats->laststatcode != NULL) && (strcmp(stats->laststatcode, currentstat)) != 0)
         {
-            printf("  ");
-            flag = 1;
-            break;
+            *imgnum = getRandomCharacterNum(stats);
+            strcpy(stats->laststatcode, currentstat);
         }
-    }
-    if (flag == 1)
-    {
-        while ((fgets(input, sizeof(input), catimg) != 0) && (strcmp(input, "END\n") != 0))
+
+        eraser(11, 20);
+        gotoxy(0, 12);
+        char strimgnum[128];
+
+        sprintf(strimgnum, "%d", *imgnum);
+        strcat(strimgnum, "\n");
+        char filedir[128] = "./catimg/";
+        strcat(filedir, currentstat);
+        strcat(filedir, ".txt");
+        FILE *catimg = fopen(filedir, "r");
+
+        char input[128];
+        int flag = 0;
+        while (fgets(input, sizeof(input), catimg) != 0)
         {
-            printf("%s", input);
+            if (strcmp(input, strimgnum) == 0)
+            {
+                printf("  ");
+                flag = 1;
+                break;
+            }
         }
-        printf("\n");
-    }
+        if (flag == 1)
+        {
+            while ((fgets(input, sizeof(input), catimg) != 0) && (strcmp(input, "END\n") != 0))
+            {
+                printf("%s", input);
+            }
+            printf("\n");
+        }
+        else
+        {
+            printf("Error: Image not Found");
+        }
+
+        return 1;
+    } // 마지막 출력으로부터 상태가 변경되어 새로운 이미지가 필요한지 판별하고, 이미지 출력
     else
     {
-        printf("Error: Image not Found");
+        return 0;
     }
 
-    return 0;
+    return -1;
 }
 
 int windowNameBanner(char *windowname)
@@ -209,4 +208,12 @@ void map_banner()
         gotoxy(27, i);
         printf("%s", input);
     }
+}
+
+int mainDisplay(ItemList *items, Status *stats, PlayerData *playerdat, int randomimg, char *windowname, int displayflag)
+{
+    printStatus(items, stats, playerdat, windowname);
+    printCharacter(&randomimg, stats, displayflag);
+
+    return 0;
 }
