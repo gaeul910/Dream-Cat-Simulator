@@ -48,6 +48,7 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
     mainMenu(itemlist, status, playerdat);
     // baseball();
     // miniGameLobby(itemlist);
+    // seeinventory(itemlist);
     return 0;
 }
 

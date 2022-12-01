@@ -30,25 +30,57 @@ int seeinventory(ItemList *itemlist)
     k = 0;
     sprintf(windowName, "인벤토리 ( 1 / %d )", MAXpage);
     windowNameBanner(windowName);
-    while (1)
+    // while (1)
+    // {
+    for (k; k < inventory->inventorycount; k++)
     {
-        for (k; k < inventory->inventorycount; k++)
+        printf("%s : %d\n", inventory->inventoryitem[k].name, inventory->inventoryitem[k].amount);
+        if (k % 9 == 0 || (k + 1) == inventory->inventorycount)
         {
-            printf("%s : %d\n", inventory->inventoryitem[k].name, inventory->inventoryitem[k].amount);
-            if (k % 9 == 0 || k == inventory->inventorycount)
+            if (k <= 9 && inventory->inventorycount >= 9)
             {
-                if (k <= 9 && inventory->inventorycount >= 9)
+                key_box(0);
+                printf("[H] 다음 페이지\n[Q] 나가기");
+                if (kbhit() == 1)
                 {
-                    key_box(0);
-                    printf("[H] 다음 페이지\n[Q] 나가기");
+                    input = getch();
+                    if (input == 'h')
+                    {
+                        system("cls");
+                        sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                        windowNameBanner(windowName);
+                    }
+                    else if (input == 'q')
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        printf("다시 입력해주세요.");
+                        input = getch();
+                    }
+                }
+            }
+            // else if (k == inventory->inventorycount && page == 0)
+            // {
+            //     system("pause");
+            // }
+            else if (page != 0 && (k + 1) == inventory->inventorycount)
+            {
+                key_box(0);
+                printf("[G] 이전 페이지\n[Q] 나가기");
+                while (1)
+                {
                     if (kbhit() == 1)
                     {
                         input = getch();
-                        if (input == 'h')
+                        if (input == 'g')
                         {
+                            k = k - 10 - (k % 10);
                             system("cls");
                             sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
                             windowNameBanner(windowName);
+                            break;
                         }
                         else if (input == 'q')
                         {
@@ -57,98 +89,66 @@ int seeinventory(ItemList *itemlist)
                         else
                         {
                             printf("다시 입력해주세요.");
-                            input = getch();
                         }
                     }
                 }
-                // else if (k == inventory->inventorycount && page == 0)
-                // {
-                //     system("pause");
-                // }
-                else if (k == inventory->inventorycount)
+            }
+            else if (page == 0 && (k + 1) == inventory->inventorycount)
+            {
+                printf("[Q] 나가기");
+                while (1)
                 {
-                    key_box(0);
-                    printf("[G] 이전 페이지\n[Q] 나가기");
-                    while (1)
+                    if (kbhit() == 1)
                     {
-                        if (kbhit() == 1)
+                        input = getch();
+                        if (input == 'q')
                         {
-                            input = getch();
-                            if (input == 'g')
-                            {
-                                k = k - 10 - (k % 10);
-                                system("cls");
-                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
-                                windowNameBanner(windowName);
-                                break;
-                            }
-                            else if (input == 'q')
-                            {
-                                return 0;
-                            }
-                            else
-                            {
-                                printf("다시 입력해주세요.");
-                            }
+                            return 0;
                         }
                     }
                 }
-                else if (page == 0 && inventory->inventorycount <= 10)
+            }
+            else if (page == 0 && inventory->inventorycount <= 10)
+            {
+                printf("");
+            }
+            else
+            {
+                key_box(0);
+                printf("[G] 이전 페이지    [H] 다음 페이지\n[Q] 나가기");
+                while (1)
                 {
-                    printf("[Q] 나가기");
-                    while (1)
+                    if (kbhit() == 1)
                     {
-                        if (kbhit() == 1)
+                        input = getch();
+                        if (input == 'g')
                         {
-                            input = getch();
-                            if (input == 'q')
-                            {
-                                return 0;
-                            }
-                            else
-                            {
-                                printf("다시 입력해주세요.");
-                            }
+                            k = k - 20;
+                            system("cls");
+                            sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                            windowNameBanner(windowName);
+                            break;
                         }
-                    }
-                }
-                else
-                {
-                    key_box(0);
-                    printf("[G] 이전 페이지    [H] 다음 페이지\n[Q] 나가기");
-                    while (1)
-                    {
-                        if (kbhit() == 1)
+                        else if (input == 'h')
                         {
-                            input = getch();
-                            if (input == 'g')
-                            {
-                                k = k - 20;
-                                system("cls");
-                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
-                                windowNameBanner(windowName);
-                                break;
-                            }
-                            else if (input == 'h')
-                            {
-                                system("cls");
-                                sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
-                                windowNameBanner(windowName);
-                                break;
-                            }
-                            else if (input == 'q')
-                            {
-                                return 0;
-                            }
-                            else
-                            {
-                                printf("다시 입력해주세요.\n");
-                            }
+                            system("cls");
+                            sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
+                            windowNameBanner(windowName);
+                            break;
+                        }
+                        else if (input == 'q')
+                        {
+                            return 0;
+                        }
+                        else
+                        {
+                            printf("다시 입력해주세요.\n");
                         }
                     }
                 }
             }
         }
+        // }
         // Sleep(1000);
     }
     free(inventory);
