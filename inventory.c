@@ -40,7 +40,7 @@ int seeinventory(ItemList *itemlist)
                 if (k <= 9 && inventory->inventorycount >= 9)
                 {
                     key_box(0);
-                    printf("[H] 다음 페이지");
+                    printf("[H] 다음 페이지\n[Q] 나가기");
                     if (kbhit() == 1)
                     {
                         input = getch();
@@ -49,6 +49,10 @@ int seeinventory(ItemList *itemlist)
                             system("cls");
                             sprintf(windowName, "인벤토리 ( %d / %d )", page, MAXpage);
                             windowNameBanner(windowName);
+                        }
+                        else if (input == 'q')
+                        {
+                            return 0;
                         }
                         else
                         {
@@ -64,7 +68,7 @@ int seeinventory(ItemList *itemlist)
                 else if (k == inventory->inventorycount)
                 {
                     key_box(0);
-                    printf("[G] 이전 페이지");
+                    printf("[G] 이전 페이지\n[Q] 나가기");
                     while (1)
                     {
                         if (kbhit() == 1)
@@ -78,6 +82,10 @@ int seeinventory(ItemList *itemlist)
                                 windowNameBanner(windowName);
                                 break;
                             }
+                            else if (input == 'q')
+                            {
+                                return 0;
+                            }
                             else
                             {
                                 printf("다시 입력해주세요.");
@@ -87,12 +95,27 @@ int seeinventory(ItemList *itemlist)
                 }
                 else if (page == 0 && inventory->inventorycount <= 10)
                 {
-                    printf("");
+                    printf("[Q] 나가기");
+                    while (1)
+                    {
+                        if (kbhit() == 1)
+                        {
+                            input = getch();
+                            if (input == 'q')
+                            {
+                                return 0;
+                            }
+                            else
+                            {
+                                printf("다시 입력해주세요.");
+                            }
+                        }
+                    }
                 }
                 else
                 {
                     key_box(0);
-                    printf("[G] 이전 페이지    [H] 다음 페이지");
+                    printf("[G] 이전 페이지    [H] 다음 페이지\n[Q] 나가기");
                     while (1)
                     {
                         if (kbhit() == 1)
@@ -113,8 +136,10 @@ int seeinventory(ItemList *itemlist)
                                 windowNameBanner(windowName);
                                 break;
                             }
-                            else if (input == 'h')
-                                break;
+                            else if (input == 'q')
+                            {
+                                return 0;
+                            }
                             else
                             {
                                 printf("다시 입력해주세요.\n");
