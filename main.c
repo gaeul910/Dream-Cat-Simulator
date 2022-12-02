@@ -16,6 +16,7 @@
 #include "map.c"
 #include "options.c"
 #include "menus.c"
+#include "walking.c"
 
 void Cursor_view()
 {
@@ -45,10 +46,11 @@ int debug(ItemList *itemlist, Status *status, PlayerData *playerdat)
     // }
     // saveGame(itemlist, status);
     // printf("%s, %s", playerdat->playerName, playerdat->dreamCatName);
-    mainMenu(itemlist, status, playerdat);
+    // mainMenu(itemlist, status, playerdat);
     // baseball();
     // miniGameLobby(itemlist);
     // seeinventory(itemlist);
+    walking(itemlist, status);
     return 0;
 }
 
