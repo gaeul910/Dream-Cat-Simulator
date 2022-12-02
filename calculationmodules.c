@@ -1,3 +1,57 @@
+int calcStatsValue(int currentvalue, int changeamount)
+{
+    // int currentvalue = 0;
+    // if (strcmp(target, "hunger") == 0)
+    // {
+    //     currentvalue = stats->hunger;
+    // }
+    // else if (strcmp(target, "health") == 0)
+    // {
+    //     currentvalue = stats->health;
+    // }
+    // else if (strcmp(target, "normal") == 0)
+    // {
+    //     currentvalue = stats->normal;
+    // }
+    // else if (strcmp(target, "delight") == 0)
+    // {
+    //     currentvalue = stats->delight;
+    // }
+    // else if (strcmp(target, "sadness") == 0)
+    // {
+    //     currentvalue = stats->sadness;
+    // }
+    // else if (strcmp(target, "anger") == 0)
+    // {
+    //     currentvalue = stats->anger;
+    // }
+    // else if (strcmp(target, "friendship") == 0)
+    // {
+    //     currentvalue = stats->friendship;
+    // }
+    // else
+    // {
+    //     printf("Error: Unknown target");
+    //     return -1;
+    // }
+
+    int calcresult = currentvalue + changeamount;
+    if (calcresult <= 1000 && calcresult >= 0)
+    {
+        return calcresult;
+    }
+    else if (calcresult < 0)
+    {
+        return 0;
+    }
+    else if (calcresult > 1000)
+    {
+        return 1000;
+    }
+
+    return -1;
+}
+
 time_t StatUpdate(Status *stats, int isonline)
 {
     time_t timepassed = time(NULL) - stats->updatetime;
@@ -5,10 +59,10 @@ time_t StatUpdate(Status *stats, int isonline)
     {
         if (timepassed >= 1)
         {
-            stats->hunger -= 3 * timepassed;
-            stats->sadness += 2 * timepassed;
-            stats->delight -= 2 * timepassed;
-            stats->anger += 1 * timepassed;
+            stats->hunger = calcStatsValue(stats->hunger, -3 * timepassed);
+            stats->sadness = calcStatsValue(stats->sadness, 2 * timepassed);
+            stats->delight = calcStatsValue(stats->delight, -2 * timepassed);
+            stats->anger = calcStatsValue(stats->anger, 1 * timepassed);
 
             stats->updatetime = time(NULL);
 
@@ -24,10 +78,10 @@ time_t StatUpdate(Status *stats, int isonline)
         time_t offlinetime = timepassed / 20;
         if (offlinetime >= 1)
         {
-            stats->hunger -= 3 * offlinetime;
-            stats->sadness += 2 * offlinetime;
-            stats->delight -= 2 * offlinetime;
-            stats->anger += 1 * offlinetime;
+            stats->hunger = calcStatsValue(stats->hunger, -3 * offlinetime);
+            stats->sadness = calcStatsValue(stats->sadness, 2 * offlinetime);
+            stats->delight = calcStatsValue(stats->delight, -2 * offlinetime);
+            stats->anger = calcStatsValue(stats->anger, 1 * offlinetime);
 
             stats->updatetime = time(NULL) - (timepassed % 20);
             StatUpdate(stats, 0); // 나머지 시간은 온라인 시간으로 계산

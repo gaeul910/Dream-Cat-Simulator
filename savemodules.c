@@ -226,7 +226,7 @@ int initGame(ItemList *items, Status *stats, PlayerData *playerdat, int doinit)
     if ((er = fopen("./savedata/player_data.txt", "r")) == NULL || doinit == 1)
     {
         fclose(er);
-        FILE *fp = fopen("./savedata/playerinfo.txt", "w"); // 파일을 쓰기로 열기
+        FILE *fp = fopen("./savedata/player_data.txt", "w"); // 파일을 쓰기로 열기
         printf("╔══════════════════════════════════════════════════════════════════════╗\n");
         printf("║             Dream-Cat-Simulator에 오신 것을 환영합니다!              ║\n");
         printf("╚══════════════════════════════════════════════════════════════════════╝\n\n");
