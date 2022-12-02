@@ -98,7 +98,6 @@ int printCharacter(int *imgnum, Status *stats, int mustprint)
         {
             if (strcmp(input, strimgnum) == 0)
             {
-                printf("  ");
                 flag = 1;
                 break;
             }
@@ -107,6 +106,7 @@ int printCharacter(int *imgnum, Status *stats, int mustprint)
         {
             while ((fgets(input, sizeof(input), catimg) != 0) && (strcmp(input, "END\n") != 0))
             {
+                printf("  ");
                 printf("%s", input);
             }
             printf("\n");
@@ -208,6 +208,66 @@ void map_banner()
         gotoxy(27, i);
         printf("%s", input);
     }
+}
+
+int animationDisplay(char *filedir, int framenum)
+{
+    FILE *fp = fopen(filedir, "r");
+
+    char input[128];
+    char strimgnum[256];
+    int flag = 0;
+    int imgcount = 0;
+
+    fgets(input, sizeof(input), fp);
+    // printf("%s", input);
+    strtok(input, "=");
+    if (strcmp(input, "imgcount") == 0)
+    {
+        char *ptr = 0;
+        ptr = strtok(NULL, "");
+        strtok(NULL, "");
+        imgcount = 0;
+        for (int i = 0; ptr[i] != 10; i++)
+        {
+            imgcount *= 10;
+            imgcount += ptr[i] - '0';
+        }
+    }
+
+    sprintf(strimgnum, "%d", framenum);
+
+    while (fgets(input, sizeof(input), fp) != 0)
+    {
+        if (strcmp(input, strimgnum) == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 1)
+    {
+        while ((fgets(input, sizeof(input), fp) != 0) && (strcmp(input, "END\n") != 0))
+        {
+            printf("%s", input);
+        }
+        printf("\n");
+    }
+    else
+    {
+        printf("Error: Image not Found");
+    }
+
+    if (framenum >= 0 && framenum < imgcount)
+    {
+        return framenum + 1;
+    }
+    else if (framenum >= imgcount)
+    {
+        return 0;
+    }
+
+    return -1;
 }
 
 int mainDisplay(ItemList *items, Status *stats, PlayerData *playerdat, int randomimg, char *windowname, int displayflag)
