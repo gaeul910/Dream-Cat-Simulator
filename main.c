@@ -13,10 +13,10 @@
 #include "minigames.c"
 #include "interaction_system.c"
 #include "shop.c"
+#include "walking.c"
 #include "map.c"
 #include "options.c"
 #include "menus.c"
-#include "walking.c"
 
 void Cursor_view()
 {

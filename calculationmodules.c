@@ -191,37 +191,37 @@ void apply_effect(Status *stats, int type, int rate)
     {
     case 1:
     {
-        stats->hunger += rate;
+        stats->hunger += calcStatsValue(stats->hunger, rate);
         break;
     }
     case 2:
     {
-        stats->health += rate;
+        stats->health += calcStatsValue(stats->health, rate);
         break;
     }
     case 3:
     {
-        stats->normal += rate;
+        stats->normal += calcStatsValue(stats->normal, rate);
         break;
     }
     case 4:
     {
-        stats->delight += rate;
+        stats->delight += calcStatsValue(stats->delight, rate);
         break;
     }
     case 5:
     {
-        stats->sadness += rate;
+        stats->sadness += calcStatsValue(stats->sadness, rate);
         break;
     }
     case 6:
     {
-        stats->anger += rate;
+        stats->anger += calcStatsValue(stats->anger, rate);
         break;
     }
     case 7:
     {
-        stats->friendship += rate;
+        stats->friendship += calcStatsValue(stats->friendship, rate);
         break;
     }
     default:

@@ -140,7 +140,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 displayflag = 1;
                 break;
             case 'm':
-                openmap(list);
+                openmap(list, stats);
                 displayflag = 1;
                 break;
             case 's':

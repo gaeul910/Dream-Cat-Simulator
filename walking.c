@@ -77,7 +77,7 @@ int event(ItemList *itemlist, Status *status)
 
 int walking(ItemList *itemlist, Status *status)
 {
-    //산책 중... 출력
+    // 산책 중... 출력
     char windowName[256];
 
     system("cls");
@@ -85,13 +85,15 @@ int walking(ItemList *itemlist, Status *status)
     windowNameBanner(windowName);
 
     // 2프레임 고양이 아스키아트 출력
+    // 3~9 줄 까지 아스키아트 영역
     Sleep(1500);
-    //몇 초 후에 이벤트 발생
+    // 몇 초 후에 이벤트 발생
+    gotoxy(0, 10);
     event(itemlist, status);
-    //이벤트 발생 후 스텟 영향 적용
+    // 이벤트 발생 후 스텟 영향 적용
     Sleep(1000);
     system("pause");
-    //산책 끝날 때 스텟 영향 적용
+    // 산책 끝날 때 스텟 영향 적용
     system("cls");
     sprintf(windowName, "산책 끝!");
     windowNameBanner(windowName);
@@ -99,6 +101,7 @@ int walking(ItemList *itemlist, Status *status)
     status->hunger -= 200;
     status->friendship += 300;
     Sleep(1000);
+    gotoxy(0, 10);
     printf("-200 Hunger\n");
     Sleep(1000);
     printf("+300 Friendship");

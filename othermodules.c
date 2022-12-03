@@ -79,7 +79,7 @@ void key_box(int position)
 
 void eraser(int start, int end)
 {
-    char Eraser[] = "                                            ";
+    char Eraser[] = "                                                                               ";
     gotoxy(0, start);
     for (int i = start; i <= end; i++)
     {

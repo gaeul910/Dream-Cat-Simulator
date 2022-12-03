@@ -1,14 +1,18 @@
-void openmap(ItemList *list)
+void openmap(ItemList *list, Status *status)
 {
     while (1)
     {
         system("cls");
         map_banner();
         gotoxy(0, 7);
-        printf(" 상점\n\n");
-        printf(" 미니게임\n\n");
-        printf(" 이동3\n\n");
-        printf(" 이동4\n\n");
+        FILE *fp = fopen("./gamedata/imgresources/map.txt", "r");
+
+        for (int i = 0; i < 14; i++)
+        {
+            char str[50];
+            fgets(str, 50, fp);
+            printf("%s", str);
+        }
 
         key_box(0);
         printf("[↑] 위로 이동\t");
@@ -32,10 +36,12 @@ void openmap(ItemList *list)
             break;
         }
         case 9:
+            system("cls");
             miniGameLobby(list);
             break;
         case 11:
-            printf("you select item3\n");
+            system("cls");
+            walking(list, status);
             break;
         case 13:
             printf("you select item3\n");
