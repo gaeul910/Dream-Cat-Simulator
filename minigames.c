@@ -5,12 +5,43 @@ typedef struct miniGameData
 
 int rockscissorspaper()
 {
+    windowNameBanner("아이템 가위바위보 - 게임 중");
     char input = 0;
     int computerplay = 0;
     computerplay = getRandomValue(3) + 1;
     int playerplay = 0; // sissors = 1, rock = 2, paper = 3
     int result = -2;
-    printf("무엇을 내시겠습니까?");
+    int selecteditem = -1;
+    printf("\n어떤 아이템을 사용하시겠습니까?\n");
+    while (!(selecteditem >= 0 && selecteditem <= 3))
+    {
+        printf("0: 사용하지 않고 진행    1: 무법자    2: 부활\n3: 미래를 보는 눈\n");
+        printf("\n>> ");
+        scanf("%d", &selecteditem);
+
+        switch (selecteditem)
+        {
+        case 0:
+            break;
+        case 1:
+            printf("\n무법자를 사용하여 게임을 진행합니다.\n");
+            break;
+        case 2:
+            printf("\n부활을 사용하여 게임을 진행합니다.\n");
+            // 부활 코드
+            break;
+        case 3:
+            printf("\n미래를 보는 눈을 사용하여 게임을 진행합니다.\n");
+            //미래를 보는 눈
+            break;
+        default:
+            printf("\n잘못된 입력입니다. 다시 입력해주세요!\n");
+            break;
+        }
+    }
+    printf("무엇을 내시겠습니까?\n");
+    key_box(0);
+    printf("[R] 바위   [S] 가위    [P] 보");
     while (playerplay == 0)
     {
         if (kbhit() == 1)
@@ -29,7 +60,7 @@ int rockscissorspaper()
                 playerplay = 3;
                 break;
             default:
-                printf("잘못된 입력입니다. 다시 시도하세요.");
+                printf("\n잘못된 입력입니다. 다시 시도하세요.\n");
                 break;
             }
         }
@@ -66,8 +97,20 @@ int rockscissorspaper()
         result == -1;
     }
     printf("result = %d", result);
+    if (result == -1 && selecteditem == 2)
+    {
+        return 2;
+    }
+    else if (result == 0 && selecteditem == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return result;
+    }
 
-    return result;
+    return -2;
 }
 
 int rockscissorspapermenu(ItemList *items)
@@ -80,6 +123,9 @@ int rockscissorspapermenu(ItemList *items)
     int currentgold = 0;
     int wincount = 0;
     windowNameBanner("아이템 가위바위보");
+    fileprint("./gamedata/imgresources/rsp_mainscreen.txt");
+    key_box(0);
+    printf("[S] 시작하기                    [Q] 나가기");
     while (result == -2)
     {
         if (kbhit() == 1)
@@ -89,18 +135,20 @@ int rockscissorspapermenu(ItemList *items)
             {
                 while (1)
                 {
-                    printf("얼마의 Gold를 걸으시겠습니까? >> ");
+                    eraser(3, 24);
+                    gotoxy(0, 4);
+                    printf("얼마의 Gold를 걸으시겠습니까?\n\n>> ");
                     scanf("%d", &goldinput);
                     if (goldinput == 0)
                     {
-                        printf("게임을 취소합니다.\n");
+                        printf("\n게임을 취소합니다.\n");
                         Sleep(1000);
                         return 0;
                     }
                     else if (items->gold / 11 >= goldinput)
                     {
                         items->gold -= goldinput;
-                        printf("게임이 곧 시작됩니다.");
+                        printf("\n게임이 곧 시작됩니다.");
                         Sleep(1000);
                         system("cls");
                         result = rockscissorspaper();
@@ -125,6 +173,9 @@ int rockscissorspapermenu(ItemList *items)
 
     while (1)
     {
+        windowNameBanner("아이템 가위바위보");
+        eraser(3, 24);
+        gotoxy(0, 4);
         if (result == -1)
         {
             // 가위바위보 실패창 디자인
@@ -159,9 +210,12 @@ int rockscissorspapermenu(ItemList *items)
                 printf("잘못된 값입니다.");
                 break;
             }
+
             printf("이겼습니다!\n");
             printf("현재 골드는 %d 골드입니다.\n", currentgold);
-            printf("계속 하시겠습니까?");
+            printf("계속 하시겠습니까?\n");
+            key_box(0);
+            printf("[C] 계속하기    [Q] 그만하기");
             while (1)
             {
                 if (kbhit() == 1)
@@ -173,7 +227,7 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else if (input == 'q')
                     {
-                        printf("%d원을 벌었습니다!", currentgold);
+                        printf("\n%d원을 벌었습니다!", currentgold);
                         items->gold += currentgold;
                         Sleep(3000);
                         return 0;
@@ -182,6 +236,42 @@ int rockscissorspapermenu(ItemList *items)
                     {
                         printf("잘못된 입력입니다. 다시 입력해주세요.");
                     }
+                }
+            }
+        }
+        else if (result == 2)
+        {
+            printf("실패..\n");
+            Sleep(1000);
+            printf("그러나 부활을 사용하였습니다!\n");
+            printf("게임을 쿨타임 없이 바로 진행할 수 있습니다!\n");
+            printf("현재 골드는 %d 골드입니다.\n", goldinput);
+            Sleep(1500);
+
+            while (1)
+            {
+                eraser(3, 24);
+                gotoxy(0, 4);
+                printf("얼마의 Gold를 걸으시겠습니까?\n취소하려면 0을 입력하세요.\n\n>> ");
+                scanf("%d", &goldinput);
+                if (goldinput == 0)
+                {
+                    printf("\n게임을 취소합니다.\n");
+                    Sleep(1000);
+                    return 0;
+                }
+                else if (items->gold / 11 >= goldinput)
+                {
+                    items->gold -= goldinput;
+                    printf("\n게임이 곧 시작됩니다.");
+                    Sleep(1000);
+                    system("cls");
+                    result = rockscissorspaper();
+                    break;
+                }
+                else
+                {
+                    printf("골드가 부족합니다. 걸 수 있는 골드는 자산의 1/11입니다.\n");
                 }
             }
         }
