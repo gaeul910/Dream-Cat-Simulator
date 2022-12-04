@@ -348,13 +348,15 @@ int baseball()
         }
     }
     printf("로딩 중. . . . .\n\n");
+    srand((unsigned int)time(NULL));
     for (int a = 0; a < 5; a++)
     {
-        ans[a] = getRandomValue(10);
+        ans[a] = rand() % 9;
         for (int b = 0; b < a; b++)
         {
             if (ans[a] == ans[b])
             {
+                ans[a] = rand() % 9;
                 a--;
                 break;
             }
