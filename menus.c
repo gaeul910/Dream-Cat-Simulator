@@ -81,11 +81,13 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             case 'F':
             case 'f':
                 food(list, stats);
+                system("cls");
                 displayflag = 1;
                 break;
             case 'G': // 임시할당
             case 'g':
                 playing(list, stats);
+                system("cls");
                 displayflag = 1;
                 break;
             default:
@@ -134,6 +136,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             case 'f':
                 interactionMenu(list, stats, playerdat);
                 displayflag = 1;
+                eraser(23, 23);
                 break;
             case 'e':
                 seeinventory(list);

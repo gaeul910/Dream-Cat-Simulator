@@ -72,7 +72,10 @@ void food(ItemList *list, Status *stats)
     switch (num)
     {
     case 0:
+    {
+        system("cls");
         return;
+    }
     case 3:
     {
         if (list->itemArr[1].amount <= 0)
