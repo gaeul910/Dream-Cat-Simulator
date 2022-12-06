@@ -63,8 +63,10 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             if (displayflag == 1)
             {
                 key_box(0);
-                printf("[F] 먹이주기    ");
-                printf("[G] 놀아주기    ");
+                printf("[F] 먹이주기\t");
+                printf("[G] 놀아주기\t");
+                gotoxy(62, 24);
+                printf("[Q] 나가기");
             }
             displayflag = 0;
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
@@ -136,7 +138,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             case 'f':
                 interactionMenu(list, stats, playerdat);
                 displayflag = 1;
-                eraser(23, 23);
+                eraser(23, 24);
                 break;
             case 'e':
                 seeinventory(list);

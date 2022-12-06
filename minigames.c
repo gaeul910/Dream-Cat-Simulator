@@ -32,7 +32,7 @@ int rockscissorspaper()
             break;
         case 3:
             printf("\n미래를 보는 눈을 사용하여 게임을 진행합니다.\n");
-            //미래를 보는 눈
+            // 미래를 보는 눈
             break;
         default:
             printf("\n잘못된 입력입니다. 다시 입력해주세요!\n");
@@ -522,7 +522,7 @@ void experience()
 
 int startbaseball()
 {
-    windowNameBanner("                             숫자 야구");
+    windowNameBanner("숫자 야구");
     printf("숫자야구에 오신 것을 환영합니다!\n\n");
     Sleep(1000);
     printf("이전에 숫자야구를 해보신 적이 있나요?\n\n");
@@ -606,7 +606,11 @@ int miniGameLobby(ItemList *items)
             }
             break;
         case '2':
+        {
+            system("cls");
+            startbaseball();
             break;
+        }
         case 'q':
             return 0;
             break;
