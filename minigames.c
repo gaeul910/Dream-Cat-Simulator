@@ -15,7 +15,7 @@ int rockscissorspaper()
     printf("\n어떤 아이템을 사용하시겠습니까?\n");
     while (!(selecteditem >= 0 && selecteditem <= 3))
     {
-        printf("0: 사용하지 않고 진행    1: 무법자    2: 부활\n3: 미래를 보는 눈\n");
+        printf("0: 사용하지 않고 진행    1: 무법자    2: 부활\n");
         printf("\n>> ");
         scanf("%d", &selecteditem);
 
@@ -96,7 +96,7 @@ int rockscissorspaper()
     {
         result == -1;
     }
-    printf("result = %d", result);
+
     if (result == -1 && selecteditem == 2)
     {
         return 2;
@@ -157,6 +157,7 @@ int rockscissorspapermenu(ItemList *items)
                     else
                     {
                         printf("골드가 부족합니다. 걸 수 있는 골드는 자산의 1/11입니다.\n");
+                        Sleep(1000);
                     }
                 }
             }
@@ -206,6 +207,12 @@ int rockscissorspapermenu(ItemList *items)
             case 4:
                 currentgold = goldinput * 11;
                 break;
+            case 5:
+                printf("[i] 최대 시도 횟수 4회를 넘겼습니다!\n");
+                printf("%d 골드를 벌었습니다!\n", currentgold);
+                printf("운이 좋았군요!\n");
+                Sleep(3000);
+                return 0;
             default:
                 printf("잘못된 값입니다.");
                 break;
@@ -227,6 +234,7 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else if (input == 'q')
                     {
+                        gotoxy(0, 10);
                         printf("\n%d원을 벌었습니다!", currentgold);
                         items->gold += currentgold;
                         Sleep(3000);
