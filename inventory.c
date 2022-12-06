@@ -19,11 +19,9 @@ int seeinventory(ItemList *itemlist)
         if (itemlist->itemArr[i].amount != 0)
         {
             strcpy(inventory->inventoryitem[k].name, itemlist->itemArr[i].name);
-            // printf("%s : %d    ", itemlist->itemArr[i].name, itemlist->itemArr[i].amount);
             inventory->inventoryitem[k].amount = itemlist->itemArr[i].amount;
             k++;
             inventory->inventorycount = k;
-            // printf("%s : %d\n", itemlist->itemArr[i].name, itemlist->itemArr[i].amount);
         }
     }
     MAXpage = 1 + (inventory->inventorycount / 10);
@@ -31,8 +29,6 @@ int seeinventory(ItemList *itemlist)
     k = 0;
     sprintf(windowName, "인벤토리 ( 1 / %d )", MAXpage);
     windowNameBanner(windowName);
-    // while (1)
-    // {
     for (; k < inventory->inventorycount; k++)
     {
         printf("%s : %d\n", inventory->inventoryitem[k].name, inventory->inventoryitem[k].amount);
@@ -89,16 +85,10 @@ int seeinventory(ItemList *itemlist)
             else if (page == 0 && (k + 1) == inventory->inventorycount)
             {
                 printf("[Q] 나가기");
-                while (1)
+                input = getch();
+                if (input == 'q')
                 {
-                    if (kbhit() != 0)
-                    {
-                        input = getch();
-                        if (input == 'q')
-                        {
-                            return 0;
-                        }
-                    }
+                    return 0;
                 }
             }
             else
