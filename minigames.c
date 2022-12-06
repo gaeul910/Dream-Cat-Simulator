@@ -303,6 +303,7 @@ int baseball()
     int chance;
     int outcount;
     int cheat = 0;
+    system("cls");
     printf("어떤 난이도로 하실건가요? 어려운 난이도일수록 보상이 늘어납니다!\n\n");
     Sleep(1000);
     printf("쉬움 난이도 : 3개의 숫자를 맞혀야 하며, 8번의 기회가 주어집니다.\n\n");
@@ -318,7 +319,7 @@ int baseball()
         if (difficulty == 0)
         {
             printf("쉬움 난이도로 선택하셨습니다.\n");
-            printf("-----------------------------------------------------------------------\n");
+            Sleep(1000);
             size = 3;
             chance = 8;
             outcount = 9;
@@ -327,7 +328,7 @@ int baseball()
         else if (difficulty == 1)
         {
             printf("보통 난이도로 선택하셨습니다.\n");
-            printf("-----------------------------------------------------------------------\n");
+            Sleep(1000);
             size = 4;
             chance = 10;
             outcount = 16;
@@ -336,7 +337,7 @@ int baseball()
         else if (difficulty == 2)
         {
             printf("어려움 난이도로 선택하셨습니다! 무운을 빌게요!\n");
-            printf("-----------------------------------------------------------------------\n");
+            Sleep(1000);
             size = 5;
             chance = 12;
             outcount = 25;
@@ -347,7 +348,7 @@ int baseball()
             printf("0, 1, 2 중에서만 입력해주세요...\n");
         }
     }
-    printf("로딩 중. . . . .\n\n");
+    system("cls");
     srand((unsigned int)time(NULL));
     for (int a = 0; a < 5; a++)
     {
@@ -506,7 +507,6 @@ void experience()
     {
         printf("그렇다면, 추가 설명 없이 바로 숫자야구를 시작하겠습니다!\n");
         Sleep(1000);
-        printf("-----------------------------------------------------------------------\n");
         baseball();
     }
     else if (result == 1)
