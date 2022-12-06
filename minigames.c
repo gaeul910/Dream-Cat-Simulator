@@ -606,6 +606,7 @@ int miniGameLobby(ItemList *items)
             }
             break;
         case '2':
+            startbaseball();
             break;
         case 'q':
             return 0;
