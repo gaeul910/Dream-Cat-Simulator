@@ -98,7 +98,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -138,7 +138,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -178,7 +178,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -218,7 +218,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -258,7 +258,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -333,7 +333,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -373,7 +373,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -413,7 +413,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
-        gotoxy(0, 20);
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
