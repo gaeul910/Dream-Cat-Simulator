@@ -311,6 +311,7 @@ int baseball()
     int chance;
     int outcount;
     int cheat = 0;
+    int reward;
     system("cls");
     printf("어떤 난이도로 하실건가요? 어려운 난이도일수록 보상이 늘어납니다!\n\n");
     Sleep(1000);
@@ -446,7 +447,20 @@ int baseball()
         if (strike == size)
         {
             printf("정답을 맞히셨어요!!");
-            Sleep(10000);
+            if (size == 3)
+            {
+                reward = 1000 + 100 * (chance - count);
+            }
+            else if (size == 4)
+            {
+                reward = 1500 + 150 * (chance - count);
+            }
+            else
+            {
+                reward = 2000 + 200 * (chance - count);
+            }
+            Sleep(1500);
+
             break;
         }
         else if (out >= outcount)
