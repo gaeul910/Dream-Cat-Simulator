@@ -464,6 +464,7 @@ int baseball(ItemList *items)
                 printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 200 * (chance - count));
             }
             items->gold += reward;
+            Sleep(2000);
 
             break;
         }
