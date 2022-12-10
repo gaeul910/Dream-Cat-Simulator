@@ -36,7 +36,7 @@ int seeinventory(ItemList *itemlist)
         {
             if (k == 9 && inventory->inventorycount > 10)
             {
-                key_box(0);
+                key_box(1);
                 printf("[H] 다음 페이지\n[Q] 나가기\n");
                 input = getch();
                 if (input == 'h')
@@ -58,7 +58,7 @@ int seeinventory(ItemList *itemlist)
             }
             else if ((k + 1) == inventory->inventorycount)
             {
-                key_box(0);
+                key_box(1);
                 printf("[G] 이전 페이지\n[Q] 나가기");
                 while (1)
                 {
