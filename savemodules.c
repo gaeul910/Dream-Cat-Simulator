@@ -50,7 +50,7 @@ int saveGame(ItemList *item, Status *status)
     fprintf(fp, "normal=%d\n", status->normal);
     fprintf(fp, "delight=%d\n", status->delight);
     fprintf(fp, "sadness=%d\n", status->sadness);
-    fprintf(fp, "angry=%d\n", status->anger);
+    fprintf(fp, "anger=%d\n", status->anger);
     fprintf(fp, "health=%d\n", status->health);
     fprintf(fp, "friendship=%d\n", status->friendship);
     fprintf(fp, "savetime=%d", time(NULL));
