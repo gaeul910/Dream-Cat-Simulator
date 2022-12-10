@@ -172,7 +172,7 @@ void shop(ItemList *itemlist)
         printf(" o 먹이\n\n");
         printf(" o 간식\n\n");
         printf(" o 장난감\n\n");
-        printf(" o 기타\n\n");
+        printf(" o 산책도구\n\n");
 
         key_box(0);
         printf("[↑] 위로 이동\t");
