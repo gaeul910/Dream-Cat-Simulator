@@ -93,8 +93,7 @@ int walking(ItemList *itemlist, Status *status)
     gotoxy(0, 10);
     event(itemlist, status);
     // 이벤트 발생 후 스텟 영향 적용
-    Sleep(1000);
-    system("pause");
+    Sleep(2000);
     // 산책 끝날 때 스텟 영향 적용
     system("cls");
     sprintf(windowName, "산책 끝!\n");

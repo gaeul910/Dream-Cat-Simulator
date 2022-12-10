@@ -52,8 +52,7 @@ void shop_food(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-
-    system("pause");
+    Sleep(1500);
 }
 
 void shop_snack(ItemList *itemlist)
@@ -86,8 +85,7 @@ void shop_snack(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-
-    system("pause");
+    Sleep(1500);
 }
 
 void shop_toy(ItemList *itemlist)
@@ -125,7 +123,7 @@ void shop_toy(ItemList *itemlist)
         break;
     }
 
-    system("pause");
+    Sleep(1500);
 }
 
 void shop_walk(ItemList *itemlist)
@@ -157,8 +155,7 @@ void shop_walk(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-
-    system("pause");
+    Sleep(1500);
 }
 
 void shop(ItemList *itemlist)

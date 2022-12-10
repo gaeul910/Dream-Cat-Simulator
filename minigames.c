@@ -295,7 +295,7 @@ int rockscissorspapermenu(ItemList *items)
     return 0;
 }
 
-int baseball()
+int baseball(ItemList *items)
 {
     int ans[5];
     int input[5];
@@ -447,19 +447,24 @@ int baseball()
         if (strike == size)
         {
             printf("정답을 맞히셨어요!!");
+            Sleep(1500);
             if (size == 3)
             {
                 reward = 1000 + 100 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 100 * (chance - count));
             }
             else if (size == 4)
             {
                 reward = 1500 + 150 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 150 * (chance - count));
             }
             else
             {
                 reward = 2000 + 200 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 200 * (chance - count));
             }
-            Sleep(1500);
+            items->gold += reward;
+            Sleep(2000);
 
             break;
         }

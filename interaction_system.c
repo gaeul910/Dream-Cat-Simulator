@@ -281,7 +281,7 @@ void food(ItemList *list, Status *stats)
         break;
     }
 
-    system("pause");
+    Sleep(1500);
 }
 
 void playing(ItemList *list, Status *stats)
@@ -436,5 +436,5 @@ void playing(ItemList *list, Status *stats)
         break;
     }
 
-    system("pause");
+    Sleep(1500);
 }
