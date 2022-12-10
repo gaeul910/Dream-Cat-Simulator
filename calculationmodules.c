@@ -109,7 +109,14 @@ int getCurrentStat(char *statcode, Status *stats)
     }
     if (stats->normal > stats->delight && stats->normal > stats->sadness && stats->normal > stats->anger)
     {
-        strcpy(statcode, "normal");
+        if (stats->friendship > 750)
+        {
+            strcpy(statcode, "friendship");
+        }
+        else
+        {
+            strcpy(statcode, "normal");
+        }
     }
     else if (stats->delight > stats->sadness && stats->delight > stats->sadness && stats->delight > stats->anger)
     {
