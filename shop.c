@@ -9,7 +9,7 @@ void shop_calcul(ItemList *list, int item_code)
     if (list->gold >= (list->itemArr[item_code].price * how_many))
     {
         list->gold -= (list->itemArr[item_code].price * how_many);
-        printf("추가 완료");
+        printf("구매 완료!");
     }
     else
     {
@@ -52,7 +52,7 @@ void shop_food(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-    Sleep(1500);
+    Sleep(700);
 }
 
 void shop_snack(ItemList *itemlist)
@@ -85,7 +85,7 @@ void shop_snack(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-    Sleep(1500);
+    Sleep(700);
 }
 
 void shop_toy(ItemList *itemlist)
@@ -123,7 +123,7 @@ void shop_toy(ItemList *itemlist)
         break;
     }
 
-    Sleep(1500);
+    Sleep(700);
 }
 
 void shop_walk(ItemList *itemlist)
@@ -155,7 +155,7 @@ void shop_walk(ItemList *itemlist)
         gotoxy(0, 15);
         break;
     }
-    Sleep(1500);
+    Sleep(700);
 }
 
 void shop(ItemList *itemlist)

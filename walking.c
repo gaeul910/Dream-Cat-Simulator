@@ -86,7 +86,10 @@ int walking(ItemList *itemlist, Status *status)
     windowNameBanner(windowName);
 
     // 2프레임 고양이 아스키아트 출력
-    animationDisplay("./cat_anime/walk.txt", 0);
+    for (int i = 0; i < 2; i++)
+    {
+        animationDisplay("./cat_anime/walk.txt", 0);
+    }
     // 3~9 줄 까지 아스키아트 영역
     Sleep(1500);
     // 몇 초 후에 이벤트 발생
