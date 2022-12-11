@@ -6,10 +6,10 @@ int event(ItemList *itemlist, Status *status)
     switch (getRandomValue(random))
     {
     case 0:
-        printf("큰일이다. 배변봉투가 없다!\n\n");
         Sleep(1000);
         if (itemlist->itemArr[10].amount == 0)
         {
+            printf("큰일이다. 배변봉투가 없다!\n\n");
             if (getRandomValue(chance) == 0)
             {
                 printf("걸렸다!\n\n");
@@ -85,12 +85,12 @@ int walking(ItemList *itemlist, Status *status)
     sprintf(windowName, "산책 중...");
     windowNameBanner(windowName);
 
-    key_box(0);
     // 2프레임 고양이 아스키아트 출력
+    animationDisplay("./cat_anime/walk.txt", 0);
     // 3~9 줄 까지 아스키아트 영역
     Sleep(1500);
     // 몇 초 후에 이벤트 발생
-    gotoxy(0, 10);
+    gotoxy(0, 17);
     event(itemlist, status);
     // 이벤트 발생 후 스텟 영향 적용
     Sleep(2000);

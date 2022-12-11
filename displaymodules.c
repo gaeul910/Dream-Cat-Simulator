@@ -212,6 +212,7 @@ void map_banner()
 
 int animationDisplay(char *filedir, int framenum)
 {
+    gotoxy(0, 3);
     FILE *fp = fopen(filedir, "r");
 
     char input[128];
@@ -225,7 +226,7 @@ int animationDisplay(char *filedir, int framenum)
     if (strcmp(input, "imgcount") == 0)
     {
         char *ptr = 0;
-        ptr = strtok(NULL, "");
+        ptr = strtok(NULL, "=");
         strtok(NULL, "");
         imgcount = 0;
         for (int i = 0; ptr[i] != 10; i++)
@@ -235,7 +236,7 @@ int animationDisplay(char *filedir, int framenum)
         }
     }
 
-    sprintf(strimgnum, "%d", framenum);
+    sprintf(strimgnum, "%d\n", framenum);
 
     while (fgets(input, sizeof(input), fp) != 0)
     {
@@ -247,20 +248,17 @@ int animationDisplay(char *filedir, int framenum)
     }
     if (flag == 1)
     {
-        while ((fgets(input, sizeof(input), fp) != 0) && (strcmp(input, "END\n") != 0))
+        while (fgets(input, sizeof(input), fp) != 0 && strcmp(input, "END\n") != 0)
         {
             printf("%s", input);
         }
         printf("\n");
     }
-    else
-    {
-        printf("Error: Image not Found");
-    }
 
     if (framenum >= 0 && framenum < imgcount)
     {
-        return framenum + 1;
+        Sleep(2200);
+        animationDisplay(filedir, framenum + 1);
     }
     else if (framenum >= imgcount)
     {

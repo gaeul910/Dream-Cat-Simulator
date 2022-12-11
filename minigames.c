@@ -490,7 +490,7 @@ int baseball(ItemList *items)
     }
 }
 
-int explain()
+int explain(ItemList *items)
 {
     int respond;
     char fileinput[256];
@@ -518,7 +518,7 @@ int explain()
         else if (respond == 1)
         {
             printf("그렇다면, 다시 설명해드리겠습니다.\n");
-            explain();
+            explain(items);
         }
         else
         {
@@ -526,7 +526,7 @@ int explain()
         }
     }
 }
-void experience()
+void experience(ItemList *items)
 {
     int result;
     scanf("%d", &result);
@@ -538,16 +538,16 @@ void experience()
     }
     else if (result == 1)
     {
-        explain();
+        explain(items);
     }
     else
     {
         printf("0과 1중에서만 입력해주세요...\n\n");
-        experience();
+        experience(items);
     }
 }
 
-int startbaseball()
+int startbaseball(ItemList *items)
 {
     windowNameBanner("숫자 야구");
     printf("숫자야구에 오신 것을 환영합니다!\n\n");
@@ -555,7 +555,7 @@ int startbaseball()
     printf("이전에 숫자야구를 해보신 적이 있나요?\n\n");
     Sleep(1000);
     printf("있다면 0을, 없다면 1을 입력해주세요.\n");
-    experience();
+    experience(items);
 }
 
 int saveMinigameData(miniGameData *minigamedata)
@@ -635,7 +635,7 @@ int miniGameLobby(ItemList *items)
         case '2':
         {
             system("cls");
-            startbaseball();
+            startbaseball(items);
             break;
         }
         case 'q':
