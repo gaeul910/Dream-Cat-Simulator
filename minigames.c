@@ -513,7 +513,7 @@ int explain()
             printf("그렇다면, 이제부터 숫자야구를 시작하겠습니다!\n");
             Sleep(1000);
             printf("-----------------------------------------------------------------------\n");
-            baseball();
+            baseball(items);
         }
         else if (respond == 1)
         {
@@ -534,7 +534,7 @@ void experience()
     {
         printf("그렇다면, 추가 설명 없이 바로 숫자야구를 시작하겠습니다!\n");
         Sleep(1000);
-        baseball();
+        baseball(items);
     }
     else if (result == 1)
     {
