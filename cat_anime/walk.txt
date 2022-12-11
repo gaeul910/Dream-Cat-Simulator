@@ -1,4 +1,4 @@
-　imtcount = 2;
+　imgcount = 2;
 
 0
                            　                     oxoxoo    ooxoo
