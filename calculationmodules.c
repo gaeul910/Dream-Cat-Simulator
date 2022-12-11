@@ -177,9 +177,9 @@ int change_rate(char *rate)
     int i = 0;
     while (rate[i] != 10)
     {
-        num *= 10;
         if (rate[i] >= '0' && rate[i] <= '9')
         {
+            num *= 10;
             num += rate[i] - '0';
         }
         else if (rate[i] == '-')
@@ -198,93 +198,92 @@ void apply_effect(Status *stats, int type, int rate)
     {
     case 1:
     {
-        stats->hunger += calcStatsValue(stats->hunger, rate);
+        stats->hunger = calcStatsValue(stats->hunger, rate);
         if (rate > 0)
         {
-            printf("hunger +%d!\n", rate);
+            printf("hunger +%d!\n", rate / 10);
         }
         else
         {
-            printf("hunger %d!\n", rate);
+            printf("hunger %d!\n", rate / 10);
         }
         break;
     }
     case 2:
     {
-        stats->health += calcStatsValue(stats->health, rate);
+        stats->health = calcStatsValue(stats->health, rate);
         if (rate > 0)
         {
-            printf("health +%d!\n", rate);
+            printf("health +%d!\n", rate / 10);
         }
         else
         {
-            printf("health %d!\n", rate);
-
-            break;
+            printf("health %d!\n", rate / 10);
         }
+        break;
     }
     case 3:
     {
-        stats->normal += calcStatsValue(stats->normal, rate);
+        stats->normal = calcStatsValue(stats->normal, rate);
         if (rate > 0)
         {
-            printf("normal +%d!\n", rate);
+            printf("normal +%d!\n", rate / 10);
         }
         else
         {
-            printf("normal %d!\n", rate);
+            printf("normal %d!\n", rate / 10);
         }
         break;
     }
     case 4:
     {
-        stats->delight += calcStatsValue(stats->delight, rate);
+        stats->delight = calcStatsValue(stats->delight, rate);
         if (rate > 0)
         {
-            printf("delihgt +%d!\n", rate);
+            printf("delihgt +%d!\n", rate / 10);
         }
         else
         {
-            printf("delihgt %d!\n", rate);
+            printf("delihgt %d!\n", rate / 10);
         }
         break;
     }
     case 5:
     {
-        stats->sadness += calcStatsValue(stats->sadness, rate);
+        stats->sadness = calcStatsValue(stats->sadness, rate);
         if (rate > 0)
         {
-            printf("sadness +%d!\n", rate);
+            printf("sadness +%d!\n", rate / 10);
         }
         else
         {
-            printf("sadness %d!\n", rate);
+            printf("sadness %d!\n", rate / 10);
         }
         break;
     }
     case 6:
     {
-        stats->anger += calcStatsValue(stats->anger, rate);
+        stats->anger = calcStatsValue(stats->anger, rate);
         if (rate > 0)
         {
-            printf("anger +%d!\n", rate);
+            printf("anger +%d!\n", rate / 10);
         }
         else
         {
-            printf("anger %d!\n", rate);
-            break;
+            printf("anger %d!\n", rate / 10);
         }
+        break;
     }
     case 7:
     {
-        stats->friendship += calcStatsValue(stats->friendship, rate);
+        stats->friendship = calcStatsValue(stats->friendship, rate);
         if (rate > 0)
         {
-            printf("friendship +%d!\n", rate);
+            printf("friendship +%d!\n", rate / 10);
         }
         else
         {
-            printf("friendship %d!\n", rate);
+            printf("friendship %d!\n", rate / 10);
         }
         break;
     }

@@ -170,6 +170,8 @@ void shop(ItemList *itemlist)
         printf(" o 간식\n\n");
         printf(" o 장난감\n\n");
         printf(" o 산책도구\n\n");
+        gotoxy(65, 22);
+        printf("골드: %d", itemlist->gold);
 
         key_box(0);
         printf("[↑] 위로 이동\t");

@@ -327,7 +327,7 @@ void playing(ItemList *list, Status *stats)
         while (1)
         {
             fgets(number, 100, fp);
-            if (strcmp(number, "1\n") == 0)
+            if (strcmp(number, "6\n") == 0)
             {
                 break;
             }
@@ -367,7 +367,7 @@ void playing(ItemList *list, Status *stats)
         while (1)
         {
             fgets(number, 100, fp);
-            if (strcmp(number, "2\n") == 0)
+            if (strcmp(number, "7\n") == 0)
             {
                 break;
             }
@@ -407,7 +407,7 @@ void playing(ItemList *list, Status *stats)
         while (1)
         {
             fgets(number, 100, fp);
-            if (strcmp(number, "3\n") == 0)
+            if (strcmp(number, "8\n") == 0)
             {
                 break;
             }
