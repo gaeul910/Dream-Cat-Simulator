@@ -152,7 +152,7 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else
                     {
-                        printf("골드가 부족합니다. 걸 수 있는 골드는 자산의 1/11입니다.\n");
+                        printf("Gold가 부족합니다. 걸 수 있는 Gold는 자산의 1/11입니다.\n");
                         Sleep(1000);
                     }
                 }
@@ -205,7 +205,7 @@ int rockscissorspapermenu(ItemList *items)
                 break;
             case 5:
                 printf("[i] 최대 시도 횟수 4회를 넘겼습니다!\n");
-                printf("%d 골드를 벌었습니다!\n", currentgold);
+                printf("%d Gold를 벌었습니다!\n", currentgold);
                 printf("운이 좋았군요!\n");
                 Sleep(3000);
                 return 0;
@@ -215,7 +215,7 @@ int rockscissorspapermenu(ItemList *items)
             }
 
             printf("이겼습니다!\n");
-            printf("현재 골드는 %d 골드입니다.\n", currentgold);
+            printf("현재 Gold는 %d 골드입니다.\n", currentgold);
             printf("계속 하시겠습니까?\n");
             key_box(0);
             printf("[C] 계속하기    [Q] 그만하기");
@@ -231,7 +231,7 @@ int rockscissorspapermenu(ItemList *items)
                     else if (input == 'q')
                     {
                         gotoxy(0, 10);
-                        printf("\n%d원을 벌었습니다!", currentgold);
+                        printf("\n%dGold를 벌었습니다!", currentgold);
                         items->gold += currentgold;
                         Sleep(3000);
                         return 0;
@@ -249,7 +249,7 @@ int rockscissorspapermenu(ItemList *items)
             Sleep(1000);
             printf("그러나 부활을 사용하였습니다!\n");
             printf("게임을 쿨타임 없이 바로 진행할 수 있습니다!\n");
-            printf("현재 골드는 %d 골드입니다.\n", goldinput);
+            printf("현재 Gold는 %d Gold입니다.\n", goldinput);
             Sleep(1500);
 
             while (1)
@@ -275,7 +275,7 @@ int rockscissorspapermenu(ItemList *items)
                 }
                 else
                 {
-                    printf("골드가 부족합니다. 걸 수 있는 골드는 자산의 1/11입니다.\n");
+                    printf("Gold가 부족합니다. 걸 수 있는 Gold는 자산의 1/11입니다.\n");
                 }
             }
         }
