@@ -109,7 +109,14 @@ int getCurrentStat(char *statcode, Status *stats)
     }
     if (stats->normal > stats->delight && stats->normal > stats->sadness && stats->normal > stats->anger)
     {
-        strcpy(statcode, "normal");
+        if (stats->friendship > 750)
+        {
+            strcpy(statcode, "friendship");
+        }
+        else
+        {
+            strcpy(statcode, "normal");
+        }
     }
     else if (stats->delight > stats->sadness && stats->delight > stats->sadness && stats->delight > stats->anger)
     {
@@ -192,39 +199,98 @@ void apply_effect(Status *stats, int type, int rate)
     case 1:
     {
         stats->hunger += calcStatsValue(stats->hunger, rate);
+        if (rate > 0)
+        {
+            printf("hunger +%d!\n", rate);
+        }
+        else
+        {
+            printf("hunger %d!\n", rate);
+        }
         break;
     }
     case 2:
     {
         stats->health += calcStatsValue(stats->health, rate);
-        break;
+        if (rate > 0)
+        {
+            printf("health +%d!\n", rate);
+        }
+        else
+        {
+            printf("health %d!\n", rate);
+
+            break;
+        }
     }
     case 3:
     {
         stats->normal += calcStatsValue(stats->normal, rate);
+        if (rate > 0)
+        {
+            printf("normal +%d!\n", rate);
+        }
+        else
+        {
+            printf("normal %d!\n", rate);
+        }
         break;
     }
     case 4:
     {
         stats->delight += calcStatsValue(stats->delight, rate);
+        if (rate > 0)
+        {
+            printf("delihgt +%d!\n", rate);
+        }
+        else
+        {
+            printf("delihgt %d!\n", rate);
+        }
         break;
     }
     case 5:
     {
         stats->sadness += calcStatsValue(stats->sadness, rate);
+        if (rate > 0)
+        {
+            printf("sadness +%d!\n", rate);
+        }
+        else
+        {
+            printf("sadness %d!\n", rate);
+        }
         break;
     }
     case 6:
     {
         stats->anger += calcStatsValue(stats->anger, rate);
-        break;
+        if (rate > 0)
+        {
+            printf("anger +%d!\n", rate);
+        }
+        else
+        {
+            printf("anger %d!\n", rate);
+            break;
+        }
     }
     case 7:
     {
         stats->friendship += calcStatsValue(stats->friendship, rate);
+        if (rate > 0)
+        {
+            printf("friendship +%d!\n", rate);
+        }
+        else
+        {
+            printf("friendship %d!\n", rate);
+        }
         break;
     }
     default:
+    {
         break;
+    }
     }
 }

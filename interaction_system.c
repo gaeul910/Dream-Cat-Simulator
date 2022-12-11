@@ -80,8 +80,9 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[1].amount <= 0)
         {
-            gotoxy(1, 22);
-            printf("갯수 부족");
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -97,6 +98,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -107,11 +109,10 @@ void food(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[1].amount--;
-        gotoxy(1, 22);
-        printf("적용 완료");
 
         break;
     }
@@ -119,8 +120,9 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[2].amount <= 0)
         {
-            gotoxy(1, 22);
-            printf("갯수 부족");
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -136,6 +138,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -146,11 +149,10 @@ void food(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[2].amount--;
-        gotoxy(1, 22);
-        printf("적용 완료");
 
         break;
     }
@@ -158,8 +160,9 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[3].amount <= 0)
         {
-            gotoxy(1, 22);
-            printf("갯수 부족");
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -175,6 +178,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -185,11 +189,10 @@ void food(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[3].amount--;
-        gotoxy(1, 22);
-        printf("적용 완료");
 
         break;
     }
@@ -197,8 +200,9 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[4].amount <= 0)
         {
-            gotoxy(1, 22);
-            printf("갯수 부족");
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -214,6 +218,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -224,11 +229,10 @@ void food(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[4].amount--;
-        gotoxy(1, 22);
-        printf("적용 완료");
 
         break;
     }
@@ -236,8 +240,9 @@ void food(ItemList *list, Status *stats)
     {
         if (list->itemArr[5].amount <= 0)
         {
-            gotoxy(1, 22);
-            printf("갯수 부족");
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -253,6 +258,7 @@ void food(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -263,11 +269,10 @@ void food(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[5].amount--;
-        gotoxy(1, 22);
-        printf("적용 완료");
 
         break;
     }
@@ -276,7 +281,7 @@ void food(ItemList *list, Status *stats)
         break;
     }
 
-    system("pause");
+    Sleep(1500);
 }
 
 void playing(ItemList *list, Status *stats)
@@ -310,6 +315,9 @@ void playing(ItemList *list, Status *stats)
     {
         if (list->itemArr[6].amount <= 0)
         {
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -325,6 +333,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -335,6 +344,7 @@ void playing(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[6].amount--;
@@ -345,6 +355,9 @@ void playing(ItemList *list, Status *stats)
     {
         if (list->itemArr[7].amount <= 0)
         {
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -360,6 +373,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -370,6 +384,7 @@ void playing(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[7].amount--;
@@ -380,6 +395,9 @@ void playing(ItemList *list, Status *stats)
     {
         if (list->itemArr[8].amount <= 0)
         {
+            gotoxy(0, 20);
+            printf("갯수 부족!\n");
+            Sleep(500);
             break;
         }
         char number[100];
@@ -395,6 +413,7 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+        gotoxy(0, 16);
         while (1)
         {
             fgets(effect, 20, fp);
@@ -405,6 +424,7 @@ void playing(ItemList *list, Status *stats)
             effect_type = judg_effect(strtok(effect, "="));
             effect_rate = change_rate(strtok(NULL, "="));
             apply_effect(stats, effect_type, effect_rate);
+            Sleep(500);
         }
 
         list->itemArr[8].amount--;
@@ -416,5 +436,5 @@ void playing(ItemList *list, Status *stats)
         break;
     }
 
-    system("pause");
+    Sleep(1500);
 }

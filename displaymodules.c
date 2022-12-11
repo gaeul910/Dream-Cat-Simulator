@@ -10,7 +10,7 @@ int printStatus(ItemList *list, Status *stats, PlayerData *playerdat, char *wind
     gotoxy(0, 6);
     makebannerbox(5);
     gotoxy(3, 7);
-    printf("배고픔: %d%%    건강: %d%%    친밀도: %d", stats->hunger / 10, stats->health / 10, stats->friendship / 10);
+    printf("배고픔: %d%%    건강: %d%%    친밀도: %d                  골드: %d", stats->hunger / 10, stats->health / 10, stats->friendship / 10, list->gold);
     gotoxy(3, 9);
     printf("기분: %s\n", stats->laststatcode);
 

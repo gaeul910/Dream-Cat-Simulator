@@ -5,8 +5,8 @@
 #include <time.h>
 #include <windows.h>
 #include "gamedatamodules.c"
-#include "calculationmodules.c"
 #include "othermodules.c"
+#include "calculationmodules.c"
 #include "savemodules.c"
 #include "displaymodules.c"
 #include "inventory.c"

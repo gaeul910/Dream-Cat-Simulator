@@ -1,11 +1,9 @@
 int exitGameMenu(ItemList *items, Status *stats)
 {
-    windowNameBanner("게임 종료");
-    printf("정말로 게임을 종료하시겠어요?");
     while (1)
     {
         system("cls");
-        windowNameBanner("옵션");
+        windowNameBanner("게임 종료 옵션");
         gotoxy(0, 7);
         printf(" 저장하고 종료\n\n");
         printf(" 저장하지 않고 종료\n\n");
@@ -63,8 +61,10 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             if (displayflag == 1)
             {
                 key_box(0);
-                printf("[F] 먹이주기    ");
-                printf("[G] 놀아주기    ");
+                printf("[F] 먹이주기\t");
+                printf("[G] 놀아주기\t");
+                gotoxy(62, 24);
+                printf("[Q] 나가기");
             }
             displayflag = 0;
             // 여기서부터 키 입력 메뉴 출력 & 입력 받기
@@ -94,7 +94,10 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 continue;
             }
         }
-        Sleep(1000);
+        if (displayflag == 0)
+        {
+            Sleep(500);
+        }
         // system("cls");
     }
     return 0;
@@ -136,11 +139,12 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
             case 'f':
                 interactionMenu(list, stats, playerdat);
                 displayflag = 1;
-                eraser(23, 23);
+                eraser(23, 24);
                 break;
             case 'e':
                 seeinventory(list);
                 displayflag = 1;
+                system("cls");
                 break;
             case 'm':
                 openmap(list, stats);
@@ -165,6 +169,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 displayflag = 1;
                 break;
             case 'q':
+                system("cls");
                 if (exitGameMenu(list, stats) == 1)
                 {
                     return 0;
@@ -175,7 +180,10 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 continue;
             }
         }
-        Sleep(1000);
+        if (displayflag == 0)
+        {
+            Sleep(500);
+        }
         // system("cls");
     }
     return 0;

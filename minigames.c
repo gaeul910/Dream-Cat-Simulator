@@ -30,6 +30,10 @@ int rockscissorspaper()
             printf("\n부활을 사용하여 게임을 진행합니다.\n");
             // 부활 코드
             break;
+        case 3:
+            printf("\n미래를 보는 눈을 사용하여 게임을 진행합니다.\n");
+            // 미래를 보는 눈
+            break;
         default:
             printf("\n잘못된 입력입니다. 다시 입력해주세요!\n");
             break;
@@ -291,7 +295,7 @@ int rockscissorspapermenu(ItemList *items)
     return 0;
 }
 
-int baseball()
+int baseball(ItemList *items)
 {
     int ans[5];
     int input[5];
@@ -307,6 +311,7 @@ int baseball()
     int chance;
     int outcount;
     int cheat = 0;
+    int reward;
     system("cls");
     printf("어떤 난이도로 하실건가요? 어려운 난이도일수록 보상이 늘어납니다!\n\n");
     Sleep(1000);
@@ -442,7 +447,25 @@ int baseball()
         if (strike == size)
         {
             printf("정답을 맞히셨어요!!");
-            Sleep(10000);
+            Sleep(1500);
+            if (size == 3)
+            {
+                reward = 1000 + 100 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 100 * (chance - count));
+            }
+            else if (size == 4)
+            {
+                reward = 1500 + 150 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 150 * (chance - count));
+            }
+            else
+            {
+                reward = 2000 + 200 * (chance - count);
+                printf("보상으로 %d골드를 획득했습니다! (기본 1000골드 + 남은 기회 비례 보너스 %d골드", reward, 200 * (chance - count));
+            }
+            items->gold += reward;
+            Sleep(2000);
+
             break;
         }
         else if (out >= outcount)
@@ -526,7 +549,7 @@ void experience()
 
 int startbaseball()
 {
-    windowNameBanner("                             숫자 야구");
+    windowNameBanner("숫자 야구");
     printf("숫자야구에 오신 것을 환영합니다!\n\n");
     Sleep(1000);
     printf("이전에 숫자야구를 해보신 적이 있나요?\n\n");
@@ -610,7 +633,11 @@ int miniGameLobby(ItemList *items)
             }
             break;
         case '2':
+        {
+            system("cls");
+            startbaseball();
             break;
+        }
         case 'q':
             return 0;
             break;
