@@ -158,6 +158,40 @@ void shop_walk(ItemList *itemlist)
     Sleep(700);
 }
 
+void shop_minigame(ItemList *itemlist)
+{
+    eraser(7, 13);
+    gotoxy(0, 7);
+    printf(" 미니게임에 필요하다옹~\n\n");
+    for (int i = 11; i < 13; i++)
+    {
+        printf(" o %s %dG\n\n", itemlist->itemArr[i].name, itemlist->itemArr[i].price);
+    }
+
+    int num = cursor(8, 12, 2);
+
+    switch (num)
+    {
+    case 9:
+    {
+        shop_calcul(itemlist, 11);
+        break;
+    }
+    case 11:
+    {
+
+        shop_calcul(itemlist, 12);
+        break;
+    }
+
+    default:
+        gotoxy(0, 15);
+        break;
+    }
+
+    Sleep(700);
+}
+
 void shop(ItemList *itemlist)
 {
     while (1)
@@ -170,6 +204,7 @@ void shop(ItemList *itemlist)
         printf(" o 간식\n\n");
         printf(" o 장난감\n\n");
         printf(" o 산책도구\n\n");
+        printf(" o 미니게임\n\n");
         gotoxy(65, 22);
         printf("골드: %d", itemlist->gold);
 
@@ -179,7 +214,7 @@ void shop(ItemList *itemlist)
         gotoxy(68, 24);
         printf("[Q] 나가기\t");
 
-        int num = cursor(6, 13, 2);
+        int num = cursor(6, 15, 2);
 
         switch (num)
         {
@@ -190,21 +225,25 @@ void shop(ItemList *itemlist)
         }
         case 7:
         {
-            eraser(7, 10);
+            eraser(7, 15);
             shop_food(itemlist);
             break;
         }
         case 9:
-            eraser(7, 10);
+            eraser(7, 15);
             shop_snack(itemlist);
             break;
         case 11:
-            eraser(7, 10);
+            eraser(7, 15);
             shop_toy(itemlist);
             break;
         case 13:
-            eraser(7, 10);
+            eraser(7, 15);
             shop_walk(itemlist);
+            break;
+        case 15:
+            eraser(7, 15);
+            shop_minigame(itemlist);
             break;
 
         default:
