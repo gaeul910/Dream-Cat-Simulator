@@ -1,0 +1,12 @@
+---------- Debug Help ----------
+addgold:
+    Added 10000 gold to players account.
+
+rsptimereset:
+    Reset rsp_lastPlayed to 0.
+
+help:
+    Print this information.
+
+exit:
+    Exit debug.

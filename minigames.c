@@ -116,7 +116,6 @@ int rockscissorspaper()
 int rockscissorspapermenu(ItemList *items)
 {
     system("cls");
-    items->gold = 10000;
     char input = 0;
     int result = -2;
     int goldinput = 0;
@@ -567,25 +566,12 @@ int saveMinigameData(miniGameData *minigamedata)
     return 0;
 }
 
-int miniGameLobbyDisplay()
+int loadMinigameData(miniGameData *gamedata)
 {
-    system("cls");
-
-    windowNameBanner("미니게임 로비");
-    key_box(0);
-    printf("[1] 아이템 가위바위보    ");
-    printf("[2] 숫자야구               ");
-    printf("[Q] 이전");
-}
-
-int miniGameLobby(ItemList *items)
-{
-    char input[256];
-    char keyinput = 0;
     char *ptr = 0;
     char itemName[256];
-    miniGameData *gamedata = (miniGameData *)malloc(sizeof(miniGameData));
     FILE *fp = fopen("./savedata/Minigame_data.txt", "r");
+    char input[256];
 
     if (fp != NULL)
     {
@@ -610,6 +596,28 @@ int miniGameLobby(ItemList *items)
     {
         gamedata->rsp_lastPlayed = 0;
     }
+    fclose(fp);
+
+    return 0;
+}
+
+int miniGameLobbyDisplay()
+{
+    system("cls");
+
+    windowNameBanner("미니게임 로비");
+    key_box(0);
+    printf("[1] 아이템 가위바위보    ");
+    printf("[2] 숫자야구               ");
+    printf("[Q] 이전");
+}
+
+int miniGameLobby(ItemList *items)
+{
+    char input[256];
+    char keyinput = 0;
+    miniGameData *gamedata = (miniGameData *)malloc(sizeof(miniGameData));
+    loadMinigameData(gamedata);
 
     while (1)
     {

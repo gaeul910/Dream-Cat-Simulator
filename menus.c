@@ -102,6 +102,59 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
     }
     return 0;
 }
+
+int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
+{
+    system("cls");
+    char input[256];
+    windowNameBanner("Debug");
+    printf("Dream-Cat-Simulator 디버깅 도구\n");
+    printf("디버깅 메뉴에 대한 도움말이 필요할 경우 help를 입력하십시오.\n");
+    printf("계속하려면 아무 키나 누르십시오.");
+    getch();
+    while (1)
+    {
+        system("cls");
+        windowNameBanner("Debug");
+        printf("Dream-Cat-Simulator Debug ver. 1\n\n");
+        printf("> ");
+        scanf("%s", input);
+
+        printf("\n");
+        if (strcmp(input, "rsptimerreset") == 0)
+        {
+            miniGameData *minigamedata = malloc(sizeof(miniGameData));
+            loadMinigameData(minigamedata);
+            minigamedata->rsp_lastPlayed = 0;
+            saveMinigameData(minigamedata);
+
+            printf("rsp_lastPlayed is now 0");
+        }
+        else if (strcmp(input, "addgold") == 0)
+        {
+            items->gold += 10000;
+            printf("Added 10000 gold");
+        }
+        else if (strcmp(input, "exit") == 0)
+        {
+            break;
+        }
+        else if (strcmp(input, "help") == 0)
+        {
+            fileprint("./gamedata/textresources/debughelp.txt");
+            printf("\n");
+            printf("Press any key to return");
+            getch();
+        }
+        else
+        {
+            printf("Unknown Command. Type 'help' for help");
+        }
+        Sleep(1000);
+    }
+    return 0;
+}
+
 int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 {
     Status *oldStats = (Status *)malloc(sizeof(Status));
@@ -166,6 +219,10 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 break;
             case 'o':
                 optionsMenu(list, stats, playerdat);
+                displayflag = 1;
+                break;
+            case 'd':
+                debugWindow(list, stats, playerdat);
                 displayflag = 1;
                 break;
             case 'q':
