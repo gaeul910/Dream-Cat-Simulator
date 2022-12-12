@@ -5,6 +5,9 @@ addgold:
 rsptimereset:
     Reset rsp_lastPlayed to 0.
 
+stat:
+    info - Print current stat.
+
 help:
     Print this information.
 
