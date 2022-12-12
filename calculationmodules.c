@@ -244,11 +244,11 @@ void apply_effect(Status *stats, int type, int rate)
         stats->delight = calcStatsValue(stats->delight, rate);
         if (rate > 0)
         {
-            printf("delihgt +%d!\n", rate / 10);
+            printf("delight +%d!\n", rate / 10);
         }
         else
         {
-            printf("delihgt %d!\n", rate / 10);
+            printf("delight %d!\n", rate / 10);
         }
         break;
     }

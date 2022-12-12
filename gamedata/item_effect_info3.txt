@@ -1,0 +1,17 @@
+6
+hunger=-100
+sadness=200
+anger=200
+friendship=-30
+END
+7
+hunger=-150
+delight=-400
+friendship=-40
+END
+8
+hunger=-200
+sadness=300
+anger=300
+friendship=-50
+END
