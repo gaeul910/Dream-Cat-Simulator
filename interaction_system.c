@@ -298,7 +298,6 @@ void playing(ItemList *list, Status *stats)
     printf("[Q] 나가기\t");
 
     gotoxy(0, 3);
-    FILE *fp = fopen(".\\gamedata\\item_effect_info.txt", "r");
 
     for (int i = 6; i < 9; i++)
     {
@@ -306,6 +305,28 @@ void playing(ItemList *list, Status *stats)
     }
 
     int num = cursor(2, 7, 2);
+
+    int val = getRandomValue(10);
+    int kill_code = 0;
+
+    char file_name[50];
+
+    if (val >= 0 && val <= 6)
+    {
+        strcpy(file_name, "./gamedata/item_effect_info.txt");
+    }
+    else if (val >= 7 && val <= 8)
+    {
+        strcpy(file_name, "./gamedata/item_effect_info2.txt");
+        kill_code = 1;
+    }
+    else
+    {
+        strcpy(file_name, "./gamedata/item_effect_info3.txt");
+        kill_code = 2;
+    }
+
+    FILE *fp = fopen(file_name, "r");
 
     switch (num)
     {
@@ -333,7 +354,28 @@ void playing(ItemList *list, Status *stats)
             }
         }
         char effect[20];
+
         gotoxy(0, 16);
+
+        switch (kill_code)
+        {
+        case 0:
+        {
+            printf("잘 놀았다옹~\n");
+            break;
+        }
+        case 1:
+        {
+            printf("재미없다옹...\n");
+            break;
+        }
+        case 2:
+        {
+            printf("부서졌다옹!!\n");
+            break;
+        }
+        }
+
         while (1)
         {
             fgets(effect, 20, fp);
@@ -346,8 +388,10 @@ void playing(ItemList *list, Status *stats)
             apply_effect(stats, effect_type, effect_rate);
             Sleep(500);
         }
-
-        list->itemArr[6].amount--;
+        if (kill_code == 2)
+        {
+            list->itemArr[6].amount--;
+        }
 
         break;
     }
@@ -374,6 +418,24 @@ void playing(ItemList *list, Status *stats)
         }
         char effect[20];
         gotoxy(0, 16);
+        switch (kill_code)
+        {
+        case 0:
+        {
+            printf("잘 놀았다옹~\n");
+            break;
+        }
+        case 1:
+        {
+            printf("재미없다옹...\n");
+            break;
+        }
+        case 2:
+        {
+            printf("부서졌다옹!!\n");
+            break;
+        }
+        }
         while (1)
         {
             fgets(effect, 20, fp);
@@ -386,9 +448,10 @@ void playing(ItemList *list, Status *stats)
             apply_effect(stats, effect_type, effect_rate);
             Sleep(500);
         }
-
-        list->itemArr[7].amount--;
-
+        if (kill_code == 2)
+        {
+            list->itemArr[7].amount--;
+        }
         break;
     }
     case 7:
@@ -414,6 +477,24 @@ void playing(ItemList *list, Status *stats)
         }
         char effect[20];
         gotoxy(0, 16);
+        switch (kill_code)
+        {
+        case 0:
+        {
+            printf("잘 놀았다옹~\n");
+            break;
+        }
+        case 1:
+        {
+            printf("재미없다옹...\n");
+            break;
+        }
+        case 2:
+        {
+            printf("부서졌다옹!!\n");
+            break;
+        }
+        }
         while (1)
         {
             fgets(effect, 20, fp);
@@ -426,9 +507,10 @@ void playing(ItemList *list, Status *stats)
             apply_effect(stats, effect_type, effect_rate);
             Sleep(500);
         }
-
-        list->itemArr[8].amount--;
-
+        if (kill_code == 2)
+        {
+            list->itemArr[8].amount--;
+        }
         break;
     }
 

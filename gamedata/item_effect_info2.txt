@@ -1,0 +1,14 @@
+6
+hunger=-100
+anger=100
+END
+7
+hunger=-150
+delight=-200
+END
+8
+hunger=-200
+delight=-100
+sadness=100
+anger=100
+END
