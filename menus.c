@@ -121,7 +121,7 @@ int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
         scanf("%s", input);
 
         printf("\n");
-        if (strcmp(input, "rsptimerreset") == 0)
+        if (strcmp(input, "rsptimereset") == 0)
         {
             miniGameData *minigamedata = malloc(sizeof(miniGameData));
             loadMinigameData(minigamedata);

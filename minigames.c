@@ -3,7 +3,7 @@ typedef struct miniGameData
     time_t rsp_lastPlayed;
 } miniGameData;
 
-int rockscissorspaper()
+int rockscissorspaper(ItemList *items)
 {
     windowNameBanner("아이템 가위바위보 - 게임 중");
     char input = 0;
@@ -12,10 +12,10 @@ int rockscissorspaper()
     int playerplay = 0; // sissors = 1, rock = 2, paper = 3
     int result = -2;
     int selecteditem = -1;
-    printf("\n어떤 아이템을 사용하시겠습니까?\n");
+    printf("\n어떤 아이템을 사용하시겠습니까?");
     while (!(selecteditem >= 0 && selecteditem <= 3))
     {
-        printf("0: 사용하지 않고 진행    1: 무법자    2: 부활\n");
+        printf("\n0: 사용하지 않고 진행    1: 무법자    2: 부활\n");
         printf("\n>> ");
         scanf("%d", &selecteditem);
 
@@ -24,9 +24,28 @@ int rockscissorspaper()
         case 0:
             break;
         case 1:
-            printf("\n무법자를 사용하여 게임을 진행합니다.\n");
+            if (items->itemArr[11].amount > 0)
+            {
+                items->itemArr[11].amount--;
+                printf("\n무법자를 사용하여 게임을 진행합니다.\n");
+            }
+            else
+            {
+                printf("\n무법자 아이템이 부족합니다.");
+                selecteditem = -1;
+            }
             break;
         case 2:
+            if (items->itemArr[11].amount > 0)
+            {
+                items->itemArr[11].amount--;
+                printf("\n부활을 사용하여 게임을 진행합니다.\n");
+            }
+            else
+            {
+                printf("\n부활 아이템이 부족합니다.");
+                selecteditem = -1;
+            }
             printf("\n부활을 사용하여 게임을 진행합니다.\n");
             // 부활 코드
             break;
@@ -150,7 +169,7 @@ int rockscissorspapermenu(ItemList *items)
                         printf("\n게임이 곧 시작됩니다.");
                         Sleep(1000);
                         system("cls");
-                        result = rockscissorspaper();
+                        result = rockscissorspaper(items);
                         break;
                     }
                     else
@@ -173,6 +192,7 @@ int rockscissorspapermenu(ItemList *items)
 
     while (1)
     {
+        system("cls");
         windowNameBanner("아이템 가위바위보");
         eraser(3, 24);
         gotoxy(0, 4);
@@ -273,7 +293,7 @@ int rockscissorspapermenu(ItemList *items)
                     printf("\n게임이 곧 시작됩니다.");
                     Sleep(1000);
                     system("cls");
-                    result = rockscissorspaper();
+                    result = rockscissorspaper(items);
                     break;
                 }
                 else
@@ -288,7 +308,7 @@ int rockscissorspapermenu(ItemList *items)
         }
 
         // result = -2;
-        result = rockscissorspaper(); // 가위바위보 계속 시도
+        result = rockscissorspaper(items); // 가위바위보 계속 시도
     }
 
     return 0;
