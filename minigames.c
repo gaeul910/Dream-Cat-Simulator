@@ -185,10 +185,10 @@ int rockscissorspapermenu(ItemList *items)
             }
             else
             {
-                gotoxy(0, 21);
+                gotoxy(0, 22);
                 printf("잘못된 입력입니다. 다시 입력해주세요.");
                 Sleep(1500);
-                eraser(21, 21);
+                eraser(22, 22);
             }
         }
     }
@@ -197,7 +197,6 @@ int rockscissorspapermenu(ItemList *items)
     {
         system("cls");
         windowNameBanner("아이템 가위바위보");
-        printf("result = %d", result);
         Sleep(1000);
         eraser(3, 24);
         gotoxy(0, 4);
@@ -267,10 +266,10 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else
                     {
-                        gotoxy(0, 21);
+                        gotoxy(0, 22);
                         printf("잘못된 입력입니다. 다시 입력해주세요.");
                         Sleep(1500);
-                        eraser(21, 21);
+                        eraser(22, 22);
                     }
                 }
             }
