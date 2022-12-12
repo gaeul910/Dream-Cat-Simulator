@@ -216,7 +216,7 @@ int mainMenu(ItemList *list, Status *stats, PlayerData *playerdat)
                 system("cls");
                 break;
             case 'm':
-                openmap(list, stats);
+                openmap(list, stats, playerdat);
                 displayflag = 1;
                 break;
             case 's':
