@@ -135,6 +135,22 @@ int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
             items->gold += 10000;
             printf("Added 10000 gold");
         }
+        else if (strcmp(input, "stat") == 0)
+        {
+            scanf("%s", input);
+            if (strcmp(input, "info") == 0)
+            {
+                printf("Delight = %d\n", stats->delight);
+                printf("Anger = %d\n", stats->anger);
+                printf("Sadness = %d\n", stats->sadness);
+                printf("Hunger = %d\n", stats->hunger);
+                printf("Health = %d\n", stats->health);
+                printf("Friendship = %d\n", stats->friendship);
+                printf("Current Stat = %s\n\n", stats->laststatcode);
+                printf("Press any key to return");
+                getch();
+            }
+        }
         else if (strcmp(input, "exit") == 0)
         {
             break;

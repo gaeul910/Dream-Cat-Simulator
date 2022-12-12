@@ -107,7 +107,7 @@ int getCurrentStat(char *statcode, Status *stats)
         strcpy(statcode, "hungry");
         return 0;
     }
-    if (stats->normal > stats->delight && stats->normal > stats->sadness && stats->normal > stats->anger)
+    if (stats->normal >= stats->delight && stats->normal >= stats->sadness && stats->normal >= stats->anger)
     {
         if (stats->friendship > 750)
         {
@@ -118,15 +118,15 @@ int getCurrentStat(char *statcode, Status *stats)
             strcpy(statcode, "normal");
         }
     }
-    else if (stats->delight > stats->sadness && stats->delight > stats->sadness && stats->delight > stats->anger)
+    else if (stats->delight >= stats->sadness && stats->delight >= stats->sadness && stats->delight >= stats->anger)
     {
         strcpy(statcode, "delight");
     }
-    else if (stats->sadness > stats->delight && stats->sadness > stats->anger && stats->sadness > stats->anger)
+    else if (stats->sadness >= stats->delight && stats->sadness >= stats->anger && stats->sadness >= stats->anger)
     {
         strcpy(statcode, "sadness");
     }
-    else if (stats->anger > stats->delight && stats->anger > stats->sadness && stats->anger > stats->normal)
+    else if (stats->anger >= stats->delight && stats->anger >= stats->sadness && stats->anger >= stats->normal)
     {
         strcpy(statcode, "angry");
     }
