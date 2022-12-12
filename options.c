@@ -36,7 +36,6 @@ int changePlayerData(PlayerData *playerdat)
     {
         printf("\n이름을 변경하지 않았습니다.");
     }
-    strcpy(playerdat->dreamCatName, input);
 
     if (changecount > 0)
     {
