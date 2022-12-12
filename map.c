@@ -78,7 +78,7 @@ int cursor_map(int start, int end, int move) // 아이템 커서 이동 기능
     }
 }
 
-void openmap(ItemList *list, Status *status)
+void openmap(ItemList *list, Status *status, PlayerData *playerdat)
 {
     while (1)
     {
@@ -112,7 +112,7 @@ void openmap(ItemList *list, Status *status)
         case 1:
         {
             system("cls");
-            walking(list, status);
+            walking(list, status, playerdat);
             break;
         }
         case 2:
