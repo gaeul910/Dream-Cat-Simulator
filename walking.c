@@ -1,4 +1,4 @@
-int event(ItemList *itemlist, Status *status)
+int event(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
     int random = 8;
     int chance = 2;
@@ -9,7 +9,9 @@ int event(ItemList *itemlist, Status *status)
         Sleep(1000);
         if (itemlist->itemArr[10].amount == 0)
         {
-            printf("큰일이다. 배변봉투가 없다!\n\n");
+            printf("산책 중 개냥이가  ");
+            printf("큰일이다. 배변봉투가 없다!!!\n\n");
+            Sleep(1500);
             if (getRandomValue(chance) == 0)
             {
                 printf("걸렸다!\n\n");
@@ -31,7 +33,7 @@ int event(ItemList *itemlist, Status *status)
         }
         break;
     case 2:
-        printf("다른 개냥이와 시비가 붙었다!\n\n");
+        printf("%s다른 개냥이와 시비가 붙었다!\n\n", playerdat->dreamCatName);
         Sleep(1000);
         printf("이겼다!!\n\n");
         Sleep(1000);
@@ -76,7 +78,7 @@ int event(ItemList *itemlist, Status *status)
     }
 }
 
-int walking(ItemList *itemlist, Status *status)
+int walking(ItemList *itemlist, Status *status, PlayerData *playerdat)
 {
     // 산책 중... 출력
     char windowName[256];
@@ -94,7 +96,7 @@ int walking(ItemList *itemlist, Status *status)
     Sleep(1500);
     // 몇 초 후에 이벤트 발생
     gotoxy(0, 17);
-    event(itemlist, status);
+    event(itemlist, status, playerdat);
     // 이벤트 발생 후 스텟 영향 적용
     Sleep(2000);
     // 산책 끝날 때 스텟 영향 적용
