@@ -5,6 +5,7 @@ typedef struct miniGameData
 
 int rockscissorspaper(ItemList *items)
 {
+    system("cls");
     windowNameBanner("아이템 가위바위보 - 게임 중");
     char input = 0;
     int computerplay = 0;
@@ -46,7 +47,6 @@ int rockscissorspaper(ItemList *items)
                 printf("\n부활 아이템이 부족합니다.");
                 selecteditem = -1;
             }
-            printf("\n부활을 사용하여 게임을 진행합니다.\n");
             // 부활 코드
             break;
         case 3:
@@ -113,7 +113,7 @@ int rockscissorspaper(ItemList *items)
     }
     else if (playerplay == 3 && computerplay == 1)
     {
-        result == -1;
+        result = -1;
     }
 
     if (result == -1 && selecteditem == 2)
@@ -185,7 +185,10 @@ int rockscissorspapermenu(ItemList *items)
             }
             else
             {
+                gotoxy(0, 21);
                 printf("잘못된 입력입니다. 다시 입력해주세요.");
+                Sleep(1500);
+                eraser(21, 21);
             }
         }
     }
@@ -194,6 +197,8 @@ int rockscissorspapermenu(ItemList *items)
     {
         system("cls");
         windowNameBanner("아이템 가위바위보");
+        printf("result = %d", result);
+        Sleep(1000);
         eraser(3, 24);
         gotoxy(0, 4);
         if (result == -1)
@@ -207,6 +212,7 @@ int rockscissorspapermenu(ItemList *items)
         {
             // 가위바위보 비김창 디자인
             printf("비겼습니다. 다시!");
+            Sleep(3000);
         }
         else if (result == 1)
         {
@@ -261,7 +267,10 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else
                     {
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.");
+                        Sleep(1500);
+                        eraser(21, 21);
                     }
                 }
             }
@@ -293,7 +302,7 @@ int rockscissorspapermenu(ItemList *items)
                     printf("\n게임이 곧 시작됩니다.");
                     Sleep(1000);
                     system("cls");
-                    result = rockscissorspaper(items);
+                    // result = rockscissorspaper(items);
                     break;
                 }
                 else
@@ -305,6 +314,9 @@ int rockscissorspapermenu(ItemList *items)
         else
         {
             printf("알 수 없는 오류가 발생했습니다.");
+            Sleep(1000);
+            items->gold += goldinput;
+            return -1;
         }
 
         // result = -2;
