@@ -130,6 +130,10 @@ int getCurrentStat(char *statcode, Status *stats)
     {
         strcpy(statcode, "angry");
     }
+    else
+    {
+        strcpy(statcode, "Error");
+    }
 
     return 0;
 }
