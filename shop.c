@@ -9,11 +9,11 @@ void shop_calcul(ItemList *list, int item_code)
     if (list->gold >= (list->itemArr[item_code].price * how_many))
     {
         list->gold -= (list->itemArr[item_code].price * how_many);
-        printf("구매 완료!");
+        printf("\n구매 완료!");
     }
     else
     {
-        printf("돈이 더 필요해요!\n");
+        printf("\n돈이 더 필요해요!\n");
     }
 }
 
