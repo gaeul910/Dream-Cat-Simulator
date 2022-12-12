@@ -6,49 +6,56 @@ int event(ItemList *itemlist, Status *status)
     switch (getRandomValue(random))
     {
     case 0:
-        Sleep(1000);
-        if (itemlist->itemArr[10].amount == 0)
+        printf("개냥이가 갑자기 앉았다!\n");
+        Sleep(2000);
+        if (itemlist->itemArr[10].amount >= 0)
         {
-            printf("큰일이다. 배변봉투가 없다!\n\n");
+            printf("뒷처리 성공!\n");
+        }
+        else if (itemlist->itemArr[10].amount == 0)
+        {
+            printf("큰일이다. 배변봉투가 없다!\n");
+            Sleep(2000);
             if (getRandomValue(chance) == 0)
             {
-                printf("걸렸다!\n\n");
-                Sleep(1000);
-                printf("-400G\n\n");
+                printf("걸렸다!\n");
+                Sleep(2000);
+                printf("-400G\n");
                 itemlist->gold -= 400;
             }
             else
-                printf("다행히 안걸렸다!\n\n");
+                printf("다행히 안걸렸다!\n");
         }
+
         break;
     case 1:
         if (itemlist->itemArr[9].amount == 0)
         {
-            printf("저런, 목줄이 없으셨네요..\n\n");
-            Sleep(1000);
-            printf("-400G\n\n");
+            printf("저런, 목줄이 없으셨네요..\n");
+            Sleep(2000);
+            printf("-400G\n");
             itemlist->gold -= 400;
         }
         break;
     case 2:
-        printf("다른 개냥이와 시비가 붙었다!\n\n");
-        Sleep(1000);
-        printf("이겼다!!\n\n");
-        Sleep(1000);
-        printf("+300 Delight\n\n");
+        printf("다른 개냥이와 시비가 붙었다!\n");
+        Sleep(2000);
+        printf("이겼다!!\n");
+        Sleep(2000);
+        printf("+300 Delight\n");
         status->delight = calcStatsValue(status->delight, 300);
         break;
     case 3:
         printf("다른 개냥이와 시비가 붙었다!\n");
-        Sleep(1000);
+        Sleep(2000);
         printf("졌다..\n");
-        Sleep(1000);
+        Sleep(2000);
         printf("+100 Anger\n");
         status->anger = calcStatsValue(status->anger, 100);
         break;
     case 4:
-        printf("길을 가다가 무언가를 주웠다!\n\n");
-        Sleep(1000);
+        printf("길을 가다가 무언가를 주웠다!\n");
+        Sleep(2000);
         switch (getRandomValue(wnq))
         {
             /*case 0 == 돈
@@ -56,21 +63,21 @@ int event(ItemList *itemlist, Status *status)
         }
         break;
     case 5:
-        printf("갑자기 비가와서 산책을 그만해야하는 개냥이는 슬프다..\n\n");
-        Sleep(1000);
-        printf("+200 Sadness\n\n");
+        printf("갑자기 비가와서 산책을 그만해야하는 개냥이는 슬프다..\n");
+        Sleep(2000);
+        printf("+200 Sadness\n");
         status->sadness = calcStatsValue(status->sadness, 200);
         break;
     case 6:
-        printf("넘어졌다..\n\n");
-        Sleep(1000);
-        printf("- Health\n\n");
+        printf("넘어졌다..\n");
+        Sleep(2000);
+        printf("- Health\n");
         status->health = calcStatsValue(status->health, -1);
         break;
     case 7:
-        printf("귀엽다고 칭찬받았다!\n\n");
-        Sleep(1000);
-        printf("+200 Delight\n\n");
+        printf("귀엽다고 칭찬받았다!\n");
+        Sleep(2000);
+        printf("+200 Delight\n");
         status->delight = calcStatsValue(status->delight, 200);
         break;
     }
@@ -78,22 +85,29 @@ int event(ItemList *itemlist, Status *status)
 
 int walking(ItemList *itemlist, Status *status)
 {
-    // 산책 중... 출력
     char windowName[256];
+    if (strcmp(status->laststatcode, "hunger") == 0)
+    {
+        sprintf(windowName, "개냥이가 배고파서 산책을 할 수가 없다..\n");
+        windowNameBanner(windowName);
+        Sleep(2000);
+        printf("\n");
+        sprintf(windowName, "산책을 종료합니다.\n");
+        windowNameBanner(windowName);
+        Sleep(2000);
+        return 0;
+    }
+    // 산책 중... 출력
 
     system("cls");
     sprintf(windowName, "산책 중...");
     windowNameBanner(windowName);
 
     // 2프레임 고양이 아스키아트 출력
-    for (int i = 0; i < 2; i++)
-    {
-        animationDisplay("./cat_anime/walk.txt", 0);
-    }
     // 3~9 줄 까지 아스키아트 영역
-    Sleep(1500);
+    Sleep(2000);
     // 몇 초 후에 이벤트 발생
-    gotoxy(0, 17);
+    gotoxy(0, 10);
     event(itemlist, status);
     // 이벤트 발생 후 스텟 영향 적용
     Sleep(2000);
@@ -104,11 +118,11 @@ int walking(ItemList *itemlist, Status *status)
     // 고양이 아스키아트 추가
     status->hunger = calcStatsValue(status->hunger, 200);
     status->friendship = calcStatsValue(status->friendship, 300);
-    Sleep(1000);
+    Sleep(2000);
     gotoxy(0, 10);
-    printf("-200 Hunger\n\n");
-    Sleep(1000);
-    printf("+300 Friendship\n\n");
+    printf("-200 Hunger\n");
+    Sleep(2000);
+    printf("+300 Friendship\n");
 
     Sleep(2000);
 

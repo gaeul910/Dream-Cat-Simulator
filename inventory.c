@@ -41,31 +41,35 @@ int seeinventory(ItemList *itemlist)
                 while (1)
                 {
                     input = getch();
-                    if (input == 'h')
+                    if (input == 'h' || input == 'H')
                     {
                         currentpage++;
                         system("cls");
                         sprintf(windowName, "인벤토리 ( %d / %d )", currentpage, MAXpage);
                         windowNameBanner(windowName);
+                        break;
                     }
-                    else if (input == 'q')
+                    else if (input == 'q' || input == 'Q')
                     {
                         return 0;
                     }
                     else
                     {
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
+                        Sleep(1500);
+                        eraser(21, 21);
                     }
                 }
             }
             else if ((k + 1) == inventory->inventorycount && k > 9)
             {
                 key_box(1);
-                printf("[G] 이전 페이지\n[Q] 나가기");
+                printf("[G] 이전 페이지\n[Q] 나가기\n");
                 while (1)
                 {
                     input = getch();
-                    if (input == 'g')
+                    if (input == 'g' || input == 'G')
                     {
                         currentpage--;
                         k = k - 10 - (k % 10);
@@ -74,13 +78,16 @@ int seeinventory(ItemList *itemlist)
                         windowNameBanner(windowName);
                         break;
                     }
-                    else if (input == 'q')
+                    else if (input == 'q' || input == 'Q')
                     {
                         return 0;
                     }
                     else
                     {
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
+                        Sleep(1500);
+                        eraser(21, 21);
                     }
                 }
             }
@@ -91,13 +98,16 @@ int seeinventory(ItemList *itemlist)
                 while (1)
                 {
                     input = getch();
-                    if (input == 'q')
+                    if (input == 'q' || input == 'Q')
                     {
                         return 0;
                     }
                     else
                     {
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
+                        Sleep(1500);
+                        eraser(21, 21);
                     }
                 }
             }
@@ -108,7 +118,7 @@ int seeinventory(ItemList *itemlist)
                 while (1)
                 {
                     input = getch();
-                    if (input == 'g')
+                    if (input == 'g' || input == 'G')
                     {
                         currentpage--;
                         k = k - 20;
@@ -117,7 +127,7 @@ int seeinventory(ItemList *itemlist)
                         windowNameBanner(windowName);
                         break;
                     }
-                    else if (input == 'h')
+                    else if (input == 'h' || input == 'H')
                     {
                         currentpage++;
                         system("cls");
@@ -125,13 +135,16 @@ int seeinventory(ItemList *itemlist)
                         windowNameBanner(windowName);
                         break;
                     }
-                    else if (input == 'q')
+                    else if (input == 'q' || input == 'Q')
                     {
                         return 0;
                     }
                     else
                     {
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
+                        Sleep(1500);
+                        eraser(21, 21);
                     }
                 }
             }
