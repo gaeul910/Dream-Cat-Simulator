@@ -6,7 +6,7 @@ int event(ItemList *itemlist, Status *status, PlayerData *playerdat)
     switch (getRandomValue(random))
     {
     case 0:
-        printf("산책 중 %s이(가) 싸려고 한다!\n\n", playerdat->dreamCatName);
+        printf("산책 중 %s이(가) 배가 아픈 모양이다!\n\n", playerdat->dreamCatName);
         Sleep(1500);
         if (itemlist->itemArr[10].amount == 0)
         {
