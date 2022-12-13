@@ -520,6 +520,7 @@ int baseball(ItemList *items)
             break;
         }
     }
+    return 0;
 }
 
 int explain(ItemList *items)
