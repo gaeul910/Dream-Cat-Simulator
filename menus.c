@@ -106,22 +106,41 @@ int interactionMenu(ItemList *list, Status *stats, PlayerData *playerdat)
 int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
 {
     system("cls");
-    char input[256];
     windowNameBanner("Debug");
     printf("Dream-Cat-Simulator 디버깅 도구\n");
     printf("디버깅 메뉴에 대한 도움말이 필요할 경우 help를 입력하십시오.\n");
     printf("계속하려면 아무 키나 누르십시오.");
     getch();
+    char *ptr;
+    char input[256];
+    char command[256];
+    char *arguments[256];
     while (1)
     {
         system("cls");
         windowNameBanner("Debug");
-        printf("Dream-Cat-Simulator Debug ver. 1\n\n");
+        printf("Dream-Cat-Simulator Debug ver. 2\n\n");
         printf("> ");
-        scanf("%s", input);
+        fgets(input, sizeof(input), stdin);
+        removeEnter(input);
+        ptr = strtok(input, " ");
+        strcpy(command, ptr);
+        for (int i = 0; ptr != NULL; i++)
+        {
+            ptr = strtok(NULL, " ");
+            if (ptr != NULL)
+            {
+                arguments[i] = malloc(sizeof(char) * 128);
+                strcpy(arguments[i], ptr);
+            }
+            else
+            {
+                break;
+            }
+        }
 
         printf("\n");
-        if (strcmp(input, "rsptimereset") == 0)
+        if (strcmp(command, "rsptimereset") == 0)
         {
             miniGameData *minigamedata = malloc(sizeof(miniGameData));
             loadMinigameData(minigamedata);
@@ -130,15 +149,14 @@ int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
 
             printf("rsp_lastPlayed is now 0");
         }
-        else if (strcmp(input, "addgold") == 0)
+        else if (strcmp(command, "addgold") == 0)
         {
             items->gold += 10000;
             printf("Added 10000 gold");
         }
-        else if (strcmp(input, "stat") == 0)
+        else if (strcmp(command, "stat") == 0)
         {
-            scanf("%s", input);
-            if (strcmp(input, "info") == 0)
+            if (strcmp(arguments[0], "info") == 0)
             {
                 printf("Delight = %d\n", stats->delight);
                 printf("Anger = %d\n", stats->anger);
@@ -150,12 +168,23 @@ int debugWindow(ItemList *items, Status *stats, PlayerData *playerdat)
                 printf("Press any key to return");
                 getch();
             }
+            else if (strcmp(arguments[0], "reset") == 0)
+            {
+                stats->hunger = 1000;
+                stats->health = 1000;
+                stats->delight = 500;
+                stats->normal = 750;
+                stats->sadness = 0;
+                stats->anger = 0;
+                stats->friendship = 0;
+                printf("Stat reset success");
+            }
         }
-        else if (strcmp(input, "exit") == 0)
+        else if (strcmp(command, "exit") == 0)
         {
-            break;
+            return 0;
         }
-        else if (strcmp(input, "help") == 0)
+        else if (strcmp(command, "help") == 0)
         {
             fileprint("./gamedata/textresources/debughelp.txt");
             printf("\n");
