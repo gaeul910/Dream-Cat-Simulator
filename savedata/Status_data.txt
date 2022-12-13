@@ -1,8 +1,8 @@
-hunger=1000
+hunger=985
 normal=750
-delight=500
-sadness=0
-angry=0
+delight=490
+sadness=10
+anger=5
 health=1000
 friendship=0
-savetime=1669542219
+savetime=1670897410
