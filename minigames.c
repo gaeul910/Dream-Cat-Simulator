@@ -54,9 +54,7 @@ int rockscissorspaper(ItemList *items)
             // 미래를 보는 눈
             break;
         default:
-            gotoxy(0, 22);
             printf("\n잘못된 입력입니다. 다시 입력해주세요!\n");
-            eraser(22, 22);
             break;
         }
     }
@@ -80,7 +78,10 @@ int rockscissorspaper(ItemList *items)
                 playerplay = 3;
                 break;
             default:
+                gotoxy(0, 22);
                 printf("\n잘못된 입력입니다. 다시 시도하세요.\n");
+                Sleep(1500);
+                eraser(22, 22);
                 break;
             }
         }
