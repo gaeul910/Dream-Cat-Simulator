@@ -78,10 +78,10 @@ int rockscissorspaper(ItemList *items)
                 playerplay = 3;
                 break;
             default:
-                gotoxy(0, 22);
+                gotoxy(0, 21);
                 printf("\n잘못된 입력입니다. 다시 시도하세요.\n");
                 Sleep(1500);
-                eraser(22, 22);
+                eraser(21, 21);
                 break;
             }
         }
@@ -187,10 +187,10 @@ int rockscissorspapermenu(ItemList *items)
             }
             else
             {
-                gotoxy(0, 22);
+                gotoxy(0, 21);
                 printf("잘못된 입력입니다. 다시 입력해주세요.");
                 Sleep(1500);
-                eraser(22, 22);
+                eraser(21, 21);
             }
         }
     }
@@ -268,10 +268,10 @@ int rockscissorspapermenu(ItemList *items)
                     }
                     else
                     {
-                        gotoxy(0, 22);
+                        gotoxy(0, 21);
                         printf("잘못된 입력입니다. 다시 입력해주세요.");
                         Sleep(1500);
-                        eraser(22, 22);
+                        eraser(21, 21);
                     }
                 }
             }
