@@ -55,10 +55,10 @@ int seeinventory(ItemList *itemlist)
                     }
                     else
                     {
-                        gotoxy(0, 21);
+                        gotoxy(0, 20);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
                         Sleep(1500);
-                        eraser(21, 21);
+                        eraser(20, 20);
                     }
                 }
             }
@@ -84,10 +84,10 @@ int seeinventory(ItemList *itemlist)
                     }
                     else
                     {
-                        gotoxy(0, 21);
+                        gotoxy(0, 20);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
                         Sleep(1500);
-                        eraser(21, 21);
+                        eraser(20, 20);
                     }
                 }
             }
@@ -104,10 +104,10 @@ int seeinventory(ItemList *itemlist)
                     }
                     else
                     {
-                        gotoxy(0, 21);
+                        gotoxy(0, 20);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
                         Sleep(1500);
-                        eraser(21, 21);
+                        eraser(20, 20);
                     }
                 }
             }
@@ -141,10 +141,10 @@ int seeinventory(ItemList *itemlist)
                     }
                     else
                     {
-                        gotoxy(0, 21);
+                        gotoxy(0, 20);
                         printf("잘못된 입력입니다. 다시 입력해주세요.\n");
                         Sleep(1500);
-                        eraser(21, 21);
+                        eraser(20, 20);
                     }
                 }
             }
