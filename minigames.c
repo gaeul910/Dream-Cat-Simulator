@@ -478,7 +478,7 @@ int baseball(ItemList *items)
         }
         if (strike == size)
         {
-            printf("정답을 맞히셨어요!!");
+            printf("정답을 맞히셨어요!!\n\n");
             Sleep(1500);
             if (size == 3)
             {
