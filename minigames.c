@@ -54,7 +54,9 @@ int rockscissorspaper(ItemList *items)
             // 미래를 보는 눈
             break;
         default:
+            gotoxy(0, 22);
             printf("\n잘못된 입력입니다. 다시 입력해주세요!\n");
+            eraser(22, 22);
             break;
         }
     }
@@ -66,7 +68,6 @@ int rockscissorspaper(ItemList *items)
         if (kbhit() == 1)
         {
             input = getch();
-            printf("%c", input);
             switch (input)
             {
             case 's':
