@@ -639,6 +639,7 @@ int miniGameLobbyDisplay()
     system("cls");
 
     windowNameBanner("미니게임 로비");
+    fileprint("./gamedata/imgresources/minigameLobby");
     key_box(0);
     printf("[1] 아이템 가위바위보    ");
     printf("[2] 숫자야구               ");
